@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Client;
 
 class ClientController extends Controller
 {
@@ -13,7 +14,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Client::all();
+        return view('clients/index', compact('clients') );
     }
 
     /**
@@ -23,7 +25,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('clients/create');
     }
 
     /**
@@ -34,7 +36,40 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ( ! isset($request['customer_banned'])) {
+            $request['customer_banned'] = 0;
+        }
+
+        // validate
+        $this->validate(request(), [
+            'first_name' => 'required',
+            'surname' => 'required',
+            'title' => 'required',
+            'postcode' => 'required',
+            'address' => 'required',
+            'dob' => 'required',
+            'phone_number' => 'required',
+            'id_verification_type' => 'required',
+            'customer_banned' => 'required',
+        ]);
+
+        // create client
+        Client::create(request([
+            'first_name',
+            'surname',
+            'title',
+            'postcode',
+            'address',
+            'dob',
+            'phone_number',
+            'id_verification_type',
+            'customer_banned',
+        ]));
+
+        // index();
+        
+        $clients = Client::all();
+        return view('clients/index', compact('clients') );
     }
 
     /**

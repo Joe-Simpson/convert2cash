@@ -1,12 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <ul>
-                <li>Clients</li>
-            </ul>
+            <p>Testy</p>
         </div>
     </div>
 </div>
