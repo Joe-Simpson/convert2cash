@@ -3,14 +3,11 @@
 @section('content')
 <div class="container">
 	
-	<div class="row justify-content-center">
-		<div class="col">
-			<h3>Clients List</h3>
-		</div>
-		<div class="col">
-			<a href="/clients/create">Create New</a>
-		</div>
+	<div class="row justify-content-end">
+		<a href="/clients/create"><button class="btn btn-primary">Create New</button></a>
 	</div>
+
+	<hr>
 
     <div class="row justify-content-center">
     	<table class="table table-striped table-hover table-sm">

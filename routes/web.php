@@ -33,3 +33,4 @@ Route::get('/clients/{client}/edit', 'ClientController@edit');
 
 Route::delete('/clients/{client}', 'ClientController@destroy');
 
+Route::put('/clients/{client}', 'ClientController@update');
