@@ -60,8 +60,10 @@ class ClientController extends Controller
 
         // If client exists redirect to client edit view
         if ( $client ) {
-            $route = '/clients/' . $client -> id . '/edit';
-            return redirect($route)->with('client');
+            $title = 'Edit Client Details';
+            $edit = true;
+            $create = false;
+            return view('clients.edit', compact('client','title','edit','create'));
         }
 
 
@@ -88,10 +90,6 @@ class ClientController extends Controller
             'customer_banned' => 'required|boolean',
         ]);
 
-        // If validation fails, return back with all data and errors
-        // The below does not do what is required
-        return back()->withInput();
-
         // create client
         Client::create(request([
             'first_name',
@@ -105,8 +103,9 @@ class ClientController extends Controller
             'customer_banned',
         ]));
 
-        // Return to clients index screen
-        return redirect('/clients/')->with('status','Client created');
+        $title = 'Clients';
+        $clients = Client::all();
+        return view('clients.index', compact('clients','title') );
 
     }
 
@@ -160,7 +159,6 @@ class ClientController extends Controller
             'customer_banned' => 'nullable|boolean',
         ]);
 
-        // Update client
         Client::Where('id', $client)
             -> update(request([
             'first_name',
@@ -174,8 +172,9 @@ class ClientController extends Controller
             'customer_banned',
         ]));
 
-        // Return to clients index screen
-        return redirect('/clients/')->with('status','Client details updated');
+        $title = 'Clients';
+        $clients = Client::all();
+        return view('clients.index', compact('clients','title') );
     }
 
     /**
@@ -186,9 +185,13 @@ class ClientController extends Controller
      */
     public function destroy($client)
     {
+        // dd( $client );
+
         Client::destroy($client);
 
         //Return to clients index screen
-        return redirect('/clients/')->with('status','Client deleted');
+        $title = 'Clients';
+        $clients = Client::all();
+        return view('clients.index', compact('clients','title') );
     }
 }

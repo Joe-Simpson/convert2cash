@@ -21,5 +21,8 @@
             </form>
         </div>
     </div>
+    <div class="row">
+        <a href="/clients/"><button class="btn btn-secondary">Return</button></a>
+    </div>
 </div>
 @endsection

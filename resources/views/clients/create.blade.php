@@ -19,5 +19,8 @@
 		  	</form>
         </div>
     </div>
+    <div class="row">
+        <a href="/clients/"><button class="btn btn-secondary">Abandon</button></a>
+    </div>
 </div>
 @endsection
