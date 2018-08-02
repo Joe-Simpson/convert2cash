@@ -10,7 +10,15 @@
 	<hr>
 
     <div class="row justify-content-center">
-    	<table class="table table-striped table-hover table-sm">
+
+        <!-- This should be a "snackbar", rebuild -->
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+    	
+        <table class="table table-striped table-hover table-sm">
     		<thead>
     			<tr>
     				<th scope="col">#</th>
@@ -20,23 +28,28 @@
     				<th scope="col">Date of Birth</th>
     				<th scope="col">Phone Number</th>
     				<th scope="col">Postcode</th>
-    				<th scope="col">Banned</th>
+                    <th scope="col">Banned</th>
+                    <th scope="col"></th>
     			</tr>
     		</thead>
     		<tbody>
     			@foreach( $clients as $client )
-					
-					
-					<tr>
-						<th scope="row"><a href="/clients/{{ $client -> id }}">{{ $client->id }}</a></th>
-						<td>{{ $client->first_name }}</td>
-						<td>{{ $client->surname }}</td>
-						<td>{{ $client->title }}</td>
-						<td>{{ $client->dob }}</td>
-						<td>{{ $client->phone_number }}</td>
-						<td>{{ $client->postcode }}</td>
-						<td>{{ $client->customer_banned }}</td>
-					</tr>
+                        <!-- This is a bit too 'in your face'. Redesign as a symbol in the table -->
+                        <tr
+                            @if ( $client->customer_banned == "true" )
+                                class="table-danger"
+                            @endif
+                        >
+                            <th scope="row">{{ $client->id }}</th>
+    						<td>{{ $client->first_name }}</td>
+    						<td>{{ $client->surname }}</td>
+    						<td>{{ $client->title }}</td>
+    						<td>{{ $client->dob }}</td>
+    						<td>{{ $client->phone_number }}</td>
+    						<td>{{ $client->postcode }}</td>
+    						<td>{{ $client->customer_banned }}</td>
+                            <td><a href="/clients/{{ $client -> id }}">Show details</a></td>
+					   </tr>
 
 	        	@endforeach
     		</tbody>

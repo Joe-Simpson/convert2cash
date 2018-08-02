@@ -112,29 +112,60 @@
         <label for="id_verification_type">Id Verification Type:</label>
         <select class="form-control" 
             id="id_verification_type" 
-            name="id_verification_type" 
-            @if ( ! $create ) 
-                value="{{ $client -> first_name }}" 
-            @endif
+            name="id_verification_type"
             @if ( ! $edit ) 
                 disabled 
             @endif>
-            <option>Passport</option>
-            <option>Driving Licence</option>
+            @if ( ! $create )
+                <option
+                    @if ( $client->id_verification_type == "Passport")
+                        selected="selected"
+                    @endif>
+                    Passport
+                </option>
+                <option
+                    @if ( $client->id_verification_type == "Driving Licence")
+                        selected="selected"
+                    @endif>
+                    Driving Licence
+                </option>
+            @else
+                <option>Passport</option>
+                <option>Driving Licence</option>
+            @endif
         </select>
     </div>
 </div>
 
-<div class="form-group form-check">
-    <input type="checkbox" 
-        class="form-check-input" 
-        id="customer_banned" 
-        name="customer_banned" 
-        @if ( ! $create ) 
-            default="{{ $client -> customer_banned }}" 
-        @endif
-        @if ( ! $edit ) 
-            disabled 
-        @endif>
-    <label class="form-check-label" for="customer_banned">Customer Banned</label>
+<!-- This bit is too wide. In particular, the select box -->
+<div class="form-group row">
+    <div class="col">
+        <label for="customer_banned">Client Banned:</label>
+        <select class="form-control" 
+            id="customer_banned" 
+            name="customer_banned"
+            @if ( ! $edit ) 
+                disabled
+            @endif>
+            @if ( ! $create )
+                <option
+                    value=false
+                    @if ( $client->customer_banned == "false" )
+                        selected="selected"
+                    @endif>
+                    False
+                </option>
+                <option 
+                    value=true
+                    @if ( $client->customer_banned == "true" )
+                        selected="selected"
+                    @endif>
+                    True
+                </option>
+            @else
+                <option value=false>False</option>
+                <option value=true>True</option>
+            @endif
+        </select>
+    </div>
 </div>

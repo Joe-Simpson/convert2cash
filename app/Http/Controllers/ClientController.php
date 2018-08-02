@@ -50,7 +50,6 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-
         // Check client does not already exist
         $client = Client::where ('first_name', $request->first_name)
             ->where ('surname', $request->surname)
@@ -64,12 +63,13 @@ class ClientController extends Controller
             return redirect($route)->with('client');
         }
 
-
         // Populate empty non-required fields
-        // customer_banned
-        if ( ! isset($request['customer_banned'])) {
-            $request['customer_banned'] = 0;
-        }
+        // if ( isset($request['customer_banned']) ) {
+        //     $request['customer_banned'] = true;
+        // } else {
+        //     $request['customer_banned'] = false;
+        // }
+
         //address
         if ( ! isset($request['address'])) {
             $request['address'] = NULL;
@@ -85,28 +85,16 @@ class ClientController extends Controller
             'dob' => 'required|date',
             'phone_number' => 'required|max:11|min:11',
             'id_verification_type' => 'required|string',
-            'customer_banned' => 'required|boolean',
         ]);
 
         // If validation fails, return back with all data and errors
-        // The below does not do what is required
-        return back()->withInput();
 
         // create client
-        Client::create(request([
-            'first_name',
-            'surname',
-            'title',
-            'postcode',
-            'address',
-            'dob',
-            'phone_number',
-            'id_verification_type',
-            'customer_banned',
-        ]));
+        Client::create($request->all());
+
 
         // Return to clients index screen
-        return redirect('/clients/')->with('status','Client created');
+        return redirect('/clients/')->with('status','New Client created');
 
     }
 
@@ -132,6 +120,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
+        // dd($client);
         $title = 'Edit Client Details';
         $edit = true;
         $create = false;
@@ -157,7 +146,6 @@ class ClientController extends Controller
             'dob' => 'required|date',
             'phone_number' => 'required|max:11|min:11',
             'id_verification_type' => 'required|string',
-            'customer_banned' => 'nullable|boolean',
         ]);
 
         // Update client
