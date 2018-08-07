@@ -20,20 +20,13 @@
     <body>
 
         <div class="container-fluid">
-            <!-- Side navigation -->
-            <div class="sidenav">
-                <a href="/">Convert2Cash</a>
-                <hr>
-                <a href="/clients">Clients</a>
-                <a href="#">Placeholder</a>
-                <a href="#">Placeholder</a>
-                <a href="#">Placeholder</a>
-            </div>
 
-            <!-- Page content -->
-            <div class="main">
-                
-            </div>
+            @include ('layouts.sidebar')
+            
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                @yield ('content')
+            </main>
+        
         </div>
 
         <!-- Optional JavaScript -->
