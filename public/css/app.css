@@ -10522,6 +10522,14 @@ body {
   color: #f1f1f1;
 }
 
+/* Auth bar */
+
+.auth {
+  position: absolute;
+  bottom: 10px;
+  padding: 0px 0px 0px 10px;
+}
+
 /* Style page content */
 
 .main {
