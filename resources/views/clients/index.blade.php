@@ -29,15 +29,13 @@
     				<th scope="col">Phone Number</th>
     				<th scope="col">Postcode</th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
     			</tr>
     		</thead>
     		<tbody>
     			@foreach( $clients as $client )
                         <!-- This is a bit too 'in your face'. Redesign as a symbol in the table -->
-                        <tr
-                            @if ( $client->customer_banned == "true" )
-                                class="table-danger"
-                            @endif>
+                        <tr>
                             <th scope="row">{{ $client->id }}</th>
     						<td>{{ $client->first_name }}</td>
     						<td>{{ $client->surname }}</td>
@@ -45,7 +43,12 @@
     						<td>{{ $client->dob }}</td>
     						<td>{{ $client->phone_number }}</td>
     						<td>{{ $client->postcode }}</td>
-                            <td><a href="/clients/{{ $client -> id }}">Show details</a></td>
+                            <td>
+                                @if ( $client->customer_banned == "true" )
+                                    <i class="fas fa-ban"></i>
+                                @endif
+                            </td>
+                            <td><a href="/clients/{{ $client -> id }}">Details</a></td>
 					   </tr>
 
 	        	@endforeach

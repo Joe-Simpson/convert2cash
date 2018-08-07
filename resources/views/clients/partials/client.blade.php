@@ -141,7 +141,7 @@
 <div class="form-group row">
     <div class="col">
         <label for="customer_banned">Client Banned:</label>
-        <select class="form-control" 
+        <select class="form-control col-2" 
             id="customer_banned" 
             name="customer_banned"
             @if ( ! $edit ) 
