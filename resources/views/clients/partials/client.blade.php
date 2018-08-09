@@ -79,6 +79,25 @@
 
 <div class="form-group row">
     <div class="col">
+        <label for="notes">Notes</label>
+        <textarea
+            class="form-control"
+            id="notes"
+            name="notes"
+            @if ( $edit )
+                required
+            @else
+                readonly
+            @endif>
+@if ( ! $create )
+{{ $client -> notes }}
+@endif
+        </textarea>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col">
         <label for="dob">Date of Birth:</label> 
         <input type="date" 
             class="form-control col" 
@@ -140,24 +159,24 @@
 <!-- This bit is too wide. In particular, the select box -->
 <div class="form-group row">
     <div class="col">
-        <label for="customer_banned">Client Banned:</label>
+        <label for="client_banned">Client Banned:</label>
         <select class="form-control col-2" 
-            id="customer_banned" 
-            name="customer_banned"
+            id="client_banned" 
+            name="client_banned"
             @if ( ! $edit ) 
                 disabled
             @endif>
             @if ( ! $create )
                 <option
                     value=false
-                    @if ( $client->customer_banned == "false" )
+                    @if ( $client->client_banned == "false" )
                         selected="selected"
                     @endif>
                     False
                 </option>
                 <option 
                     value=true
-                    @if ( $client->customer_banned == "true" )
+                    @if ( $client->client_banned == "true" )
                         selected="selected"
                     @endif>
                     True

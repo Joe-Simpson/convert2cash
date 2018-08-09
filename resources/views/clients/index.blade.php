@@ -44,7 +44,7 @@
     						<td>{{ $client->phone_number }}</td>
     						<td>{{ $client->postcode }}</td>
                             <td>
-                                @if ( $client->customer_banned == "true" )
+                                @if ( $client->client_banned == "true" )
                                     <i class="fas fa-ban"></i>
                                 @endif
                             </td>

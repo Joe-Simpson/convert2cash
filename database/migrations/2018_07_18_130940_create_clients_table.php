@@ -24,7 +24,8 @@ class CreateClientsTable extends Migration
             $table->date('dob');
             $table->string('phone_number');
             $table->string('id_verification_type');
-            $table->string('customer_banned')->default('false');
+            $table->string('client_banned')->default('false');
+            $table->string('notes')->nullable();
         });
     }
 

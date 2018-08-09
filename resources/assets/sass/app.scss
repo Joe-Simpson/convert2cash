@@ -68,3 +68,10 @@ body {
 .fa-ban {
     color: red;
 }
+
+
+/* Snackbar */
+div.alert {
+    position: fixed;
+    bottom: 10px;
+} 

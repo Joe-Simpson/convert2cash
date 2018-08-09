@@ -22,7 +22,8 @@ class Client extends Model
         'dob',
         'phone_number',
         'id_verification_type',
-        'customer_banned',
+        'client_banned',
+        'notes',
     ];
 
     /**

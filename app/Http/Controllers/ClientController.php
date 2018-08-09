@@ -63,13 +63,6 @@ class ClientController extends Controller
             return redirect($route)->with('client');
         }
 
-        // Populate empty non-required fields
-        // if ( isset($request['customer_banned']) ) {
-        //     $request['customer_banned'] = true;
-        // } else {
-        //     $request['customer_banned'] = false;
-        // }
-
         //address
         if ( ! isset($request['address'])) {
             $request['address'] = NULL;
@@ -85,7 +78,10 @@ class ClientController extends Controller
             'dob' => 'required|date',
             'phone_number' => 'required|max:11|min:11',
             'id_verification_type' => 'required|string',
+            'notes' => 'nullable|string',
         ]);
+
+        // dd($request->all());
 
         // If validation fails, return back with all data and errors
 
@@ -146,6 +142,7 @@ class ClientController extends Controller
             'dob' => 'required|date',
             'phone_number' => 'required|max:11|min:11',
             'id_verification_type' => 'required|string',
+            'notes' => 'nullable|string',
         ]);
 
         // Update client
@@ -159,7 +156,8 @@ class ClientController extends Controller
             'dob',
             'phone_number',
             'id_verification_type',
-            'customer_banned',
+            'client_banned',
+            'notes',
         ]));
 
         // Return to clients index screen
