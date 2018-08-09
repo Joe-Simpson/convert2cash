@@ -20,8 +20,6 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 // Home
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/*', 'HomeController@index');
-
 
 // Clients
 Route::get('/clients', 'ClientController@index')->name('clients');

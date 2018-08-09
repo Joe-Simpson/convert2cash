@@ -69,7 +69,7 @@
             id="address" 
             name="address" 
             @if ( ! $create ) 
-                value="{{ $client -> Address }}"
+                value="{{ $client -> address }}"
             @endif
             @if ( ! $edit ) 
                 readonly 
