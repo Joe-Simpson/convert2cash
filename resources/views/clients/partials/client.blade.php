@@ -79,25 +79,6 @@
 
 <div class="form-group row">
     <div class="col">
-        <label for="notes">Notes</label>
-        <textarea
-            class="form-control"
-            id="notes"
-            name="notes"
-            @if ( $edit )
-                required
-            @else
-                readonly
-            @endif>
-@if ( ! $create )
-{{ $client -> notes }}
-@endif
-        </textarea>
-    </div>
-</div>
-
-<div class="form-group row">
-    <div class="col">
         <label for="dob">Date of Birth:</label> 
         <input type="date" 
             class="form-control col" 
@@ -153,6 +134,25 @@
                 <option>Driving Licence</option>
             @endif
         </select>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col">
+        <label for="notes">Notes</label>
+        <textarea
+            class="form-control"
+            id="notes"
+            name="notes"
+            @if ( $edit )
+                required
+            @else
+                readonly
+            @endif>
+@if ( ! $create )
+{{ $client -> notes }}
+@endif
+        </textarea>
     </div>
 </div>
 
