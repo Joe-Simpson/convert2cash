@@ -1,8 +1,8 @@
-Buy In & Buy Back requirments
+# Buy In & Buy Back requirments
 Some 'fields' look to be more specific to the service being provided than the stock/item itself
 
 
-#Buy Back
+## Buy Back
 Loan Amount
 Term of Buyback
 	1 week
@@ -15,14 +15,14 @@ Tabs {1?}
 	Clone
 	Seize
 
-#Buy In
+## Buy In
 Passcode {2?}
 Cost price
 Pay cash
 Selling price
 
-#Known tables and fields
-##stock fields
+## Known tables and fields
+### stock fields
 make
 model
 description
@@ -33,13 +33,15 @@ condition [like new/good/fair/poor/faulty or damaged]->[seperate table]
 notes
 operator {3?}
 
-##stock_condition fields
+### stock_condition fields
 Like New
 Good
 Fair
 Poor
 Faulty/Damaged
 
+
+## Questions we need to answer
 {?}
 	1.	Tabs
 		Not sure what these are meant to do. They could be ways of interacting with the 'deal'.
