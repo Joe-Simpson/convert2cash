@@ -34,7 +34,6 @@
     		</thead>
     		<tbody>
     			@foreach( $clients as $client )
-                        <!-- This is a bit too 'in your face'. Redesign as a symbol in the table -->
                         <tr>
                             <th scope="row">{{ $client->id }}</th>
     						<td>{{ $client->first_name }}</td>
@@ -53,7 +52,7 @@
 
 	        	@endforeach
     		</tbody>
-    	</table>        
+    	</table>
     </div>
 </div>
 @endsection

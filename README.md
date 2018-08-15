@@ -1,5 +1,5 @@
 # Requirments
-Some 'fields' look to be more specific to the service being provided than the stock/item itself
+Some 'fields' look to be more specific to the service being provided than the stock/item itself. Below is an attempt at picking apart what has been requested and what is actually required.
 
 ## Services
 ### Buy Back
@@ -23,7 +23,7 @@ Some 'fields' look to be more specific to the service being provided than the st
 
 ## Processes
 ### Sales
-1. Operator
+1. Operator/User
 2. Find item from stock
    - Option to add customer details
 3. Adjust price (if needed)
@@ -50,16 +50,15 @@ Some 'fields' look to be more specific to the service being provided than the st
 - serial/imei
 - passcode {2?}
 - boxed [true/false]
-- condition [like new/good/fair/poor/faulty or damaged]->[seperate table]
+- condition
+  - ENUM
+    - Like New
+    - Good
+    - Fair
+    - Poor
+    - Faulty/Damaged
 - notes
-- operator {3?}
-
-### stock_condition fields
-- Like New
-- Good
-- Fair
-- Poor
-- Faulty/Damaged
+- operator/user {3?}
 
 ## Questions we need to answer {?}
 1. Tabs
@@ -71,6 +70,10 @@ Some 'fields' look to be more specific to the service being provided than the st
 2. Passcode
    - It was specified that this is required for Buy In only. Maybe that was an error.
    - Suspect it is for mobile phone, laptop, etc. passcodes.
+   - Adding to stock table
 3. Operator
    - I assume this is to track who logs various stock, sales, etc.
-   - Expect a dropdown will suffice for this. Staff probably dont want to sign in and out for each sale/process.
+   - Plan to use the User table, they will be required to sign in/out as required.
+     - Can make this a simpler process
+       - Dropdown quick select of user
+       - Prompt for password

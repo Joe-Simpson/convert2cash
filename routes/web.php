@@ -35,3 +35,11 @@ Route::get('/clients/{client}/edit', 'ClientController@edit');
 Route::delete('/clients/{client}', 'ClientController@destroy');
 
 Route::put('/clients/{client}', 'ClientController@update');
+
+
+// Stock
+Route::get('/stock', 'StockController@index')->name('stock');
+
+Route::get('/stock/create', 'StockController@create');
+
+Route::post('/stock', 'StockController@store');

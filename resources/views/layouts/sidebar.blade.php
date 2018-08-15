@@ -1,21 +1,12 @@
 <div class="sidenav">
     <a href="/">Convert2Cash</a>
     <hr>
-    <ul>
-        <li class="">
+    <ul class="list-group">
+        <li class="list-group-item">
             <a href="/clients">Clients</a>
         </li>
-        <li class="">
-            <a href="#">Placeholder</a>
-        </li>
-        <li class="">
-            <a href="#">Placeholder</a>
-        </li>
-        <li class="">
-            <a href="#">Placeholder</a>
-        </li>
-        <li class="">
-            <a href="#">Placeholder</a>
+        <li class="list-group-item">
+            <a href="/stock">Stock</a>
         </li>
     </ul>
     <div class="row justify-content-center auth">

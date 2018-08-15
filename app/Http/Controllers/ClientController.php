@@ -81,8 +81,6 @@ class ClientController extends Controller
             'notes' => 'nullable|string',
         ]);
 
-        // dd($request->all());
-
         // If validation fails, return back with all data and errors
 
         // create client
