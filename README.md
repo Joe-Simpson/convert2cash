@@ -1,4 +1,4 @@
-# Buy In & Buy Back requirments
+# Requirments
 Some 'fields' look to be more specific to the service being provided than the stock/item itself
 
 ## Services
@@ -21,6 +21,27 @@ Some 'fields' look to be more specific to the service being provided than the st
 - Pay cash
 - Selling price
 
+## Processes
+### Sales
+1. Operator
+2. Find item from stock
+   - Option to add customer details
+3. Adjust price (if needed)
+4. Payment
+   - Cash
+   - Card
+
+### Deposit Scheme
+1. Operator
+2. Find item from stock
+3. Add customer details
+4. Adjust selling price of item
+5. Deposit required
+   - Minimum £20
+6. Additional payment
+7. Complete sale
+8. Option to cancel layaway
+
 ## Known tables and fields
 ### stock fields
 - make
@@ -39,7 +60,6 @@ Some 'fields' look to be more specific to the service being provided than the st
 - Fair
 - Poor
 - Faulty/Damaged
-
 
 ## Questions we need to answer {?}
 1. Tabs
