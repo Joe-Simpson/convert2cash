@@ -43,3 +43,11 @@ Route::get('/stock', 'StockController@index')->name('stock');
 Route::get('/stock/create', 'StockController@create');
 
 Route::post('/stock', 'StockController@store');
+
+Route::get('/stock/{stock}', 'StockController@show');
+
+Route::get('/stock/{stock}/edit', 'StockController@edit');
+
+Route::delete('/stock/{stock}', 'StockController@destroy');
+
+Route::put('/stock/{stock}', 'StockController@update');

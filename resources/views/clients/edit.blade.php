@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <form method="post" action="/clients/{{ $client -> id }}">
-                @method('put')
                 {{ csrf_field() }}
+                {{ method_field('PUT') }}
                 
                 @include('clients.partials.client')
                 

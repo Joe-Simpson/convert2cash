@@ -144,9 +144,7 @@
             class="form-control"
             id="notes"
             name="notes"
-            @if ( $edit )
-                required
-            @else
+            @if ( ! $edit )
                 readonly
             @endif>
 @if ( ! $create )

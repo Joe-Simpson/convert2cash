@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Stock;
 use Illuminate\Http\Request;
+use App\Stock;
 
 class StockController extends Controller
 {
@@ -37,7 +37,9 @@ class StockController extends Controller
     public function create()
     {
         $title = 'Create New Stock';
-        return view('stock.create', compact('title'));
+        $create = true;
+        $edit = true;
+        return view('stock.create', compact('title','create','edit'));
     }
 
     /**
@@ -63,11 +65,11 @@ class StockController extends Controller
 
         // If validation fails, return back with all data and errors
 
-        // create client
+        // create stock
         Stock::create($request->all());
 
 
-        // Return to clients index screen
+        // Return to stock index screen
         return redirect('/stock')->with('status','New Stock Item created');
     }
 
@@ -79,7 +81,10 @@ class StockController extends Controller
      */
     public function show(Stock $stock)
     {
-        //
+        $title = 'Stock Details';
+        $edit = false;
+        $create = false;
+        return view('stock.show',compact('stock','title','edit','create'));
     }
 
     /**
@@ -90,7 +95,10 @@ class StockController extends Controller
      */
     public function edit(Stock $stock)
     {
-        //
+        $title = 'Edit Stock Details';
+        $edit = true;
+        $create = false;
+        return view('stock.edit',compact('stock','title','edit','create'));
     }
 
     /**
@@ -100,9 +108,41 @@ class StockController extends Controller
      * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Stock $stock)
+    public function update(Request $request, $stock)
     {
-        //
+        // validate
+        $this->validate(request(), [
+            'make' => 'required|string',
+            'model' => 'required|string',
+            'description' => 'nullable|string',
+            'serial' => 'required|string',
+            'passcode' => 'nullable|string',
+            'boxed' => 'required|string',
+            'condition' => 'required|string',
+            'notes' => 'nullable|string',
+            'user' => 'required|string',
+        ]);
+
+        // dd($stock, $request);
+
+        // Update stock
+        Stock::Where('id', $stock)
+            -> update(request([
+            'make',
+            'model',
+            'description',
+            'serial',
+            'passcode',
+            'boxed',
+            'condition',
+            'notes',
+            'user',
+        ]));
+
+// dd($stock);
+
+        // Return to stock index screen
+        return redirect('/stock/')->with('status','Stock details updated');
     }
 
     /**
@@ -111,8 +151,11 @@ class StockController extends Controller
      * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Stock $stock)
+    public function destroy($stock)
     {
-        //
+        Stock::destroy($stock);
+
+        //Return to stock index screen
+        return redirect('/stock/')->with('status','Stock deleted');
     }
 }
