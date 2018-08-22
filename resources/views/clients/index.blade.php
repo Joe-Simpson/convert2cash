@@ -30,6 +30,7 @@
     				<th scope="col">Postcode</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
     			</tr>
     		</thead>
     		<tbody>
@@ -47,7 +48,19 @@
                                     <i class="fas fa-ban"></i>
                                 @endif
                             </td>
-                            <td><a href="/clients/{{ $client -> id }}">Details</a></td>
+                            <td>
+                                <a href="/buyin/{{ $client -> id }}">
+                                    <span class="badge badge-primary">Buy-In</span>
+                                </a>
+                                <a href="/buyback/{ $client -> id }}">
+                                    <span class="badge badge-primary">Buy-Back</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/clients/{{ $client -> id }}">
+                                    <span class="badge badge-secondary">Details</span>
+                                </a>
+                            </td>
 					   </tr>
 
 	        	@endforeach

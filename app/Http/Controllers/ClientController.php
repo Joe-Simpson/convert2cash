@@ -37,9 +37,11 @@ class ClientController extends Controller
     public function create()
     {
         $title = 'Create New Client';
-        $edit = true;
-        $create = true;
-        return view('clients.create', compact('title','edit','create'));
+        $clientblade = [
+            'edit' => true,
+            'create' => true,
+        ];
+        return view('clients.create', compact('title','clientblade'));
     }
 
     /**
@@ -101,9 +103,11 @@ class ClientController extends Controller
     public function show(Client $client)
     {   
         $title = 'Client Details';
-        $edit = false;
-        $create = false;
-        return view('clients.show', compact('client','title','edit','create'));
+        $clientblade = [
+            'edit' => false,
+            'create' => false,
+        ];
+        return view('clients.show', compact('client','title','clientblade'));
     }
 
     /**
@@ -116,9 +120,11 @@ class ClientController extends Controller
     {
         // dd($client);
         $title = 'Edit Client Details';
-        $edit = true;
-        $create = false;
-        return view('clients.edit', compact('client','title','edit','create'));
+        $clientblade = [
+            'edit' => true,
+            'create' => false,
+        ];
+        return view('clients.edit', compact('client','title','clientblade'));
     }
 
     /**

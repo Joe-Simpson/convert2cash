@@ -9,7 +9,7 @@
             <a href="/stock">Stock</a>
         </li>
     </ul>
-    <div class="row align-items-end justify-content-center auth">
+    <div class="row justify-content-center auth">
         @if( Auth::check() )
             <div class="col">
                 <a href="">{{ Auth::user()->name }}</a>

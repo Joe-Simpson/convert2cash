@@ -18,7 +18,9 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
 // Home
-Route::get('/', 'HomeController@index')->name('home');
+// Set Clients page as default
+// Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'ClientController@index')->name('home');
 
 
 // Clients
@@ -51,3 +53,10 @@ Route::get('/stock/{stock}/edit', 'StockController@edit');
 Route::delete('/stock/{stock}', 'StockController@destroy');
 
 Route::put('/stock/{stock}', 'StockController@update');
+
+
+// Buy-In
+Route::get('/buyin/{client}', 'BuyinController@create');
+
+// Buy-Back
+Route::get('/buyback/{client}', 'BuybackController@create');

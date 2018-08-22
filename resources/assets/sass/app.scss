@@ -37,6 +37,10 @@ body {
 }
 
 /* The navigation menu links */
+.sidenav ul {
+    list-style: none;
+}
+
 .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;

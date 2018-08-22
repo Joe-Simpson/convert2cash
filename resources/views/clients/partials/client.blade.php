@@ -5,12 +5,12 @@
             class="form-control" 
             id="title" 
             name="title" 
-            @if ( ! $create ) 
+            @if ( ! $clientblade['create'] ) 
                 value="{{ $client -> title }}" 
-            @endif 
-            @if ( $edit ) 
-                required 
-            @else 
+            @endif
+            @if ( $clientblade['edit'] ) 
+                required
+            @else
                 readonly 
             @endif>
     </div>
@@ -20,10 +20,10 @@
             class="form-control" 
             id="first_name" 
             name="first_name"  
-            @if ( ! $create ) 
+            @if ( ! $clientblade['create'] ) 
                 value="{{ $client -> first_name }}" 
             @endif 
-            @if ( $edit ) 
+            @if ( $clientblade['edit'] ) 
                 required 
             @else 
                 readonly 
@@ -35,10 +35,10 @@
             class="form-control" 
             id="surname" 
             name="surname" 
-            @if ( ! $create ) 
+            @if ( ! $clientblade['create'] ) 
                 value="{{ $client -> surname }}" 
             @endif 
-            @if ( $edit ) 
+            @if ( $clientblade['edit'] ) 
                 required 
             @else 
                 readonly 
@@ -53,10 +53,10 @@
             class="form-control" 
             id="postcode" 
             name="postcode" 
-            @if ( ! $create ) 
+            @if ( ! $clientblade['create'] ) 
                 value="{{ $client -> postcode }}"
             @endif
-            @if ( $edit ) 
+            @if ( $clientblade['edit'] ) 
                 required 
             @else 
                 readonly 
@@ -68,10 +68,10 @@
             class="form-control" 
             id="address" 
             name="address" 
-            @if ( ! $create ) 
+            @if ( ! $clientblade['create'] ) 
                 value="{{ $client -> address }}"
             @endif
-            @if ( ! $edit ) 
+            @if ( ! $clientblade['edit'] ) 
                 readonly 
             @endif>
     </div>
@@ -84,10 +84,10 @@
             class="form-control col" 
             id="dob" 
             name="dob" 
-            @if ( ! $create ) 
+            @if ( ! $clientblade['create'] ) 
                 value="{{ $client -> dob }}"
             @endif
-            @if ( $edit ) 
+            @if ( $clientblade['edit'] ) 
                 required 
             @else 
                 readonly
@@ -99,10 +99,10 @@
             class="form-control" 
             id="phone_number" 
             name="phone_number" 
-            @if ( ! $create ) 
+            @if ( ! $clientblade['create'] ) 
                 value="{{ $client -> phone_number }}" 
             @endif
-            @if ( $edit ) 
+            @if ( $clientblade['edit'] ) 
                 required 
             @else 
                 readonly 
@@ -113,10 +113,10 @@
         <select class="form-control" 
             id="id_verification_type" 
             name="id_verification_type"
-            @if ( ! $edit ) 
+            @if ( ! $clientblade['edit'] ) 
                 disabled 
             @endif>
-            @if ( ! $create )
+            @if ( ! $clientblade['create'] )
                 <option
                     @if ( $client->id_verification_type == "Passport")
                         selected="selected"
@@ -144,13 +144,12 @@
             class="form-control"
             id="notes"
             name="notes"
-            @if ( ! $edit )
+            @if ( ! $clientblade['edit'] )
                 readonly
             @endif>
-@if ( ! $create )
+@if ( ! $clientblade['create'] )
 {{ $client -> notes }}
-@endif
-        </textarea>
+@endif</textarea>
     </div>
 </div>
 
@@ -161,10 +160,10 @@
         <select class="form-control col-2" 
             id="client_banned" 
             name="client_banned"
-            @if ( ! $edit ) 
+            @if ( ! $clientblade['edit'] ) 
                 disabled
             @endif>
-            @if ( ! $create )
+            @if ( ! $clientblade['create'] )
                 <option
                     value=false
                     @if ( $client->client_banned == "false" )

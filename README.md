@@ -16,9 +16,12 @@ Some 'fields' look to be more specific to the service being provided than the st
   - Seize
 
 ### Buy In
+More typical laon shop type stuff.
+"Buy my stuff, I don't want it back"
+Do we need to track who sold the item. That is to say, add a new client.
 - Passcode {2?}
 - Cost price
-- Pay cash
+- Pay cash {5?}
 - Selling price
 
 ## Processes
@@ -77,3 +80,9 @@ Some 'fields' look to be more specific to the service being provided than the st
      - Can make this a simpler process
        - Dropdown quick select of user
        - Prompt for password
+4. Search
+   - build something
+   - search: "laravel search"
+5. Pay cash
+   - email Emma face for clarification
+   - could be wetehr they paid cash or cash price for selling it

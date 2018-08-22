@@ -27,8 +27,12 @@
             <!-- Page content -->
             <div class="main">
                 @if ( isset($title) )
-                    <h1>{{ $title }}</h1>
-                    <hr>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <h1>{{ $title }}</h1>
+                        </div>
+                        <hr>
+                    </div>
                 @endif
 
                 @yield ('content')

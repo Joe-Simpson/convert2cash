@@ -5,10 +5,10 @@
             class="form-control"
             id="make"
             name="make"
-            @if ( ! $create ) 
+            @if ( ! $stockblade['create'] ) 
                 value="{{ $stock -> make }}" 
             @endif 
-            @if ( $edit ) 
+            @if ( $stockblade['edit'] ) 
                 required 
             @else 
                 readonly 
@@ -23,10 +23,10 @@
             class="form-control"
             id="model"
             name="model"
-            @if ( ! $create ) 
+            @if ( ! $stockblade['create'] ) 
                 value="{{ $stock -> model }}" 
             @endif 
-            @if ( $edit ) 
+            @if ( $stockblade['edit'] ) 
                 required 
             @else 
                 readonly 
@@ -41,10 +41,10 @@
             class="form-control"
             id="description"
             name="description"
-            @if ( ! $create ) 
+            @if ( ! $stockblade['create'] ) 
                 value="{{ $stock -> description }}" 
             @endif 
-            @if ( ! $edit )
+            @if ( ! $stockblade['edit'] )
                 readonly 
             @endif
             >
@@ -57,10 +57,10 @@
             class="form-control"
             id="serial"
             name="serial"
-            @if ( ! $create ) 
+            @if ( ! $stockblade['create'] ) 
                 value="{{ $stock -> serial }}" 
             @endif 
-            @if ( $edit ) 
+            @if ( $stockblade['edit'] ) 
                 required 
             @else 
                 readonly 
@@ -75,10 +75,10 @@
             class="form-control"
             id="passcode"
             name="passcode"
-            @if ( ! $create ) 
+            @if ( ! $stockblade['create'] ) 
                 value="{{ $stock -> passcode }}" 
             @endif 
-            @if ( ! $edit )
+            @if ( ! $stockblade['edit'] )
                 readonly 
             @endif
             >
@@ -90,10 +90,10 @@
     	<select class="form-control" 
 			id="boxed" 
 			name="boxed"
-            @if ( ! $edit )
+            @if ( ! $stockblade['edit'] )
                 disabled
             @endif>
-            @if ( ! $create )
+            @if ( ! $stockblade['create'] )
                 <option 
                     value=true
                     @if ( $stock->boxed == "true" )
@@ -121,10 +121,10 @@
     	<select class="form-control" 
 			id="condition" 
 			name="condition"
-            @if ( ! $edit )
+            @if ( ! $stockblade['edit'] )
                 disabled
             @endif>
-            @if ( ! $create )
+            @if ( ! $stockblade['create'] )
                 <option 
                     value="Like New"
                     @if ( $stock->condition == "Like New")
@@ -176,13 +176,12 @@
     	<textarea class="form-control"
 			id="notes"
 			name="notes"
-            @if ( ! $edit )
+            @if ( ! $stockblade['edit'] )
                 readonly 
             @endif>
-@if ( ! $create )
+@if ( ! $stockblade['create'] )
 {{ $stock -> notes }}
-@endif
-		</textarea>
+@endif</textarea>
     </div>
 </div>
 <div class="form-group row">
@@ -192,7 +191,7 @@
             class="form-control"
             id="user"
             name="user"
-            @if ( $create )
+            @if ( $stockblade['create'] )
                 value="{{ Auth::user()->name }}"
             @else
                 value={{ $stock->user }}

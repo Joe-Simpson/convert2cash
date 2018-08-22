@@ -37,9 +37,11 @@ class StockController extends Controller
     public function create()
     {
         $title = 'Create New Stock';
-        $create = true;
-        $edit = true;
-        return view('stock.create', compact('title','create','edit'));
+        $stockblade = [
+            'edit' => true,
+            'create' => true,
+        ];
+        return view('stock.create', compact('title','stockblade'));
     }
 
     /**
@@ -82,9 +84,11 @@ class StockController extends Controller
     public function show(Stock $stock)
     {
         $title = 'Stock Details';
-        $edit = false;
-        $create = false;
-        return view('stock.show',compact('stock','title','edit','create'));
+        $stockblade = [
+            'edit' => false,
+            'create' => false,
+        ];
+        return view('stock.show',compact('stock','title','stockblade'));
     }
 
     /**
@@ -96,9 +100,11 @@ class StockController extends Controller
     public function edit(Stock $stock)
     {
         $title = 'Edit Stock Details';
-        $edit = true;
-        $create = false;
-        return view('stock.edit',compact('stock','title','edit','create'));
+        $stockblade = [
+            'edit' => true,
+            'create' => false,
+        ];
+        return view('stock.edit',compact('stock','title','stockblade'));
     }
 
     /**
@@ -123,8 +129,6 @@ class StockController extends Controller
             'user' => 'required|string',
         ]);
 
-        // dd($stock, $request);
-
         // Update stock
         Stock::Where('id', $stock)
             -> update(request([
@@ -138,8 +142,6 @@ class StockController extends Controller
             'notes',
             'user',
         ]));
-
-// dd($stock);
 
         // Return to stock index screen
         return redirect('/stock/')->with('status','Stock details updated');
