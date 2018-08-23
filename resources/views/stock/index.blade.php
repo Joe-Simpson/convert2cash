@@ -11,7 +11,11 @@
 
     <div class="row justify-content-center">
 
-        <table class="table table-striped table-hover table-sm">
+        <table data-toggle="table" 
+               data-pagination="true" 
+               data-search="true"
+               data-classes="table table-condensed"
+               data-striped="true">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -25,12 +29,16 @@
             <tbody>
                 @foreach( $stock as $stock_item )
                         <tr>
-                            <th scope="row">{{ $stock_item->id }}</th>
+                            <td>{{ $stock_item->id }}</th>
                             <td>{{ $stock_item->make }}</td>
                             <td>{{ $stock_item->model }}</td>
                             <td>{{ $stock_item->boxed }}</td>
                             <td>{{ $stock_item->condition }}</td>
-                            <td><a href="/stock/{{ $stock_item -> id }}">Details</a></td>
+                            <td>
+                                <a href="/stock/{{ $stock_item -> id }}">
+                                    <span class="badge badge-secondary">Details</span>
+                                </a>
+                            </td>
                        </tr>
                 @endforeach
             </tbody>

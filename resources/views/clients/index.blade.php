@@ -11,14 +11,17 @@
 
     <div class="row justify-content-center">
 
-        <!-- This should be a "snackbar", rebuild -->
         @if (session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}
             </div>
         @endif
     	
-        <table class="table table-striped table-hover table-sm">
+        <table data-toggle="table" 
+               data-pagination="true" 
+               data-search="true"
+               data-classes="table table-condensed"
+               data-striped="true">
     		<thead>
     			<tr>
     				<th scope="col">#</th>
@@ -30,24 +33,24 @@
     				<th scope="col">Postcode</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
-                    <th scope="col"></th>
     			</tr>
     		</thead>
     		<tbody>
     			@foreach( $clients as $client )
                         <tr>
-                            <th scope="row">{{ $client->id }}</th>
+                            <td>
+                                @if ( $client->client_banned == "true" )
+                                    <i class="fas fa-ban"></i>
+                                @else
+                                    {{ $client->id }}
+                                @endif
+                            </th>
     						<td>{{ $client->first_name }}</td>
     						<td>{{ $client->surname }}</td>
     						<td>{{ $client->title }}</td>
     						<td>{{ $client->dob }}</td>
     						<td>{{ $client->phone_number }}</td>
     						<td>{{ $client->postcode }}</td>
-                            <td>
-                                @if ( $client->client_banned == "true" )
-                                    <i class="fas fa-ban"></i>
-                                @endif
-                            </td>
                             <td>
                                 <a href="/buyin/{{ $client -> id }}">
                                     <span class="badge badge-primary">Buy-In</span>
