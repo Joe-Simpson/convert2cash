@@ -24,9 +24,9 @@
                 <td>{{ $buyin->cost_price }}</td>
                 <td>{{ $buyin->pay_cash }}</td>
                 <td>{{ $buyin->selling_price }}</td>
-                <td>{{ $buyin->user_id }}</td>
-                <td>{{ $buyin->client_id }}</td>
-                <td>{{ $buyin->stock_id }}</td>
+                <td>{{ $buyin->user->name }}</td>
+                <td>{{ $buyin->client->first_name }} {{ $buyin->client->surname }}</td>
+                <td>{{ $buyin->stock->make }} {{ $buyin->stock->model }}</td>
                 <td>
                     <a href="/buyin/{{ $buyin -> id }}">
                         <span class="badge badge-secondary">Details</span>

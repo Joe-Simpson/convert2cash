@@ -43,7 +43,7 @@
 
             </form>
 
-            <form action="/clients/{{ $buyin -> id }}" method="POST">
+            <form action="/buyin/{{ $buyin -> id }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <button type="submit" class="btn btn-danger" confirmation="test">Delete Buy-In</button>
