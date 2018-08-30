@@ -9,6 +9,14 @@
                 {{ csrf_field() }}
                 
                 <div class="form-group row">
+                    <h3>Buy-In Details</h3>
+                </div>
+
+                @include('buyin.partials.buyin')
+                
+                <hr>
+
+                <div class="form-group row">
                     <h3>Client Details</h3>
                 </div>
                 
@@ -22,14 +30,6 @@
                 
                 @include('stock.partials.stock')
 
-                <hr>
-
-                <div class="form-group row">
-                    <h3>Buy-In Details</h3>
-                </div>
-
-                @include('buyin.partials.buyin')
-                
                 <hr>
 
                 <div class="form-group row justify-content-between">
