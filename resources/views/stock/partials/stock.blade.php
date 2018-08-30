@@ -194,7 +194,7 @@
             @if ( $stockblade['create'] )
                 value="{{ Auth::user()->name }}"
             @else
-                value={{ $stock->user }}
+                value={{ $stock->user->name }}
             @endif
             readonly
             >

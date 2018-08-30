@@ -56,7 +56,19 @@ Route::put('/stock/{stock}', 'StockController@update');
 
 
 // Buy-In
-Route::get('/buyin/{client}', 'BuyinController@create');
+Route::get('/buyin', 'BuyinController@index')->name('buyin');
+
+Route::get('/buyin/create', 'BuyinController@create');
+
+Route::post('/buyin','BuyinController@store');
+
+Route::get('/buyin/{buyin}', 'BuyinController@show');
+
+Route::get('/buyin/{buyin}/edit', 'BuyinController@edit');
+
+Route::delete('/buyin/{buyin}', 'BuyinController@destroy');
+
+Route::put('/buyin/{buyin}', 'BuyinController@update');
 
 // Buy-Back
-Route::get('/buyback/{client}', 'BuybackController@create');
+Route::get('/buyback/create', 'BuybackController@create');

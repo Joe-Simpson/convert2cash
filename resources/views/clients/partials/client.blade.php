@@ -1,3 +1,12 @@
+@if ( ! $clientblade['create'] )
+<input type="text" 
+       name="client_id"
+       id="client_id" 
+       class="form-control"
+       value="{{ $client -> id }}"
+       hidden>
+@endif
+
 <div class="form-group row">
     <div class="col-2">
         <label for="title">Title</label>

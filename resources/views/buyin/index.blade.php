@@ -4,15 +4,15 @@
 <div class="container">
 	
 	<div class="row justify-content-end">
-		<a href="/stock/create"><button class="btn btn-primary">Create New</button></a>
+		<a href="/buyin/create"><button class="btn btn-primary">Create New</button></a>
 	</div>
 
 	<hr>
 
     <div class="row justify-content-center">
 
-        @include('stock.partials.table')
-        
+        @include('buyin.partials.table')
+
         <!-- This should be a "snackbar", rebuild -->
         @if (session('status'))
             <div class="alert alert-success">

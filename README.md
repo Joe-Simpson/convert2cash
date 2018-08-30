@@ -67,22 +67,21 @@ Do we need to track who sold the item. That is to say, add a new client.
 1. Tabs
    - Not sure what these are meant to do. They could be ways of interacting with the 'deal'.
      - Buyback = Customer wants their item back
-     - Renew = Start 'deal' again
-     - Clone = Copy it (for some reason)
+     - Renew = Start the 'deal' again
+     - Clone = Copy it (for some reason). 
      - Seize = Close 'deal' taking ownership of the stock
 2. Passcode
    - It was specified that this is required for Buy In only. Maybe that was an error.
    - Suspect it is for mobile phone, laptop, etc. passcodes.
-   - Adding to stock table
 3. Operator
    - I assume this is to track who logs various stock, sales, etc.
    - Plan to use the User table, they will be required to sign in/out as required.
      - Can make this a simpler process
        - Dropdown quick select of user
        - Prompt for password
-4. Search
+4. Search [done]
    - build something
    - search: "laravel search"
-5. Pay cash
+5. Pay cash 
    - email Emma face for clarification
-   - could be wetehr they paid cash or cash price for selling it
+   - could be wether they paid cash for the buy in or the cash price for selling it

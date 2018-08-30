@@ -15,6 +15,12 @@ class CreateBuyinsTable extends Migration
     {
         Schema::create('buyins', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->integer('client_id');
+            $table->integer('stock_id');
+            $table->float('cost_price', 8, 2);
+            $table->float('pay_cash', 8, 2);
+            $table->float('selling_price', 8, 2);
             $table->timestamps();
         });
     }

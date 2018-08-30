@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Stock extends Model
 {
     protected $guarded = [];
+
+    public function buyin()
+    {
+        return $this->belongsTo(Buyin::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 	
     /**
      * The attributes that are mass assignable.
@@ -22,7 +32,7 @@ class Stock extends Model
         'boxed',
         'condition',
         'notes',
-        'user',
+        'user_id',
     ];
 
     /**

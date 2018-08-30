@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
 	protected $guarded = [];
+
+    public function buyin()
+    {
+        return $this->hasMany(Buyin::class);
+    }
+
+    public function addBuyin($buyin)
+    {
+        $this->buyin()->create(compact('buyin'));
+    }
 	
     /**
      * The attributes that are mass assignable.

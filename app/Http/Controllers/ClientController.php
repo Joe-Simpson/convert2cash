@@ -118,7 +118,6 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        // dd($client);
         $title = 'Edit Client Details';
         $clientblade = [
             'edit' => true,

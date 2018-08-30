@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form method="POST" action="/buyin">
+            <form method="GET" action="/buyin/{{ $buyin -> id }}/edit">
 
-			    {{ csrf_field() }}
+                {{ csrf_field() }}
                 
                 <div class="form-group row">
                     <h3>Client Details</h3>
@@ -32,17 +32,19 @@
                 
                 <hr>
 
-                <div class="form-group">
-			      <button type="submit" class="btn btn-primary">Create</button>
-			    </div>
+                <div class="form-group row justify-content-between">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </div>
+                </div>
 
-			    @include('layouts.errors')
+                @include('layouts.errors')
 
-		  	</form>
+            </form>
         </div>
     </div>
     <div class="row">
-        <a href="/clients/"><button class="btn btn-secondary">Abandon</button></a>
+        <a href="/buyin"><button class="btn btn-secondary">Return</button></a>
     </div>
 </div>
 @endsection

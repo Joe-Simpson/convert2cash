@@ -62,13 +62,22 @@ class StockController extends Controller
             'boxed' => 'required|string',
             'condition' => 'required|string',
             'notes' => 'nullable|string',
-            'user' => 'required|string',
         ]);
 
         // If validation fails, return back with all data and errors
 
         // create stock
-        Stock::create($request->all());
+        Stock::create([
+            'make' => request('make'),
+            'model' => request('model'),
+            'description' => request('description'),
+            'serial' => request('serial'),
+            'passcode' => request('passcode'),
+            'boxed' => request('boxed'),
+            'condition' => request('condition'),
+            'notes' => request('notes'),
+            'user_id' => auth()->id(),
+        ]);
 
 
         // Return to stock index screen
@@ -131,17 +140,17 @@ class StockController extends Controller
 
         // Update stock
         Stock::Where('id', $stock)
-            -> update(request([
-            'make',
-            'model',
-            'description',
-            'serial',
-            'passcode',
-            'boxed',
-            'condition',
-            'notes',
-            'user',
-        ]));
+            -> update([
+                'make' => request('make'),
+                'model' => request('model'),
+                'description' => request('description'),
+                'serial' => request('serial'),
+                'passcode' => request('passcode'),
+                'boxed' => request('boxed'),
+                'condition' => request('condition'),
+                'notes' => request('notes'),
+                'user_id' => auth()->id(),
+            ]);
 
         // Return to stock index screen
         return redirect('/stock/')->with('status','Stock details updated');

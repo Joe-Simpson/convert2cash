@@ -23,7 +23,7 @@ class CreateStocksTable extends Migration
             $table->enum('boxed',['true','false']);
             $table->enum('condition',['Like New','Good','Fair','Poor','Faulty/Damaged']);
             $table->string('notes')->nullable();
-            $table->string('user');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
