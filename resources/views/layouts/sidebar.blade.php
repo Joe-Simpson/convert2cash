@@ -9,7 +9,10 @@
             <a href="/stock">Stock</a>
         </li>
         <li>
-            <a href="/buyin">BuyIn</a>
+            <a href="/buyin">Buy-In</a>
+        </li>
+        <li>
+            <a href="/buyback">Buy-Back</a>
         </li>
     </ul>
     <div class="row align-items-end justify-content-center auth">

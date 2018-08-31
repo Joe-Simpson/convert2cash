@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
 
-        @include('buyin.partials.table')
+        @include('buyback.partials.table')
 
         <!-- This should be a "snackbar", rebuild -->
         @if (session('status'))

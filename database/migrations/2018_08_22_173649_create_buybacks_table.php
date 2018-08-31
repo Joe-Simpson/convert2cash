@@ -15,6 +15,11 @@ class CreateBuybacksTable extends Migration
     {
         Schema::create('buybacks', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->integer('client_id');
+            $table->integer('stock_id');
+            $table->float('loan_amount', 8, 2);
+            $table->enum('term', ['1 week','2 weeks','3 weeks','1 month']);
             $table->timestamps();
         });
     }

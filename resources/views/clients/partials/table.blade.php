@@ -36,7 +36,7 @@
                     <a href="/buyin/create?client_id={{ $client -> id }}">
                         <span class="badge badge-primary">Buy-In</span>
                     </a>
-                    <a href="/buyback/{ $client -> id }}">
+                    <a href="/buyback/create?client_id={{ $client -> id }}">
                         <span class="badge badge-primary">Buy-Back</span>
                     </a>
                 </td>

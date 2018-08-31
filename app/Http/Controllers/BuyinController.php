@@ -57,7 +57,7 @@ class BuyinController extends Controller
             'edit' => true,
         ];
         
-        return view('buyin.create', compact('client','title','clientblade','stockblade'));
+        return view('buyin.create', compact('client','title','clientblade','stockblade','buyinblade'));
     }
 
     /**
@@ -126,7 +126,6 @@ class BuyinController extends Controller
             'edit' => false,
             'create' => false,
         ];
-
 
         $client = $buyin->client;
 

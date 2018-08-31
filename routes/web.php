@@ -18,8 +18,6 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
 // Home
-// Set Clients page as default
-// Route::get('/', 'HomeController@index')->name('home');
 Route::get('/', 'ClientController@index')->name('home');
 
 
@@ -34,9 +32,9 @@ Route::get('/clients/{client}','ClientController@show');
 
 Route::get('/clients/{client}/edit', 'ClientController@edit');
 
-Route::delete('/clients/{client}', 'ClientController@destroy');
-
 Route::put('/clients/{client}', 'ClientController@update');
+
+Route::delete('/clients/{client}', 'ClientController@destroy');
 
 
 // Stock
@@ -50,9 +48,9 @@ Route::get('/stock/{stock}', 'StockController@show');
 
 Route::get('/stock/{stock}/edit', 'StockController@edit');
 
-Route::delete('/stock/{stock}', 'StockController@destroy');
-
 Route::put('/stock/{stock}', 'StockController@update');
+
+Route::delete('/stock/{stock}', 'StockController@destroy');
 
 
 // Buy-In
@@ -66,9 +64,21 @@ Route::get('/buyin/{buyin}', 'BuyinController@show');
 
 Route::get('/buyin/{buyin}/edit', 'BuyinController@edit');
 
-Route::delete('/buyin/{buyin}', 'BuyinController@destroy');
-
 Route::put('/buyin/{buyin}', 'BuyinController@update');
 
+Route::delete('/buyin/{buyin}', 'BuyinController@destroy');
+
 // Buy-Back
+Route::get('/buyback', 'BuybackController@index')->name('buyback');
+
 Route::get('/buyback/create', 'BuybackController@create');
+
+Route::post('/buyback','BuybackController@store');
+
+Route::get('/buyback/{buyback}', 'BuybackController@show');
+
+Route::get('/buyback/{buyback}/edit', 'BuybackController@edit');
+
+Route::put('/buyback/{buyback}', 'BuybackController@update');
+
+Route::delete('/buyback/{buyback}', 'BuybackController@destroy');

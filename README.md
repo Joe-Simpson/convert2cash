@@ -38,7 +38,7 @@ Do we need to track who sold the item. That is to say, add a new client.
 1. Operator
 2. Find item from stock
 3. Add customer details
-4. Adjust selling price of item
+4. Adjust selling price if item
 5. Deposit required
    - Minimum £20
 6. Additional payment

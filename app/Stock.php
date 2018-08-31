@@ -13,6 +13,11 @@ class Stock extends Model
         return $this->belongsTo(Buyin::class);
     }
 
+    public function buyback()
+    {
+        return $this->belongsTo(Buyback::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

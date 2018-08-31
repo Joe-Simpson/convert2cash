@@ -7,22 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Buyback extends Model
 {
     protected $guarded = [];
-	
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-    	//Put table fields here
-    ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        
-    ];
+    public function stock()
+    {
+        return $this->belongsTo(Stock::class);
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
