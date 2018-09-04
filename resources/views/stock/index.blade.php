@@ -2,13 +2,6 @@
 
 @section('content')
 <div class="container">
-	
-	<div class="row justify-content-end">
-		<a href="/stock/create"><button class="btn btn-primary">Create New</button></a>
-	</div>
-
-	<hr>
-
     <div class="row justify-content-center">
 
         @include('stock.partials.table')

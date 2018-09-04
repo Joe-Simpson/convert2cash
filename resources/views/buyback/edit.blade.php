@@ -20,17 +20,25 @@
                 <div class="form-group row">
                     <h3>Client Details</h3>
                 </div>
-                
-                @include('clients.partials.client')
 
+                @if ( isset( $buyback->client ) )
+                    @include('clients.partials.client')
+                @else
+                    <p>Client Deleted</p>
+                @endif
+                
                 <hr>
 
                 <div class="form-group row">
                     <h3>Item Details</h3>
                 </div>
-                
-                @include('stock.partials.stock')
 
+                @if ( isset( $buyback->stock ) )
+                    @include('stock.partials.stock')
+                @else
+                    <p>Stock Item Deleted</p>
+                @endif
+                
                 <hr>
 
                 <div class="form-group row justify-content-between">

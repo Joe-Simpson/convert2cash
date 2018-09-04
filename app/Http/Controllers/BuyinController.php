@@ -179,6 +179,7 @@ class BuyinController extends Controller
         Buyin::Where('id', $buyin)
             -> update(request([
             'cost_price',
+            'pay_cash'
         ]));
 
         // Return to buyin index screen
