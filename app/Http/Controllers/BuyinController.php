@@ -173,16 +173,12 @@ class BuyinController extends Controller
         // validate
         $this->validate(request(), [
             'cost_price' => 'required|numeric',
-            'pay_cash' => 'required|numeric',
-            'selling_price' => 'required|numeric',
         ]);
 
         // Update buyin
         Buyin::Where('id', $buyin)
             -> update(request([
             'cost_price',
-            'pay_cash',
-            'selling_price',
         ]));
 
         // Return to buyin index screen

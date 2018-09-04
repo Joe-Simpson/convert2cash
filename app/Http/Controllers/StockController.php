@@ -138,6 +138,7 @@ class StockController extends Controller
             'boxed' => 'required|string',
             'condition' => 'required|string',
             'notes' => 'nullable|string',
+            'selling_price' => 'required|numeric',
             'user' => 'required|string',
         ]);
 
@@ -152,6 +153,7 @@ class StockController extends Controller
                 'boxed' => request('boxed'),
                 'condition' => request('condition'),
                 'notes' => request('notes'),
+                'selling_price' => request('selling_price'),
                 'user_id' => auth()->id(),
             ]);
 
