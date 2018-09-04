@@ -85,3 +85,14 @@ Do we need to track who sold the item. That is to say, add a new client.
 5. Pay cash 
    - email Emma face for clarification
    - could be wether they paid cash for the buy in or the cash price for selling it
+
+
+6. Trackng sale price/cost?
+   - We can grab the sale price for buy-in's from the 'selling price'
+   - Buy-Back does not have such a field. Maybe upon item 'Seizure' a buy-in record is created?
+
+## Known Issues
+1. Deleting stock item before buy-in, buy-back record causes an error
+   - Same will happen if you delete a client
+   - issue is due to the index table trying to access stock and client data
+   - fix by adding ifexists()?

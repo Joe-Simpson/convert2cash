@@ -25,8 +25,20 @@
                 <td>{{ $buyin->pay_cash }}</td>
                 <td>{{ $buyin->selling_price }}</td>
                 <td>{{ $buyin->user->name }}</td>
-                <td>{{ $buyin->client->first_name }} {{ $buyin->client->surname }}</td>
-                <td>{{ $buyin->stock->make }} - {{ $buyin->stock->model }}</td>
+                <td>
+                    @if ( isset($buyin->client) )
+                    {{ $buyin->client->first_name }} {{ $buyin->client->surname }}
+                    @else
+                    Client Deleted
+                    @endif
+                </td>
+                <td>
+                    @if ( isset($buyin->stock) )
+                    {{ $buyin->stock->make }} - {{ $buyin->stock->model }}
+                    @else
+                    Stock Item Deleted
+                    @endif
+                </td>
                 <td>
                     <a href="/buyin/{{ $buyin -> id }}">
                         <span class="badge badge-secondary">Details</span>
