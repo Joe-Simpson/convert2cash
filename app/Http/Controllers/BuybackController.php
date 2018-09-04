@@ -81,6 +81,7 @@ class BuybackController extends Controller
             'notes' => 'nullable|string',
             'loan_amount' => 'required|numeric',
             'term' => 'required|string',
+            'selling_price' => 'required|numeric'
         ]);
 
         // create stock
@@ -93,6 +94,8 @@ class BuybackController extends Controller
             'boxed' => request('boxed'),
             'condition' => request('condition'),
             'notes' => request('notes'),
+            'selling_price' => request('selling_price'),
+            'aquisition_type' => 'buy-back',
             'user_id' => auth()->id(),
         ]);
 

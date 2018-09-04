@@ -23,7 +23,9 @@ class CreateStocksTable extends Migration
             $table->enum('boxed',['true','false']);
             $table->enum('condition',['Like New','Good','Fair','Poor','Faulty/Damaged']);
             $table->string('notes')->nullable();
+            $table->float('selling_price', 8, 2)->nullable();
             $table->integer('user_id');
+            $table->enum('aquisition_type', ['buy-in','buy-back','buy-back seized','other']);
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ class CreateSalesTable extends Migration
             $table->integer('user_id');
             $table->integer('client_id');
             $table->integer('stock_id');
-            $table->float('price_adjustment', 8, 2)
+            $table->float('price_adjustment', 8, 2);
             $table->enum('payment_method', ['cash','card']);
             $table->timestamps();
         });

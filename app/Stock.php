@@ -22,23 +22,6 @@ class Stock extends Model
     {
         return $this->belongsTo(User::class);
     }
-	
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'make',
-        'model',
-        'description',
-        'serial',
-        'passcode',
-        'boxed',
-        'condition',
-        'notes',
-        'user_id',
-    ];
 
     /**
      * The attributes that should be hidden for arrays.

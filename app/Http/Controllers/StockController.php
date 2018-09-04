@@ -62,6 +62,7 @@ class StockController extends Controller
             'boxed' => 'required|string',
             'condition' => 'required|string',
             'notes' => 'nullable|string',
+            'selling_price' => 'required|numeric'
         ]);
 
         // If validation fails, return back with all data and errors
@@ -76,6 +77,8 @@ class StockController extends Controller
             'boxed' => request('boxed'),
             'condition' => request('condition'),
             'notes' => request('notes'),
+            'selling_price' => request('selling_price'),
+            'aquisition_type' => 'other',
             'user_id' => auth()->id(),
         ]);
 

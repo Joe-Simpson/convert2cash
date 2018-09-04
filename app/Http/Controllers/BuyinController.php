@@ -80,7 +80,6 @@ class BuyinController extends Controller
             'condition' => 'required|string',
             'notes' => 'nullable|string',
             'cost_price' => 'required|numeric',
-            'pay_cash' => 'required|numeric',
             'selling_price' => 'required|numeric',
         ]);
 
@@ -94,6 +93,8 @@ class BuyinController extends Controller
             'boxed' => request('boxed'),
             'condition' => request('condition'),
             'notes' => request('notes'),
+            'selling_price' => request('selling_price'),
+            'aquisition_type' => 'buy-in',
             'user_id' => auth()->id(),
         ]);
 
@@ -101,7 +102,6 @@ class BuyinController extends Controller
         Buyin::create([
             'cost_price' => request('cost_price'),
             'pay_cash' => request('pay_cash'),
-            'selling_price' => request('selling_price'),
             'user_id' => auth()->id(),
             'client_id' => request('client_id'),
             'stock_id' => $stock->id,

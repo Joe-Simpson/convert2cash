@@ -1,0 +1,91 @@
+Clients
+	The 'Clients' page is the default view. 
+	It can also be viewed by selecting 'Clients' from the sidebar.
+	Banned clients are denoted by a red no entry symbol.
+	
+	Create New
+		Accessed through the 'Create' button on the 'Clients' page.
+		Input all the client details. Notes and Address are optional fields.
+		Can abandon creating a new client via the 'Abandon' button at the bottom of the 'Create New Client' page.
+		Clients can be marked as 'Banned' during creation if required. 
+	Search
+		Live search is built in to the 'Clients' page. Type the in the 'Search' box.
+	View Details
+		Accessed through the 'Details' button for each Client listed on the 'Clients' page.
+		Displays all Client details.
+		All fields are locked, so details cannot be accidently altered.
+	Edit Client Details
+		Accessed through the 'Client Details' page by clicking the 'Edit' button.
+		To apply changes to client details, select the 'Update' button at the bottom of the 'Edit Client Details' page.
+		This is also how to mark a client as banned.
+	Delete Client
+		Accessed through the 'Client Details' page by clicking the 'Edit' button.
+		To delete a client, select the 'Delete' button at the bottom of the 'Edit Client Details' page.
+		This cannot be undone, so be careful. In the future this will have a confirmation prompt, to make sure you want to perform the deletion.
+
+Buy-Ins
+	To view all Buy-In's select 'Buy-In' from the sidebar.
+
+	Create New
+		To create a new Buy-In record, go to the 'Clients' page, and select the 'Buy-In' button for the client associated with the Buy-In. If the client does not exist, create a new one first.
+		Input all the stock item details. Description, Passcode and Notes are optional fields.
+		Input the Buy-In details. All fields are required.
+		Click 'Create'.
+		As with clients, it is possible to abandon.
+	Search
+		Live search is built in to the 'Buy-In' page.
+	View Details
+		Accessed through the 'Details' button for each buy-in listed on the 'Buy-In' page.
+		Displays the buy-in details, the stock item information and client information.
+		All fields are locked, so details cannot be accidently altered.
+	Edit Buy-In Details
+		Accessed through the 'Buy-In Details' page by clicking the 'Edit' button.
+		Can only edit the buy-in information.
+		To apply changes to the buy-in details, select the 'Update' button at the bottom of the 'Edit Buy-In Details' page.
+	Delete Buy-In
+		Accessed through the 'Buy-In Details' page by clicking the 'Edit' button.
+		To delete a buy-in, select the 'Delete' button at the bottom of the 'Edit Buy-In Details' page.
+		This cannot be undone, so be careful. In the future this will have a confirmation prompt, to make sure you want to perform the deletion.
+		This will only delete the buy-in record. The stock item details will still exist in the system. Delete the stock item seperately if required.
+
+Buy-Backs
+	To view all Buy-Back's select 'Buy-Back' from the sidebar.
+
+	Create New
+		To create a new Buy-Back record, go to the 'Clients' page, and select the 'Buy-Back' button for the client associated with the Buy-Back. If the client does not exist, create a new one first.
+		Input all the stock item details. Description, Passcode and Notes are optional fields.
+		Input the Buy-Back details. All fields are required.
+		Click 'Create'.
+		As with clients, it is possible to abandon.
+	Search
+		Live search is built in to the 'Buy-Back' page.
+	View Details
+		Accessed through the 'Details' button for each Buy-Back listed on the 'Buy-Back' page.
+		Displays the Buy-Back details, the stock item information and client information.
+		All fields are locked, so details cannot be accidently altered.
+	Edit Buy-Back Details
+		Accessed through the 'Buy-Back Details' page by clicking the 'Edit' button.
+		Can only edit the Buy-Back information.
+		To apply changes to the Buy-Back details, select the 'Update' button at the bottom of the 'Edit Buy-Back Details' page.
+	Delete Buy-Back
+		Accessed through the 'Buy-Back Details' page by clicking the 'Edit' button.
+		To delete a Buy-Back, select the 'Delete' button at the bottom of the 'Edit Buy-Back Details' page.
+		This cannot be undone, so be careful. In the future this will have a confirmation prompt, to make sure you want to perform the deletion.
+		This will only delete the Buy-Back record. The stock item details will still exist in the system. Delete the stock item seperately if required.
+
+Stock
+	To view all Stock select 'Stock' from the sidebar.
+
+	Search
+		Live search is built in to the 'Stock' page.
+	View Details
+		Accessed through the 'Details' button for each Stock item listed on the 'Stock' page.
+		Displays the Stock details.
+		All fields are locked, so details cannot be accidently altered.
+	Edit Stock Details
+		Accessed through the 'Stock Details' page by clicking the 'Edit' button.
+		To apply changes to the Stock details, select the 'Update' button at the bottom of the 'Edit Stock Details' page.
+	Delete Stock item
+		Accessed through the 'Stock Details' page by clicking the 'Edit' button.
+		To delete a Stock item, select the 'Delete' button at the bottom of the 'Edit Stock Details' page.
+		This cannot be undone, so be careful. In the future this will have a confirmation prompt, to make sure you want to perform the deletion.

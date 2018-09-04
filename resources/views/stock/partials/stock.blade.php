@@ -185,6 +185,26 @@
     </div>
 </div>
 <div class="form-group row">
+    <div class="input-group">
+        <label for="selling_price" class="col-sm-2 col-form-label">Selling Price</label>    
+        <div class="input-group-prepend">
+            <span class="input-group-text">£</span>
+        </div>
+        <input type="text"
+               class="form-control"
+               id="selling_price"
+               name="selling_price"
+               @if ( ! $stockblade['create'] ) 
+                value="{{ $stock -> selling_price }}" 
+               @endif
+               @if ( $stockblade['edit'] ) 
+                required
+               @else
+                readonly 
+               @endif>
+    </div>
+</div>
+<div class="form-group row">
     <label for="user" class="col-sm-2 col-form-label">Operator</label>
     <div class="col-10">
     	<input type="text"

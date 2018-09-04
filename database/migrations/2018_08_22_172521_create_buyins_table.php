@@ -19,8 +19,7 @@ class CreateBuyinsTable extends Migration
             $table->integer('client_id');
             $table->integer('stock_id');
             $table->float('cost_price', 8, 2);
-            $table->float('pay_cash', 8, 2);
-            $table->float('selling_price', 8, 2);
+            $table->enum('pay_cash',['true','false']);
             $table->timestamps();
         });
     }

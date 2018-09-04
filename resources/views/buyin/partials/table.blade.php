@@ -23,7 +23,12 @@
                 <td>{{ $buyin->created_at }}</td>
                 <td>{{ $buyin->cost_price }}</td>
                 <td>{{ $buyin->pay_cash }}</td>
-                <td>{{ $buyin->selling_price }}</td>
+                <td>@if ( isset($buyin->stock) )
+                    {{ $buyin->stock->selling_price }}
+                    @else
+                    Stock Item Deleted
+                    @endif
+                </td>
                 <td>{{ $buyin->user->name }}</td>
                 <td>
                     @if ( isset($buyin->client) )
