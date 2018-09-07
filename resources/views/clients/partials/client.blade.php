@@ -15,7 +15,9 @@
             id="title" 
             name="title" 
             @if ( ! $clientblade['create'] ) 
-                value="{{ $client -> title }}" 
+                value="{{ $client -> title }}"
+            @else
+                value="{{ old('title') }}"
             @endif
             @if ( $clientblade['edit'] ) 
                 required
@@ -30,7 +32,9 @@
             id="first_name" 
             name="first_name"  
             @if ( ! $clientblade['create'] ) 
-                value="{{ $client -> first_name }}" 
+                value="{{ $client -> first_name }}"
+            @else
+                value="{{ old('first_name') }}"
             @endif 
             @if ( $clientblade['edit'] ) 
                 required 
@@ -46,6 +50,8 @@
             name="surname" 
             @if ( ! $clientblade['create'] ) 
                 value="{{ $client -> surname }}" 
+            @else
+                value="{{ old('surname') }}"
             @endif 
             @if ( $clientblade['edit'] ) 
                 required 
@@ -64,6 +70,8 @@
             name="postcode" 
             @if ( ! $clientblade['create'] ) 
                 value="{{ $client -> postcode }}"
+            @else
+                value="{{ old('postcode') }}"
             @endif
             @if ( $clientblade['edit'] ) 
                 required 
@@ -79,6 +87,8 @@
             name="address" 
             @if ( ! $clientblade['create'] ) 
                 value="{{ $client -> address }}"
+            @else
+                value="{{ old('address') }}"
             @endif
             @if ( ! $clientblade['edit'] ) 
                 readonly 
@@ -95,6 +105,8 @@
             name="dob" 
             @if ( ! $clientblade['create'] ) 
                 value="{{ $client -> dob }}"
+            @else
+                value="{{ old('dob') }}"
             @endif
             @if ( $clientblade['edit'] ) 
                 required 
@@ -109,7 +121,9 @@
             id="phone_number" 
             name="phone_number" 
             @if ( ! $clientblade['create'] ) 
-                value="{{ $client -> phone_number }}" 
+                value="{{ $client -> phone_number }}"
+            @else
+                value="{{ old('phone_number') }}"
             @endif
             @if ( $clientblade['edit'] ) 
                 required 
@@ -139,8 +153,18 @@
                     Driving Licence
                 </option>
             @else
-                <option>Passport</option>
-                <option>Driving Licence</option>
+                <option
+                    @if( old('id_verification_type') == "Passport" )
+                        selected="selected"
+                    @endif>
+                    Passport
+                </option>
+                <option
+                    @if( old('id_verification_type') == "Driving Licence" )
+                        selected="selected"
+                    @endif>
+                    Driving Licence
+                </option>
             @endif
         </select>
     </div>
@@ -158,6 +182,8 @@
             @endif>
 @if ( ! $clientblade['create'] )
 {{ $client -> notes }}
+@else
+{{ old('notes') }}
 @endif</textarea>
     </div>
 </div>
@@ -188,8 +214,20 @@
                     True
                 </option>
             @else
-                <option value=false>False</option>
-                <option value=true>True</option>
+                <option
+                    value=false
+                    @if( old('client_banned') == "false" )
+                        selected="selected"
+                    @endif>
+                    False
+                </option>
+                <option
+                    value=true
+                    @if( old('client_banned') == "true" )
+                        selected="selected"
+                    @endif>
+                    True
+                </option>
             @endif
         </select>
     </div>

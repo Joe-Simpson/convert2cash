@@ -27,31 +27,4 @@ class Client extends Model
     {
         $this->buyin()->create(compact('buyin'));
     }
-	
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'first_name',
-        'surname',
-        'title',
-        'postcode',
-        'address',
-        'dob',
-        'phone_number',
-        'id_verification_type',
-        'client_banned',
-        'notes',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        
-    ];
 }

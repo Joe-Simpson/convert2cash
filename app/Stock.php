@@ -23,12 +23,8 @@ class Stock extends Model
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        
-    ];
+    public function sales()
+    {
+        return $this->belongsTo(Sales::class);
+    }
 }

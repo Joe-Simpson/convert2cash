@@ -3,10 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Sales;
+use App\Client;
+use App\Stock;
 use Illuminate\Http\Request;
 
 class SalesController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +26,11 @@ class SalesController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'Sales';
+
+        $sales = Sales::all();
+
+        return view('sales.index', compact('title','sales'));
     }
 
     /**
@@ -22,9 +38,25 @@ class SalesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $stock = Stock::where ('id', $request->stock_id)
+            ->get()
+            ->first();
+
+        $title = 'Create New Sale';
+
+        $clientblade = $stockblade = [
+            'create' => false,
+            'edit' => false,
+        ];
+
+        $salesblade = [
+            'create' => true,
+            'edit' => true,
+        ];
+        
+        return view('sales.create', compact('stock','title','clientblade','stockblade','salesblade'));
     }
 
     /**

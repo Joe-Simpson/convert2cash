@@ -17,4 +17,9 @@ class Sales extends Model
     {
     	return $this->belongsTo(Stock::class);
     }
+
+    public function client()
+    {
+    	return $this->belongsTo(Client::class);
+    }
 }

@@ -14,6 +14,9 @@
         <li>
             <a href="/buyback">Buy-Back</a>
         </li>
+        <li>
+            <a href="/sales">Sales</a>
+        </li>
     </ul>
     <div class="row align-items-end justify-content-center auth">
         @if( Auth::check() )
