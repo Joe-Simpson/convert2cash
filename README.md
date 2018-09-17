@@ -19,9 +19,9 @@ Some 'fields' look to be more specific to the service being provided than the st
 More typical laon shop type stuff.
 "Buy my stuff, I don't want it back"
 Do we need to track who sold the item. That is to say, add a new client.
-- Passcode {2?}
+- Passcode
 - Cost price
-- Pay cash {5?}
+- Pay cash
 - Selling price
 
 ## Processes
@@ -70,29 +70,67 @@ Do we need to track who sold the item. That is to say, add a new client.
      - Renew = Start the 'deal' again
      - Clone = Copy it (for some reason). 
      - Seize = Close 'deal' taking ownership of the stock
-2. Passcode
-   - It was specified that this is required for Buy In only. Maybe that was an error.
-   - Suspect it is for mobile phone, laptop, etc. passcodes.
-3. Operator
-   - I assume this is to track who logs various stock, sales, etc.
-   - Plan to use the User table, they will be required to sign in/out as required.
-     - Can make this a simpler process
-       - Dropdown quick select of user
-       - Prompt for password
 4. Search [done]
    - build something
    - search: "laravel search"
-5. Pay cash 
-   - email Emma face for clarification
-   - could be wether they paid cash for the buy in or the cash price for selling it
-
-
-6. Trackng sale price/cost?
-   - We can grab the sale price for buy-in's from the 'selling price'
-   - Buy-Back does not have such a field. Maybe upon item 'Seizure' a buy-in record is created?
 
 ## Known Issues
 1. Deleting stock item before buy-in, buy-back record causes an error [fixed]
    - Same will happen if you delete a client
    - issue is due to the index table trying to access stock and client data
    - fix by adding ifexists()
+2. Clients
+   - Add postcode search functionality
+   - Add extra Id field and increase id options
+     - id 1
+       - Driving licence
+       - passport
+       - birth certificate
+       - photo id card
+       - bank card
+       - bus pass
+       - NI card
+     - id 2
+       - Utility Bill
+       - pay slip
+       - bank statement
+       - an in date letter
+   - All notes need to be date stamped with the newest info at the top of the page
+   - Customer banned requires a text box for a reason
+   - Customer photo required
+3. Buy-In
+   - Under item details, require a drop down for categories
+     - gaming
+     - phones
+     - computing
+     - electronics
+     - airguns
+     - jewellery
+     - tools
+     - misc
+   - remove pay cash field
+   - tick box for 'passcode/security lock checked and removed' (compulsory)
+4. Buy-Back
+   - Under item details, require a drop down for categories
+     - gaming
+     - phones
+     - computing
+     - electronics
+     - airguns
+     - jewellery
+     - tools
+     - misc
+   - tick box for 'passcode/security lock checked and removed' (compulsory)
+   - Under edit - buy-backs should not be able to be deleted. They can be cancelled on the day it is taken out. This should be recorded. -> checkbox
+   - Require buyback history of the previous transactions with the customer
+     - how many in total
+     - redeemed: total and %
+     - seized: total and %
+5. Stock view
+   - Stock will require a stock no. or barcode. This should also have item description
+   - stock code search
+6. Stock delete
+   - REmove stock delete option and replace it with a Stock Loss drop down with the following options
+     - Scrap jewellery
+     - Employees loss
+   - Will require text box so reason can be added1
