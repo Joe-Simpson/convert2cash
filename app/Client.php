@@ -27,4 +27,9 @@ class Client extends Model
     {
         $this->buyin()->create(compact('buyin'));
     }
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->surname;
+    }
 }

@@ -16,7 +16,7 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('client_id');
+            $table->integer('client_id')->nullable();
             $table->integer('stock_id');
             $table->float('price_adjustment', 8, 2);
             $table->enum('payment_method', ['cash','card']);

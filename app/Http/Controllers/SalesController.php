@@ -36,6 +36,7 @@ class SalesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
@@ -55,8 +56,10 @@ class SalesController extends Controller
             'create' => true,
             'edit' => true,
         ];
+
+        $clients = Client::all();
         
-        return view('sales.create', compact('stock','title','clientblade','stockblade','salesblade'));
+        return view('sales.create', compact('stock','title','clientblade','stockblade','salesblade', 'clients'));
     }
 
     /**
@@ -67,7 +70,35 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = [
+            'stock_id' => 'required|exists:stocks,id',
+            'price_adjustment' => 'required|string',
+            'payment_method' => 'required|in:card,cash',
+        ];
+
+//        dd(request('client_search'));
+
+        if (request('client_search')) {
+            $validation['client_search'] = 'exists:clients,id';
+        }
+
+        // validate
+        $this->validate(request(), $validation);
+
+        // If validation fails, return back with all data and errors
+
+        // create stock
+        Sales::create([
+            'stock_id' => request('stock_id'),
+            'client_id' => request('client_search'),
+            'price_adjustment' => floatval(request('price_adjustment')),
+            'payment_method' => request('payment_method'),
+            'user_id' => \Auth::user()->id,
+        ]);
+
+
+        // Return to stock index screen
+        return redirect('/sales')->with('status','New sale created');
     }
 
     /**

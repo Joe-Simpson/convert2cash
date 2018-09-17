@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form method="POST" action="/stock">
+            <form method="POST" action="/sales">
 
 			    {{ csrf_field() }}
 
@@ -13,14 +13,15 @@
                 </div>
                 
                 @include('stock.partials.stock')
+                <input type="hidden" name="stock_id" value="{{$stock->id}}">
 
                 <hr>
 
                 <div class="form-group row">
                     <h3>Client Details</h3>
                 </div>
-                
-                <p>Some form of Client selector goes here</p>
+
+                @include('sales.partials.client')
 
                 <hr>
 
@@ -44,3 +45,10 @@
     </div>
 </div>
 @endsection
+@section('scripts')
+    <script>
+    $(document).ready(function() {
+        $('#client_search').select2();
+    });
+    </script>
+@stop

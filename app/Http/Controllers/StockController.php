@@ -25,7 +25,7 @@ class StockController extends Controller
     public function index()
     {
         $title = 'Stock List';
-        $stock = Stock::all();
+        $stock = Stock::activeStock();
         return view('stock.index', compact('stock','title') );
     }
 

@@ -27,4 +27,10 @@ class Stock extends Model
     {
         return $this->belongsTo(Sales::class);
     }
+
+    public static function activeStock()
+    {
+        $notIn = Sales::get(['stock_id'])->toArray();
+        return self::whereNotIn('id', $notIn)->get();
+    }
 }
