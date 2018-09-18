@@ -80,8 +80,8 @@ Do we need to track who sold the item. That is to say, add a new client.
    - issue is due to the index table trying to access stock and client data
    - fix by adding ifexists()
 2. Clients
-   - Add postcode search functionality
-   - Add extra Id field and increase id options
+   - Add postcode search functionality - done
+   - Add extra Id field and increase id options - done
      - id 1
        - Driving licence
        - passport
@@ -99,7 +99,7 @@ Do we need to track who sold the item. That is to say, add a new client.
    - Customer banned requires a text box for a reason
    - Customer photo required
 3. Buy-In
-   - Under item details, require a drop down for categories
+   - Under item details, require a drop down for categories - done
      - gaming
      - phones
      - computing
@@ -108,10 +108,10 @@ Do we need to track who sold the item. That is to say, add a new client.
      - jewellery
      - tools
      - misc
-   - remove pay cash field
+   - remove pay cash field - done
    - tick box for 'passcode/security lock checked and removed' (compulsory)
 4. Buy-Back
-   - Under item details, require a drop down for categories
+   - Under item details, require a drop down for categories - done
      - gaming
      - phones
      - computing
@@ -121,16 +121,17 @@ Do we need to track who sold the item. That is to say, add a new client.
      - tools
      - misc
    - tick box for 'passcode/security lock checked and removed' (compulsory)
-   - Under edit - buy-backs should not be able to be deleted. They can be cancelled on the day it is taken out. This should be recorded. -> checkbox
+   - Under edit - buy-backs should not be able to be deleted. They can be cancelled on the day it is taken out. This should be recorded. -> checkbox - delete button removed (route still exists), cancelled still required.
    - Require buyback history of the previous transactions with the customer
      - how many in total
      - redeemed: total and %
      - seized: total and %
 5. Stock view
-   - Stock will require a stock no. or barcode. This should also have item description
+   - Stock will require a stock no. or barcode. This should also have item description.
+     - Currently assuming stock_id will suffice?
    - stock code search
 6. Stock delete
-   - REmove stock delete option and replace it with a Stock Loss drop down with the following options
+   - Remove stock delete option and replace it with a Stock Loss drop down with the following options - delete button removed (route still exists), stock loss still required.
      - Scrap jewellery
      - Employees loss
-   - Will require text box so reason can be added1
+   - Will require text box so reason can be added

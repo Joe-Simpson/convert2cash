@@ -81,7 +81,8 @@ class BuybackController extends Controller
             'notes' => 'nullable|string',
             'loan_amount' => 'required|numeric',
             'term' => 'required|string',
-            'selling_price' => 'required|numeric'
+            'selling_price' => 'required|numeric',
+            'category' => 'required|in:' . implode(',', Stock::$categories),
         ]);
 
         // create stock
@@ -97,6 +98,7 @@ class BuybackController extends Controller
             'selling_price' => request('selling_price'),
             'aquisition_type' => 'buy-back',
             'user_id' => auth()->id(),
+            'category' => request('category'),
         ]);
 
         // Create BuyBack

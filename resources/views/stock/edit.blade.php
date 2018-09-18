@@ -19,13 +19,6 @@
 			    @include('layouts.errors')
 
 		  	</form>
-
-            <form action="/stock/{{ $stock -> id }}" method="POST">
-                {{ csrf_field() }}
-                {{ method_field('DELETE') }}
-                <button type="submit" class="btn btn-danger" confirmation="test">Delete Stock</button>
-            </form>
-
         </div>
     </div>
     <div class="row">
