@@ -79,7 +79,8 @@ class ClientController extends Controller
             'address' => 'nullable|string',
             'dob' => 'required|date',
             'phone_number' => 'required|max:11|min:11',
-            'id_verification_type' => 'required|string',
+            'id_verification_type' => 'required|in:' . implode(',', Client::$validationType1),
+            'id_verification_type_2' => 'required|in:' . implode(',', Client::$validationType2),
             'notes' => 'nullable|string',
         ]);
 
@@ -144,7 +145,8 @@ class ClientController extends Controller
             'address' => 'nullable|string',
             'dob' => 'required|date',
             'phone_number' => 'required|max:11|min:11',
-            'id_verification_type' => 'required|string',
+            'id_verification_type' => 'required|in:' . implode(',', Client::$validationType1),
+            'id_verification_type_2' => 'required|in:' . implode(',', Client::$validationType2),
             'notes' => 'nullable|string',
         ]);
 
@@ -159,6 +161,7 @@ class ClientController extends Controller
             'dob',
             'phone_number',
             'id_verification_type',
+            'id_verification_type_2',
             'client_banned',
             'notes',
         ]));
@@ -179,5 +182,10 @@ class ClientController extends Controller
 
         //Return to clients index screen
         return redirect('/clients/')->with('status','Client deleted');
+    }
+
+    public function notes($client)
+    {
+        return response()->json(['notes' => $client->notes]);
     }
 }

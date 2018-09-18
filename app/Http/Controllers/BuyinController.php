@@ -75,12 +75,13 @@ class BuyinController extends Controller
             'model' => 'required|string',
             'description' => 'nullable|string',
             'serial' => 'required|string',
-            'passcode' => 'nullable|string',
+            'passcode' => 'required|string',
             'boxed' => 'required|string',
             'condition' => 'required|string',
             'notes' => 'nullable|string',
             'cost_price' => 'required|numeric',
             'selling_price' => 'required|numeric',
+            'category' => 'required|in:' . implode(',', Stock::$categories),
         ]);
 
         // create stock
@@ -96,12 +97,12 @@ class BuyinController extends Controller
             'selling_price' => request('selling_price'),
             'aquisition_type' => 'buy-in',
             'user_id' => auth()->id(),
+            'category' => request('category'),
         ]);
 
         // Create BuyIn
         Buyin::create([
             'cost_price' => request('cost_price'),
-            'pay_cash' => request('pay_cash'),
             'user_id' => auth()->id(),
             'client_id' => request('client_id'),
             'stock_id' => $stock->id,

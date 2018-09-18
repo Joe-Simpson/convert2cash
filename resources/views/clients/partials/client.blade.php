@@ -131,6 +131,8 @@
                 readonly 
             @endif>     
     </div>
+</div>
+<div class="form-group row">
     <div class="col-5">
         <label for="id_verification_type">Id Verification Type:</label>
         <select class="form-control" 
@@ -139,33 +141,54 @@
             @if ( ! $clientblade['edit'] ) 
                 disabled 
             @endif>
-            @if ( ! $clientblade['create'] )
-                <option
-                    @if ( $client->id_verification_type == "Passport")
-                        selected="selected"
-                    @endif>
-                    Passport
-                </option>
-                <option
-                    @if ( $client->id_verification_type == "Driving Licence")
-                        selected="selected"
-                    @endif>
-                    Driving Licence
-                </option>
-            @else
-                <option
-                    @if( old('id_verification_type') == "Passport" )
-                        selected="selected"
-                    @endif>
-                    Passport
-                </option>
-                <option
-                    @if( old('id_verification_type') == "Driving Licence" )
-                        selected="selected"
-                    @endif>
-                    Driving Licence
-                </option>
-            @endif
+            @foreach(\App\Client::$validationType1 as $validationType)
+                @if ( ! $clientblade['create'] )
+                    <option
+                            @if ( $client->id_verification_type == $validationType)
+                            selected="selected"
+                            @endif
+                            value="{{ $validationType }}">
+                        {{ $validationType }}
+                    </option>
+                @else
+                    <option
+                            @if( old('id_verification_type') == $validationType )
+                            selected="selected"
+                            value="{{ $validationType }}"
+                            @endif>
+                        {{ $validationType }}
+                    </option>
+                @endif
+            @endforeach
+        </select>
+    </div>
+    <div class="col-5">
+        <label for="id_verification_type_2">Second Id Verification Type:</label>
+        <select class="form-control"
+                id="id_verification_type_2"
+                name="id_verification_type_2"
+                @if ( ! $clientblade['edit'] )
+                disabled
+                @endif>
+            @foreach(\App\Client::$validationType2 as $validationType)
+                @if ( ! $clientblade['create'] )
+                    <option
+                            @if ( $client->id_verification_type == $validationType)
+                            selected="selected"
+                            @endif
+                            value="{{ $validationType }}">
+                        {{ $validationType }}
+                    </option>
+                @else
+                    <option
+                            @if( old('id_verification_type') == $validationType )
+                            selected="selected"
+                            value="{{ $validationType }}"
+                            @endif>
+                        {{ $validationType }}
+                    </option>
+                @endif
+            @endforeach
         </select>
     </div>
 </div>

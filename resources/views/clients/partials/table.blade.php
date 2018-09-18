@@ -11,7 +11,9 @@
 			<th scope="col">Title</th>
 			<th scope="col">Date of Birth</th>
 			<th scope="col">Phone Number</th>
+			<th scope="col">Address</th>
 			<th scope="col">Postcode</th>
+			<th scope="col" data-visible="false">Address+Postcode</th>
             <th scope="col"></th>
             <th scope="col"></th>
 		</tr>
@@ -31,7 +33,9 @@
 				<td>{{ $client->title }}</td>
 				<td>{{ $client->dob }}</td>
 				<td>{{ $client->phone_number }}</td>
+				<td>{{ $client->address }}</td>
 				<td>{{ $client->postcode }}</td>
+				<td hidden>{{ $client->addressSearchString() }}</td>
                 <td>
                     <a href="/buyin/create?client_id={{ $client -> id }}">
                         <span class="badge badge-primary">Buy-In</span>

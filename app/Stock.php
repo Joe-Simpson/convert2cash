@@ -8,6 +8,17 @@ class Stock extends Model
 {
     protected $guarded = [];
 
+    public static $categories = [
+        'Gaming',
+        'Phones',
+        'Computing',
+        'Electronics',
+        'Airguns',
+        'Jewellery',
+        'Tools',
+        'Misc',
+    ];
+
     public function buyin()
     {
         return $this->belongsTo(Buyin::class);

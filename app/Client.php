@@ -6,7 +6,39 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-	protected $guarded = [];
+    protected $guarded = [];
+
+    protected $fillable = [
+        'id',
+        'first_name',
+        'surname',
+        'title',
+        'postcode',
+        'address',
+        'dob',
+        'phone_number',
+        'id_verification_type',
+        'id_verification_type_2',
+        'client_banned',
+        'notes',
+    ];
+
+    public static $validationType1 = [
+        'Driving Licence',
+        'Passport',
+        'Birth Cert',
+        'Photo ID Card',
+        'Bank Card',
+        'Bus Pass',
+        'NI Card',
+    ];
+
+    public static $validationType2 = [
+        'Utility Bill',
+        'Pay Slip',
+        'Bank Statment',
+        'An In Date letter',
+    ];
 
     public function buyin()
     {
@@ -31,5 +63,20 @@ class Client extends Model
     public function getFullNameAttribute()
     {
         return $this->first_name . ' ' . $this->surname;
+    }
+
+    /**
+     * Concat address and postcode in
+     * numerous space separated string for
+     * dumb searching
+     *
+     * @return string
+     */
+    public function addressSearchString()
+    {
+        return $this->postcode . ' ' . $this->address . ' ' .
+            $this->address . ' ' . $this->postcode . ' ' .
+            $this->address . $this->postcode . ' ' .
+            $this->postcode . $this->address;
     }
 }

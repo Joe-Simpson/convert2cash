@@ -1,4 +1,34 @@
 <div class="form-group row">
+    <label for="make" class="col-sm-2 col-form-label">Category</label>
+    <div class="col-sm-10">
+        <select class="form-control"
+               id="category"
+               name="category"
+                @if ( ! $stockblade['edit'] )
+                disabled
+                @endif>
+            @foreach(\App\Stock::$categories as $category)
+                @if ( ! $stockblade['create'] )
+                    <option
+                            value="{{ $category }}"
+                            @if ( $stock->category == "true" )
+                            selected="selected"
+                            @endif>
+                        {{ $category }}
+                    </option>
+                @else
+                    <option value="{{ $category }}"
+                            @if ( old('category') == "true" )
+                            selected="selected"
+                            @endif>
+                        {{ $category }}
+                    </option>
+                @endif
+            @endforeach
+        </select>
+    </div>
+</div>
+<div class="form-group row">
     <label for="make" class="col-sm-2 col-form-label">Make</label>
     <div class="col-sm-10">
     	<input type="text"
@@ -79,6 +109,7 @@
                 class="form-control"
                 id="passcode"
                 name="passcode"
+                required
                 @if ( ! $stockblade['create'] ) 
                     value="{{ $stock -> passcode }}"
                 @else
@@ -100,14 +131,14 @@
                 @endif>
             @if ( ! $stockblade['create'] )
                 <option 
-                    value=true
+                    value="true"
                     @if ( $stock->boxed == "true" )
                         selected="selected"
                     @endif>
                     True
                 </option>
                 <option
-                    value=false
+                    value="false"
                     @if ( $stock->boxed == "false" )
                         selected="selected"
                     @endif>

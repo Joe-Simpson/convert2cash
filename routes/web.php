@@ -36,6 +36,8 @@ Route::put('/clients/{client}', 'ClientController@update');
 
 Route::delete('/clients/{client}', 'ClientController@destroy');
 
+Route::get('/clients/{client}/client-notes', 'ClientController@notes');
+
 
 // Stock
 Route::get('/stock', 'StockController@index')->name('stock');
