@@ -19,7 +19,7 @@ class CreateStocksTable extends Migration
             $table->string('model');
             $table->string('description')->nullable();
             $table->string('serial');
-            $table->string('passcode')->nullable();
+            $table->boolean('passcode')->default(true)->nullable();
             $table->enum('boxed',['true','false']);
             $table->enum('condition',['Like New','Good','Fair','Poor','Faulty/Damaged']);
             $table->string('notes')->nullable();

@@ -25,7 +25,7 @@
                 <hr>
 
                 <div class="form-group row">
-                    <h3>Buy-In Details</h3>
+                    <h3>Buy-back Details</h3>
                 </div>
 
                 @include('buyback.partials.buyback')

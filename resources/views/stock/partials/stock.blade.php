@@ -103,20 +103,21 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="passcode" class="col-sm-2 col-form-label">Passcode</label>
-    <div class="col-10">
-    	<input type="text"
-                class="form-control"
+    <label for="passcode" class="col-sm-2 col-form-label">Passcode removed</label>
+    <div class="col-1"><br />
+    	<input type="radio"
+                class="form-control radio"
                 id="passcode"
                 name="passcode"
+                value="true"
                 required
-                @if ( ! $stockblade['create'] ) 
-                    value="{{ $stock -> passcode }}"
+                @if ( ! $stockblade['create'] )
+                    checked="{{ $stock -> passcode }}"
                 @else
                     value="{{ old('passcode') }}"
-                @endif 
+                @endif
                 @if ( ! $stockblade['edit'] )
-                    readonly 
+                    readonly
                 @endif>
     </div>
 </div>

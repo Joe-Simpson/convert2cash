@@ -58,7 +58,7 @@ class StockController extends Controller
             'model' => 'required|string',
             'description' => 'nullable|string',
             'serial' => 'required|string',
-            'passcode' => 'nullable|string',
+            'passcode' => 'required',
             'boxed' => 'required|string',
             'condition' => 'required|string',
             'notes' => 'nullable|string',
@@ -134,12 +134,12 @@ class StockController extends Controller
             'model' => 'required|string',
             'description' => 'nullable|string',
             'serial' => 'required|string',
-            'passcode' => 'nullable|string',
+            'passcode' => 'required',
             'boxed' => 'required|string',
             'condition' => 'required|string',
             'notes' => 'nullable|string',
             'selling_price' => 'required|numeric',
-            'user' => 'required|string',
+            'user' => 'required|string',``
         ]);
 
         // Update stock
