@@ -33,3 +33,24 @@
     </div>
 </div>
 @endsection
+@section('scripts')
+    <script>
+      $(document).ready(function() {
+
+        function toggleBanReason() {
+          if ($('#client_banned').val() === 'true') {
+            $('#ban-container').show();
+          } else {
+            $('#ban-container').hide();
+          }
+        }
+
+        toggleBanReason();
+
+        $('#client_banned').change(function() {
+          toggleBanReason();
+        });
+
+      });
+    </script>
+@stop

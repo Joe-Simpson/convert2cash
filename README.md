@@ -96,7 +96,7 @@ Do we need to track who sold the item. That is to say, add a new client.
        - bank statement
        - an in date letter
    - All notes need to be date stamped with the newest info at the top of the page
-   - Customer banned requires a text box for a reason
+   - Customer banned requires a text box for a reason - done
    - Customer photo required
 3. Buy-In
    - Under item details, require a drop down for categories - done

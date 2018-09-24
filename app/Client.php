@@ -20,6 +20,7 @@ class Client extends Model
         'id_verification_type',
         'id_verification_type_2',
         'client_banned',
+        'client_banned_reason',
         'notes',
     ];
 

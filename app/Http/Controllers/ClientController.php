@@ -150,9 +150,7 @@ class ClientController extends Controller
             'notes' => 'nullable|string',
         ]);
 
-        // Update client
-        Client::Where('id', $client)
-            -> update(request([
+        $clientDetails = request([
             'first_name',
             'surname',
             'title',
@@ -164,7 +162,22 @@ class ClientController extends Controller
             'id_verification_type_2',
             'client_banned',
             'notes',
-        ]));
+        ]);
+
+        // client banned validation this way, as required_if having issues with true/false
+        if ($request->get('client_banned')) {
+            if (empty($request->get('client_banned_reason'))) {
+                return redirect()->back()
+                    ->withInput($request->all())
+                    ->withErrors('Client banned needs reason');
+            }
+
+            $clientDetails['client_banned_reason'] = $request->get('client_banned_reason');
+        }
+
+        // Update client
+        Client::Where('id', $client)
+            -> update($clientDetails);
 
         // Return to clients index screen
         return redirect('/clients/')->with('status','Client details updated');

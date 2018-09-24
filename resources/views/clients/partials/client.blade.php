@@ -255,3 +255,14 @@
         </select>
     </div>
 </div>
+<div class="form-group row">
+    <div class="col" id="ban-container">
+        <label for="client_banned_reason">Ban reason:</label>
+        <textarea class="form-control col-12"
+                id="client_banned_reason"
+                name="client_banned_reason"
+                @if ( ! $clientblade['edit'] )
+                disabled
+                @endif>@if($clientblade['create']){{ old('client_banned_reason') }}@else{{ $client->client_banned_reason }}@endif</textarea>
+    </div>
+</div>
