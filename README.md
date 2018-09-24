@@ -109,7 +109,7 @@ Do we need to track who sold the item. That is to say, add a new client.
      - tools
      - misc
    - remove pay cash field - done
-   - tick box for 'passcode/security lock checked and removed' (compulsory)
+   - tick box for 'passcode/security lock checked and removed' (compulsory) - done
 4. Buy-Back
    - Under item details, require a drop down for categories - done
      - gaming
@@ -120,7 +120,7 @@ Do we need to track who sold the item. That is to say, add a new client.
      - jewellery
      - tools
      - misc
-   - tick box for 'passcode/security lock checked and removed' (compulsory)
+   - tick box for 'passcode/security lock checked and removed' (compulsory) - done
    - Under edit - buy-backs should not be able to be deleted. They can be cancelled on the day it is taken out. This should be recorded. -> checkbox - delete button removed (route still exists), cancelled still required.
    - Require buyback history of the previous transactions with the customer
      - how many in total
