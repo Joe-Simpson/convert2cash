@@ -82,6 +82,7 @@ class BuyinController extends Controller
             'cost_price' => 'required|numeric',
             'selling_price' => 'required|numeric',
             'category' => 'required|in:' . implode(',', Stock::$categories),
+            'stock_number' => 'required'
         ]);
 
         // create stock
@@ -98,6 +99,7 @@ class BuyinController extends Controller
             'aquisition_type' => 'buy-in',
             'user_id' => auth()->id(),
             'category' => request('category'),
+            'stock_number' => request('stock_number')
         ]);
 
         // Create BuyIn

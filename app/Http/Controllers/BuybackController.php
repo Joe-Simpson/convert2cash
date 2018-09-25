@@ -100,6 +100,7 @@ class BuybackController extends Controller
             'aquisition_type' => 'buy-back',
             'user_id' => auth()->id(),
             'category' => request('category'),
+            'stock_number' => request('stock_number'),
         ]);
 
         // Create BuyBack
@@ -212,7 +213,6 @@ class BuybackController extends Controller
      */
     public function cancel(Buyback $buyback)
     {
-        dd($buyback);
         $buyback->cancelled = true;
         $buyback->save();
 

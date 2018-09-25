@@ -1,4 +1,26 @@
 <div class="form-group row">
+    <label for="make" class="col-sm-2 col-form-label">Stock Number</label>
+    <div class="col-sm-10">
+        <div class="col-sm-10">
+            <input type="text"
+                   class="form-control"
+                   id="stock_number"
+                   name="stock_number"
+                   required
+                   @if ( ! $stockblade['create'] )
+                   value="{{ $stock -> stock_number }}"
+                   @else
+                   value="{{ old('stock_number') }}"
+                   @endif
+                   @if ( $stockblade['edit'] )
+                   required
+                   @else
+                   readonly
+                    @endif>
+        </div>
+    </div>
+</div>
+<div class="form-group row">
     <label for="make" class="col-sm-2 col-form-label">Category</label>
     <div class="col-sm-10">
         <select class="form-control"
