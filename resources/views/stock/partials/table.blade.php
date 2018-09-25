@@ -10,6 +10,7 @@
             <th scope="col">Model</th>
             <th scope="col">Boxed</th>
             <th scope="col">Condition</th>
+            <th scope="col">Seized</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -33,6 +34,13 @@
                     <a href="/sales/{{ $stock_item -> sales -> id }}">
                         <span class="badge badge-danger">Sold</span>
                     </a>
+                    @endif
+                </td>
+                <td>
+                    @if ($stock_item->seized)
+                        Seized on {{ $stock_item->seized_date->format('d-m-Y') }}
+                    @else
+                        False
                     @endif
                 </td>
            </tr>

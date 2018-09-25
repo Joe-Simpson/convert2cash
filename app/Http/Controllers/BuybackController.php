@@ -6,6 +6,7 @@ use App\Buyback;
 use App\Client;
 use App\Stock;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class BuybackController extends Controller
@@ -29,7 +30,7 @@ class BuybackController extends Controller
     {
         $title = 'Buy-Back\'s';
 
-        $buybacks = Buyback::all();
+        $buybacks = Buyback::orderByDesc('created_at')->get();
 
         return view('buyback.index', compact('title','buybacks'));
     }
@@ -199,7 +200,51 @@ class BuybackController extends Controller
     {
         Buyback::destroy($buyback);
 
-        //Return to buyin index screen
+        //Return to buyback index screen
         return redirect('/buyback')->with('status','Buy-Back deleted');
+    }
+
+    /**
+     * Cancel buy-back record on the same day
+     *
+     * @param $buyback
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function cancel(Buyback $buyback)
+    {
+        dd($buyback);
+        $buyback->cancelled = true;
+        $buyback->save();
+
+        return redirect('/buyback')->with('status','Buy-Back cancelled');
+    }
+
+    /**
+     * Record buy-back
+     *
+     * @param $buyback
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function buyBack(Buyback $buyback)
+    {
+        $buyback->bought_back_date = Carbon::now()->format('Y-m-d');
+        $buyback->save();
+
+        return redirect('/buyback')->with('status','Buy-Back recorded');
+    }
+
+    /**
+     * Seize item
+     *
+     * @param $buyback
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function seize(Buyback $buyback)
+    {
+        $buyback->stock->seized = true;
+        $buyback->stock->seized_date = Carbon::now()->format('Y-m-d');
+        $buyback->stock->save();
+
+        return redirect('/buyback')->with('status','Stock seized!');
     }
 }

@@ -85,6 +85,13 @@ Route::put('/buyback/{buyback}', 'BuybackController@update');
 
 Route::delete('/buyback/{buyback}', 'BuybackController@destroy');
 
+Route::get('/buyback/{buyback}/seize', 'BuybackController@seize');
+
+Route::get('/buyback/{buyback}/cancel', 'BuybackController@cancel');
+
+Route::get('/buyback/{buyback}/buy-back', 'BuybackController@buyBack');
+
+
 // Sales
 Route::get('/sales', 'SalesController@index')->name('sales');
 

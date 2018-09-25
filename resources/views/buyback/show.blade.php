@@ -3,26 +3,33 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-between">
+        @if (! $buyback->cancelled && ! $buyback->stock->seized && ! $buyback->bought_back_date)
         <!-- <div class="col"> -->
-            <a href="/buyback/{{ $buyback -> id }}">
+            <a href="/buyback/{{ $buyback -> id }}/buy-back">
                 <button class="btn btn-success">Buy-Back</button>
             </a>
         <!-- </div> -->
         <!-- <div class="col"> -->
             <a href="/buyback/{{ $buyback -> id }}">
-                <button class="btn btn-secondary">Renew</button>
+                <button class="btn btn-secondary" disabled>Renew</button>
             </a>
         <!-- </div> -->
         <!-- <div class="col"> -->
             <a href="/buyback/{{ $buyback -> id }}">
-                <button class="btn btn-secondary">Clone</button>
+                <button class="btn btn-secondary" disabled>Clone</button>
             </a>
         <!-- </div> -->
         <!-- <div class="col"> -->
-            <a href="/buyback/{{ $buyback -> id }}">
+            <a href="/buyback/{{ $buyback -> id }}/seize">
                 <button class="btn btn-danger">Seize</button>
             </a>
-        <!-- </div> -->
+            <!-- </div> -->
+            @if ($buyback->created_at->format('Y-m-d') == \Carbon\Carbon::now()->format('Y-m-d'))
+                <a href="/buyback/{{ $buyback -> id }}/cancel">
+                    <button class="btn btn-danger">Cancel</button>
+                </a>
+            @endif
+        @endif
     </div>
     <hr>
 </div>

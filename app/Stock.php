@@ -19,6 +19,10 @@ class Stock extends Model
         'Misc',
     ];
 
+    protected $dates = [
+       'seized_date',
+    ];
+
     public function buyin()
     {
         return $this->belongsTo(Buyin::class);
