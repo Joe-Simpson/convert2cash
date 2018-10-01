@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Stock;
 
 class StockController extends Controller
@@ -73,7 +74,7 @@ class StockController extends Controller
             'model' => request('model'),
             'description' => request('description'),
             'serial' => request('serial'),
-            'passcode' => request('passcode'),
+            'passcode' => true,
             'boxed' => request('boxed'),
             'condition' => request('condition'),
             'notes' => request('notes'),
@@ -139,8 +140,15 @@ class StockController extends Controller
             'condition' => 'required|string',
             'notes' => 'nullable|string',
             'selling_price' => 'required|numeric',
-            'user' => 'required|string',``
+            'user' => 'required|string',
+            'stock_loss_type' => 'required|string',
         ]);
+
+        if ( $request->stock_loss_type == "false") {
+            $stock_loss_date = NULL;
+        } else {
+            $stock_loss_date = Carbon::now()->format('Y-m-d');
+        }
 
         // Update stock
         Stock::Where('id', $stock)
@@ -149,12 +157,14 @@ class StockController extends Controller
                 'model' => request('model'),
                 'description' => request('description'),
                 'serial' => request('serial'),
-                'passcode' => request('passcode'),
+                'passcode' => true,
                 'boxed' => request('boxed'),
                 'condition' => request('condition'),
                 'notes' => request('notes'),
                 'selling_price' => request('selling_price'),
                 'user_id' => auth()->id(),
+                'stock_loss_type' => request('stock_loss_type'),
+                'stock_loss_date' => $stock_loss_date,
             ]);
 
         // Return to stock index screen

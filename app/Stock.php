@@ -21,6 +21,7 @@ class Stock extends Model
 
     protected $dates = [
        'seized_date',
+       'loss_date',
     ];
 
     public function buyin()

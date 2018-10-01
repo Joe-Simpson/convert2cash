@@ -317,3 +317,45 @@
                 readonly>
     </div>
 </div>
+@if ( ! $stockblade['create'] )
+<div class="form-group row">
+    <label for="stock_loss_type" class="col-sm-3 col-form-label">Stock Loss Type</label>
+    <div class="col-9">
+        <select class="form-control" 
+                id="stock_loss_type" 
+                name="stock_loss_type"
+                @if ( ! $stockblade['edit'] )
+                    disabled
+                @endif>
+            <option value="false">
+                Item in stock
+            </option>
+            <option value="scrap jewellery"
+                    @if ( $stock->stock_loss_type == "scrap jewellery" )
+                        selected="selected"
+                    @endif>
+                Scrap jewellery
+            </option>
+            <option value="employees loss"
+                    @if ( $stock->stock_loss_type == "employees loss" )
+                        selected="selected"
+                    @endif>
+                Employees loss
+            </option>
+        </select>
+    </div>
+</div>
+@endif
+@if ( isset($stock->stock_loss_date) )
+<div class="form-group row">
+    <label for="dob" class="col-sm-3 col-form-label">Stock Loss Date</label>
+    <div class="col">
+        <input type="date" 
+            class="form-control col" 
+            id="stock_loss_date" 
+            name="stock_loss_date"
+            value="{{ $stock -> stock_loss_date }}"
+            readonly>
+    </div>
+</div>
+@endif
