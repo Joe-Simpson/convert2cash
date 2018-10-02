@@ -21,6 +21,11 @@
             </form>
         </div>
     </div>
+    <div class="row justify-content-center">
+
+        @include('clients.partials.client-buyback-table')
+    
+    </div>
     <div class="row">
         <a href="/clients/"><button class="btn btn-secondary">Return</button></a>
     </div>

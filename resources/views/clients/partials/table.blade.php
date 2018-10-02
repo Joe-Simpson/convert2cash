@@ -27,7 +27,7 @@
                     @else
                         {{ $client->id }}
                     @endif
-                </th>
+                </td>
 				<td>{{ $client->first_name }}</td>
 				<td>{{ $client->surname }}</td>
 				<td>{{ $client->title }}</td>
