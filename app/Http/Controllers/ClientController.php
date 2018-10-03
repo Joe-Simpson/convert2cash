@@ -165,7 +165,7 @@ class ClientController extends Controller
         ]);
 
         // client banned validation this way, as required_if having issues with true/false
-        if ($request->get('client_banned')) {
+        if ($request->get('client_banned') == 'true') {
             if (empty($request->get('client_banned_reason'))) {
                 return redirect()->back()
                     ->withInput($request->all())

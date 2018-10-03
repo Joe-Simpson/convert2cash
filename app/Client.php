@@ -66,6 +66,11 @@ class Client extends Model
         return $this->first_name . ' ' . $this->surname;
     }
 
+    public function clientNotes()
+    {
+        return $this->hasMany(Client_Notes::class);
+    }
+
     /**
      * Concat address and postcode in
      * numerous space separated string for
