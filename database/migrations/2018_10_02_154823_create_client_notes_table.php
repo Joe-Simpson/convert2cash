@@ -16,7 +16,7 @@ class CreateClientNotesTable extends Migration
         Schema::create('client_notes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('client_id');
-            $table->string('body');
+            $table->text('body');
             $table->timestamps();
         });
     }

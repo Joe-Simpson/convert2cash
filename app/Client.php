@@ -68,7 +68,7 @@ class Client extends Model
 
     public function clientNotes()
     {
-        return $this->hasMany(Client_Notes::class);
+        return $this->hasMany(ClientNotes::class);
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Client_Notes;
+use App\ClientNotes;
 use Illuminate\Http\Request;
 
 class ClientNotesController extends Controller
@@ -35,7 +35,18 @@ class ClientNotesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate
+        $this->validate(request(), [
+            'body' => 'required|string',
+        ]);
+
+        // create client
+        $newClientNote = ClientNotes::create($request->all());
+
+
+        // Return to clients index screen
+        return redirect('/clients/' . $request->client_id . '#notes')
+            ->with('status','New Client Note Created');
     }
 
     /**
@@ -44,7 +55,7 @@ class ClientNotesController extends Controller
      * @param  \App\client_notes  $client_notes
      * @return \Illuminate\Http\Response
      */
-    public function show(client_notes $client_notes)
+    public function show(clientNotes $clientNotes)
     {
         //
     }
@@ -55,7 +66,7 @@ class ClientNotesController extends Controller
      * @param  \App\client_notes  $client_notes
      * @return \Illuminate\Http\Response
      */
-    public function edit(client_notes $client_notes)
+    public function edit(clientNotes $clientNotes)
     {
         //
     }
@@ -67,7 +78,7 @@ class ClientNotesController extends Controller
      * @param  \App\client_notes  $client_notes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, client_notes $client_notes)
+    public function update(Request $request, clientNotes $clientNotes)
     {
         //
     }
@@ -78,7 +89,7 @@ class ClientNotesController extends Controller
      * @param  \App\client_notes  $client_notes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(client_notes $client_notes)
+    public function destroy(clientNotes $clientNotes)
     {
         //
     }

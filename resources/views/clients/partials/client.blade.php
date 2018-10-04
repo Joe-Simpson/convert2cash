@@ -193,24 +193,6 @@
     </div>
 </div>
 
-<div class="form-group row">
-    <div class="col">
-        <label for="notes">Notes</label>
-        <textarea
-            class="form-control"
-            id="notes"
-            name="notes"
-            @if ( ! $clientblade['edit'] )
-                readonly
-            @endif>
-@if ( ! $clientblade['create'] )
-{{ $client -> notes }}
-@else
-{{ old('notes') }}
-@endif</textarea>
-    </div>
-</div>
-
 <!-- This bit is too wide. In particular, the select box -->
 <div class="form-group row">
     <div class="col">

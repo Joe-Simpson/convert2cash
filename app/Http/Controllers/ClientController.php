@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
+use App\ClientNotes;
 
 class ClientController extends Controller
 {
@@ -81,17 +82,16 @@ class ClientController extends Controller
             'phone_number' => 'required|max:11|min:11',
             'id_verification_type' => 'required|in:' . implode(',', Client::$validationType1),
             'id_verification_type_2' => 'required|in:' . implode(',', Client::$validationType2),
-            'notes' => 'nullable|string',
         ]);
 
         // If validation fails, return back with all data and errors
 
         // create client
-        Client::create($request->all());
+        $newClient = Client::create($request->all());
 
 
         // Return to clients index screen
-        return redirect('/clients/')->with('status','New Client created');
+        return redirect('/clients/' . $newClient->id)->with('status','New Client created');
 
     }
 
@@ -104,6 +104,7 @@ class ClientController extends Controller
     public function show(Client $client)
     {   
         $title = 'Client Details';
+
         $clientblade = [
             'edit' => false,
             'create' => false,
@@ -147,7 +148,6 @@ class ClientController extends Controller
             'phone_number' => 'required|max:11|min:11',
             'id_verification_type' => 'required|in:' . implode(',', Client::$validationType1),
             'id_verification_type_2' => 'required|in:' . implode(',', Client::$validationType2),
-            'notes' => 'nullable|string',
         ]);
 
         $clientDetails = request([
@@ -161,7 +161,6 @@ class ClientController extends Controller
             'id_verification_type',
             'id_verification_type_2',
             'client_banned',
-            'notes',
         ]);
 
         // client banned validation this way, as required_if having issues with true/false
