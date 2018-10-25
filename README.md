@@ -98,6 +98,10 @@ Do we need to track who sold the item. That is to say, add a new client.
    - All notes need to be date stamped with the newest info at the top of the page
    - Customer banned requires a text box for a reason - done
    - Customer photo required
+     - Currently trying to work out how to save a canvas element upon form submit
+       - Saving image is easy on its own. Not so easy with form submission
+       - Could save image before form submission and provide file path to saved file in the submission request
+         - What happens if the photo is bad and gets retaken -> multiple redundent files?
 3. Buy-In
    - Under item details, require a drop down for categories - done
      - gaming

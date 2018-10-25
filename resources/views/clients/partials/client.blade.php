@@ -8,6 +8,44 @@
 @endif
 
 <div class="form-group row">
+    <div class="col-4">
+        <video class="img-thumbnail" autoplay style="display:none;"></video>
+        <img class="img-thumbnail" 
+            @if ( ! $clientblade['create'] ) 
+                src="{{ $client -> client_image }}"
+            @else
+                src="{{ old('client_image') }}"
+                style="display:none;"
+            @endif
+            >
+        <!-- This causes an error when trying to get to the edit screen -->
+        <input type="text"
+            id="client_image"
+            name="client_image"
+            @if ( ! $clientblade['create'] ) 
+                value="{{ $client -> client_image }}"
+            @else
+                value="{{ old('client_image') }}"
+            @endif
+            hidden>
+        <canvas class="img-thumbnail" style="display:none;"></canvas>
+    </div>
+</div>
+
+@if ( $clientblade['edit'] )
+<div class="form-group row">
+    <div class="col">
+        <button type="button" class="btn btn-primary capture-button">
+            Initiate Webcam
+        </button>
+        <button type="button" class="btn btn-primary screenshot-button" style="display:none;">
+            Capture Image
+        </button>
+    </div>
+</div>
+@endif
+
+<div class="form-group row">
     <div class="col-2">
         <label for="title">Title</label>
         <input type="text" 

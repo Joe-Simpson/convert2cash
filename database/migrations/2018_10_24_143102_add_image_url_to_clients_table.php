@@ -1,8 +1,10 @@
 <?php
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-class CreateClientNotesTable extends Migration
+
+class AddImageUrlToClientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -11,13 +13,11 @@ class CreateClientNotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('client_notes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('client_id');
-            $table->text('body');
-            $table->timestamps();
+        Schema::table('clients', function (Blueprint $table) {
+            $table->text('client_image');
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -25,6 +25,8 @@ class CreateClientNotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client_notes');
+        Schema::table('clients', function (Blueprint $table) {
+            $table->dropColumn('client_image');
+        });
     }
 }

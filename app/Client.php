@@ -22,6 +22,7 @@ class Client extends Model
         'client_banned',
         'client_banned_reason',
         'notes',
+        'client_image'
     ];
 
     public static $validationType1 = [
