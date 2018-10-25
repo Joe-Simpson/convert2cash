@@ -4,15 +4,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form method="GET" action="/clients/{{ $client -> id }}/edit">
-
-                {{ csrf_field() }}
+            <form>
                 
                 @include('clients.partials.client')
                 
                 <div class="form-group row justify-content-between">
                     <div class="col">
-                        <button type="submit" class="btn btn-primary">Edit Client Details</button>
+                        <a href="/clients/{{ $client -> id }}/edit" class="btn btn-primary">
+                            Edit Client Details
+                        </a>
                     </div>
                 </div>
 

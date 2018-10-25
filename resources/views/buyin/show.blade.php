@@ -4,10 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form method="GET" action="/buyin/{{ $buyin -> id }}/edit">
+            <form>
 
-                {{ csrf_field() }}
-                
                 <div class="form-group row">
                     <h3>Buy-In Details</h3>
                 </div>
@@ -42,7 +40,7 @@
 
                 <div class="form-group row justify-content-between">
                     <div class="col">
-                        <button type="submit" class="btn btn-primary">Edit</button>
+                        <a href="/buyin/{{ $buyin -> id }}/edit" class="btn btn-primary">Edit</a>
                     </div>
                 </div>
 

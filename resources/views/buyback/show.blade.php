@@ -38,10 +38,8 @@
     <div class="row justify-content-center">
 
         <div class="col-md-8">
-            <form method="GET" action="/buyback/{{ $buyback -> id }}/edit">
+            <form>
 
-                {{ csrf_field() }}
-                
                 <div class="form-group row">
                     <h3>Buy-Back Details</h3>
                 </div>
@@ -76,7 +74,7 @@
 
                 <div class="form-group row justify-content-between">
                     <div class="col">
-                        <button type="submit" class="btn btn-primary">Edit</button>
+                        <a href ="/buyback/{{ $buyback -> id }}/edit" class="btn btn-primary">Edit</a>
                     </div>
                 </div>
 

@@ -4,14 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form method="GET" action="/sales/{{ $sales -> id }}/edit">
-
-			    {{ csrf_field() }}
+            <form>
 
 			    @include('sales.partials.sales')
 
 			    <div class="form-group">
-			      <button type="submit" class="btn btn-primary">Edit</button>
+			      <a href="/sales/{{ $sales -> id }}/edit" class="btn btn-primary">Edit</a>
 			    </div>
 
 			    @include('layouts.errors')
