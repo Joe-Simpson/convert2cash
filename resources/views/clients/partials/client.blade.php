@@ -18,7 +18,11 @@
                 style="display:none;"
             @endif
             >
-        <!-- This causes an error when trying to get to the edit screen -->
+        <!-- 
+            The below element causes an error when trying to get to the edit screen
+            client_image string may be too long to be passed in the url
+            not sure why client_image is in the url
+        -->
         <input type="text"
             id="client_image"
             name="client_image"
@@ -27,7 +31,11 @@
             @else
                 value="{{ old('client_image') }}"
             @endif
-            hidden>
+            @if ( ! $clientblade['create'] && ! $clientblade['edit'] )
+                disabled
+            @endif
+            hidden
+            >
         <canvas class="img-thumbnail" style="display:none;"></canvas>
     </div>
 </div>
