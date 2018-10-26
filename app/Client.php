@@ -52,6 +52,13 @@ class Client extends Model
         return $this->hasMany(Buyback::class);
     }
 
+    /*
+    public function layAway()
+    {
+        return $this->hasMany(LayAway::class);
+    }
+    */
+
     public function addBuyback($buyback)
     {
         $this->buyback()->create(compact('buyback'));
