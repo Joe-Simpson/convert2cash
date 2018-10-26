@@ -10,21 +10,17 @@
             <li id="tab2" class="page-item">
                 <a class="page-link">Notes</a>
             </li>
-            @if ( count($client->buyback) > 0 )
-                <li id="tab3" class="page-item">
-                    <a class="page-link">Buy-Backs</a>
-                </li>
-            @endif
+            <li id="tab3" class="page-item">
+                <a class="page-link">Buy-Backs</a>
+            </li>
             @if ( false )
                 <li id="tab4" class="page-item">
                     <a class="page-link">Lay-Aways</a>
                 </li>
             @endif
-            @if ( count($client->buyback) > 0 )
-                <li id="tab5" class="page-item">
-                    <a class="page-link">Buy-Ins</a>
-                </li>
-            @endif
+            <li id="tab5" class="page-item">
+                <a class="page-link">Buy-Ins</a>
+            </li>
          </ul>
     </nav>
     <div class="container" id="tab1C">
@@ -49,7 +45,6 @@
     <div class="container" id="tab2C">
         <div class="row justify-content-center" id="notes">
             <div class="col-md-8">
-                <h3>Notes</h3>
                 <form method="post" action="/client-notes">
 
                     {{ csrf_field() }}
@@ -75,14 +70,29 @@
         @endif
     </div>
     <div class="container" id="tab3C">
+        <div class="row">
+            <a href="/buyback/create?client_id={{ $client -> id }}" class="btn btn-success">
+                Create New Buy-Back
+            </a>
+        </div>
         <div class="row justify-content-center">
             @include('clients.partials.client-buyback-table')
         </div>
     </div>
     <div class="container" id="tab4C">
-        Lay Aways
+        <div class="row">
+            <a href="" class="btn btn-success">
+                Create Layaway
+            </a>
+        </div>
+        Layaways
     </div>
     <div class="container" id="tab5C">
+        <div class="row">
+            <a href="/buyin/create?client_id={{ $client -> id }}" class="btn btn-success">
+                Create New Buy-In
+            </a>
+        </div>
         <div class="row justify-content-center">
             @include('clients.partials.client-buyin-table')
         </div>
@@ -90,11 +100,11 @@
 </div>
 
 <div class="container">
-
-    <div class="row">
-        <a href="/clients/"><button class="btn btn-secondary">Return</button></a>
+    <div class="container">
+        <div class="row">
+            <a href="/clients/"><button class="btn btn-secondary">Return</button></a>
+        </div>
     </div>
-
 </div>
 @endsection
 

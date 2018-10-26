@@ -15,7 +15,6 @@
 			<th scope="col">Postcode</th>
 			<th scope="col" data-visible="false">Address+Postcode</th>
             <th scope="col"></th>
-            <th scope="col"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -36,14 +35,6 @@
 				<td>{{ $client->address }}</td>
 				<td>{{ $client->postcode }}</td>
 				<td hidden>{{ $client->addressSearchString() }}</td>
-                <td>
-                    <a href="/buyin/create?client_id={{ $client -> id }}">
-                        <span class="badge badge-primary">Buy-In</span>
-                    </a>
-                    <a href="/buyback/create?client_id={{ $client -> id }}">
-                        <span class="badge badge-primary">Buy-Back</span>
-                    </a>
-                </td>
                 <td>
                     <a href="/clients/{{ $client -> id }}">
                         <span class="badge badge-secondary">Details</span>
