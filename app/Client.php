@@ -69,7 +69,7 @@ class Client extends Model
 
     public function clientNotes()
     {
-        return $this->hasMany(ClientNotes::class);
+        return $this->hasMany(ClientNotes::class)->orderBy('created_at', 'desc');
     }
 
     /**

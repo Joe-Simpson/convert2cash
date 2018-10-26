@@ -12,7 +12,7 @@
     <tbody>
         @foreach( $client->clientNotes as $clientNote )
             <tr>
-                <td>{{ $clientNote->created_at->format('d-m-Y') }}</td>
+                <td>{{ $clientNote->created_at->format('d-m-Y H:i:s') }}</td>
                 <td>{{ $clientNote->body }}</td>
            </tr>
         @endforeach
