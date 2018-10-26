@@ -20,13 +20,13 @@
                 <td>{{ $stock_item->stock_number }}</td>
                 <td>{{ $stock_item->make }}</td>
                 <td>{{ $stock_item->model }}</td>
-                <td>{{ $stock_item->boxed }}</td>
+                <td>@if ($stock_item->boxed == "true") Yes @else No @endif</td>
                 <td>{{ $stock_item->condition }}</td>
                 <td>
                     @if ($stock_item->seized)
                         Seized on {{ $stock_item->seized_date->format('d-m-Y') }}
                     @else
-                        False
+                        No
                     @endif
                 </td>
                 <td>

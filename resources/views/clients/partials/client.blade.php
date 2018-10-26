@@ -250,14 +250,14 @@
                     @if ( $client->client_banned == "false" )
                         selected="selected"
                     @endif>
-                    False
+                    No
                 </option>
                 <option 
                     value=true
                     @if ( $client->client_banned == "true" )
                         selected="selected"
                     @endif>
-                    True
+                    Yes
                 </option>
             @else
                 <option
@@ -265,14 +265,14 @@
                     @if( old('client_banned') == "false" )
                         selected="selected"
                     @endif>
-                    False
+                    No
                 </option>
                 <option
                     value=true
                     @if( old('client_banned') == "true" )
                         selected="selected"
                     @endif>
-                    True
+                    Yes
                 </option>
             @endif
         </select>

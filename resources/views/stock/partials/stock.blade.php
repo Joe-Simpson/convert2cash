@@ -158,27 +158,27 @@
                     @if ( $stock->boxed == "true" )
                         selected="selected"
                     @endif>
-                    True
+                    Yes
                 </option>
                 <option
                     value="false"
                     @if ( $stock->boxed == "false" )
                         selected="selected"
                     @endif>
-                    False
+                    No
                 </option>
             @else
         		<option value="true"
                         @if ( old('boxed') == "true" )
                             selected="selected" 
                         @endif>
-                    True
+                    Yes
                 </option>
         		<option value="false"
                         @if ( old('boxed') == "false" )
                             selected="selected" 
                         @endif>
-                    False
+                    No
                 </option>
             @endif
     	</select>
