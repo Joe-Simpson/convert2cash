@@ -7,14 +7,6 @@
             <form method="POST" action="/buyin">
 
 			    {{ csrf_field() }}
-                
-                <div class="form-group row">
-                    <h3>Client Details</h3>
-                </div>
-                
-                @include('clients.partials.client')
-
-                <hr>
 
                 <div class="form-group row">
                     <h3>Item Details</h3>
@@ -30,6 +22,14 @@
 
                 @include('buyin.partials.buyin')
                 
+                <hr>
+                
+                <div class="form-group row">
+                    <h3>Client Details</h3>
+                </div>
+                
+                @include('clients.partials.client')
+
                 <hr>
 
                 <div class="form-group">
