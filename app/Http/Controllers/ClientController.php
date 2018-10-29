@@ -111,7 +111,7 @@ class ClientController extends Controller
         $buybacks = Buyback::where('user_id', $client->id)->get();
         
         // Total buybacks complete
-        $bbCompleted = count($client->buyback->where('bought_back_date', ! null));
+        $bbCompleted = count($client->buyback) - count($client->buyback->where('bought_back_date', null));
 
         // Total buybacks seized
         // $bbSeized = count($buybacks->stock->where('seized', ! null);
@@ -119,7 +119,7 @@ class ClientController extends Controller
 
         // Total buybacks active
         // buyback && ! cancelled && ! bought back && ! seized
-        $bbCancelled = count($client->buyback->where('cancelled', ! null));
+        $bbCancelled = count($client->buyback->where('cancelled', 1));
         $bbActive = count($client->buyback) - $bbCancelled - $bbCompleted;
 
         $buybackStats = [

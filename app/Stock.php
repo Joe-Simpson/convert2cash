@@ -46,7 +46,9 @@ class Stock extends Model
 
     public static function activeStock()
     {
-        $notIn = Sales::get(['stock_id'])->toArray();
+        $stockSales = Sales::get(['stock_id'])->toArray();
+        $bbCancelled = Buyback::where('cancelled', 1)->get(['stock_id'])->toArray();
+        $notIn = array_merge($stockSales, $bbCancelled);
         return self::whereNotIn('id', $notIn)->get();
     }
 }
