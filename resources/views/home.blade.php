@@ -2,10 +2,11 @@
 
 @section('content')
 <div class="container">
+	<div class="row">
+		<h3>Buy-Backs Requiring Attention</h3>
+	</div>
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <p>home.blade.php - content needs creating.</p>
-        </div>
+        @include('buyback.partials.table')
     </div>
 </div>
 @endsection

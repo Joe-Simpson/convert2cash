@@ -70,10 +70,56 @@
         @endif
     </div>
     <div class="container" id="tab3C">
-        <div class="row">
-            <a href="/buyback/create?client_id={{ $client -> id }}" class="btn btn-success">
-                Create New Buy-Back
-            </a>
+        <div class="row align-items-center">
+            <div class="col-3">
+                <a href="/buyback/create?client_id={{ $client -> id }}" class="btn btn-success">
+                    Create New Buy-Back
+                </a>
+            </div>
+            <div class="col-6">
+                <div class="card-group">
+                    <div class="card text-center text-white bg-dark">
+                        <div class="card-header">
+                            <strong>Completed</strong>
+                        </div>
+                        <div class="card-body">
+                            <p class="h1">
+                                <strong>{{ $buybackStats['complete'] }}</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card text-center text-white bg-dark">
+                        <div class="card-header">
+                            <strong>Active</strong>
+                        </div>
+                        <div class="card-body">
+                            <p class="h1">
+                                <strong>{{ $buybackStats['active'] }}</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card text-center text-white bg-dark">
+                        <div class="card-header">
+                            <strong>Overdue</strong>
+                        </div>
+                        <div class="card-body">
+                            <p class="h1">
+                                <strong>{{ $buybackStats['overdue'] }}</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card text-center text-white bg-dark">
+                        <div class="card-header">
+                            <strong>Seized</strong>
+                        </div>
+                        <div class="card-body">
+                            <p class="h1">
+                                {{ $buybackStats['seized'] }}
+                            </p>
+                        </div>
+                    </div>
+                </div>    
+            </div>
         </div>
         <div class="row justify-content-center">
             @include('clients.partials.client-buyback-table')

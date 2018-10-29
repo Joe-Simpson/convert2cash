@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Client;
 use App\ClientNotes;
 use App\ClientImages;
+use App\Buyback;
 
 class ClientController extends Controller
 {
@@ -106,11 +107,37 @@ class ClientController extends Controller
     {   
         $title = 'Client Details';
 
+        // Total buybacks overdue
+        $buybacks = Buyback::where('user_id', $client->id)->get();
+        
+        // Total buybacks complete
+        $bbCompleted = count($client->buyback->where('bought_back_date', ! null));
+
+        // Total buybacks seized
+        // $bbSeized = count($buybacks->stock->where('seized', ! null);
+        // dd($client->buyback);
+
+        // Total buybacks active
+        // buyback && ! cancelled && ! bought back && ! seized
+        $bbCancelled = count($client->buyback->where('cancelled', ! null));
+        $bbActive = count($client->buyback) - $bbCancelled - $bbCompleted;
+
+        $buybackStats = [
+            'active' => $bbActive,
+            'cancelled' => $bbCancelled,
+            'overdue' => null,
+            'complete' => $bbCompleted,
+            'seized' => null,
+        ];
+
+
+        // dd($buybackStats);
+
         $clientblade = [
             'edit' => false,
             'create' => false,
         ];
-        return view('clients.show', compact('client','title','clientblade'));
+        return view('clients.show', compact('client','title','clientblade','buybackStats'));
     }
 
     /**

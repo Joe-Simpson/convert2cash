@@ -17,7 +17,7 @@
     <tbody>
         @foreach( $stock as $stock_item )
             <tr>
-                <td>{{ $stock_item->stock_number }}</td>
+                <td>{{ sprintf("%'.08d\n", $stock_item->id) }}</td>
                 <td>{{ $stock_item->make }}</td>
                 <td>{{ $stock_item->model }}</td>
                 <td>@if ($stock_item->boxed == "true") Yes @else No @endif</td>
