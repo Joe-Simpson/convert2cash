@@ -1,141 +1,73 @@
-# Requirments
-Some 'fields' look to be more specific to the service being provided than the stock/item itself. Below is an attempt at picking apart what has been requested and what is actually required.
-
-## Services
-### Buy Back
-- Loan Amount
-- Term of Buyback
-  - 1 week
-  - 2 weeks
-  - 3 weeks
-  - 1 month
-- Tabs {1?}
-  - Buyback
-  - Renew
-  - Clone
-  - Seize
-
-### Buy In
-More typical laon shop type stuff.
-"Buy my stuff, I don't want it back"
-Do we need to track who sold the item. That is to say, add a new client.
-- Passcode
-- Cost price
-- Pay cash
-- Selling price
-
-## Processes
-### Sales
-1. Operator/User
-2. Find item from stock
-   - Option to add customer details
-3. Adjust price (if needed)
-4. Payment
-   - Cash
-   - Card
-
-### Deposit Scheme
-1. Operator
-2. Find item from stock
-3. Add customer details
-4. Adjust selling price if item
-5. Deposit required
-   - Minimum £20
-6. Additional payment
-7. Complete sale
-8. Option to cancel layaway
-
-## Known tables and fields
-### stock fields
-- make
-- model
-- description
-- serial/imei
-- passcode {2?}
-- boxed [true/false]
-- condition
-  - ENUM
-    - Like New
-    - Good
-    - Fair
-    - Poor
-    - Faulty/Damaged
-- notes
-- operator/user {3?}
-
-## Questions we need to answer {?}
-1. Tabs
-   - Not sure what these are meant to do. They could be ways of interacting with the 'deal'.
-     - Buyback = Customer wants their item back
-     - Renew = Start the 'deal' again
-     - Clone = Copy it (for some reason). 
-     - Seize = Close 'deal' taking ownership of the stock
-4. Search [done]
-   - build something
-   - search: "laravel search"
-
-## Known Issues
-1. Deleting stock item before buy-in, buy-back record causes an error [fixed]
-   - Same will happen if you delete a client
-   - issue is due to the index table trying to access stock and client data
-   - fix by adding ifexists()
-2. Clients
-   - Add postcode search functionality - done
-   - Add extra Id field and increase id options - done
-     - id 1
-       - Driving licence
-       - passport
-       - birth certificate
-       - photo id card
-       - bank card
-       - bus pass
-       - NI card
-     - id 2
-       - Utility Bill
-       - pay slip
-       - bank statement
-       - an in date letter
-   - All notes need to be date stamped with the newest info at the top of the page
-   - Customer banned requires a text box for a reason - done
-   - Customer photo required
-     - Currently trying to work out how to save a canvas element upon form submit
-       - Saving image is easy on its own. Not so easy with form submission
-       - Could save image before form submission and provide file path to saved file in the submission request
-         - What happens if the photo is bad and gets retaken -> multiple redundent files?
-3. Buy-In
-   - Under item details, require a drop down for categories - done
-     - gaming
-     - phones
-     - computing
-     - electronics
-     - airguns
-     - jewellery
-     - tools
-     - misc
-   - remove pay cash field - done
-   - tick box for 'passcode/security lock checked and removed' (compulsory) - done
-4. Buy-Back
-   - Under item details, require a drop down for categories - done
-     - gaming
-     - phones
-     - computing
-     - electronics
-     - airguns
-     - jewellery
-     - tools
-     - misc
-   - tick box for 'passcode/security lock checked and removed' (compulsory) - done
-   - Under edit - buy-backs should not be able to be deleted. They can be cancelled on the day it is taken out. This should be recorded. -> checkbox - delete button removed (route still exists), cancelled still required.
-   - Require buyback history of the previous transactions with the customer
-     - how many in total
-     - redeemed: total and %
-     - seized: total and %
-5. Stock view
-   - Stock will require a stock no. or barcode. This should also have item description.
-     - Currently assuming stock_id will suffice?
-   - stock code search
-6. Stock delete
-   - Remove stock delete option and replace it with a Stock Loss drop down with the following options - delete button removed (route still exists), stock loss still required.
-     - Scrap jewellery
-     - Employees loss
-   - Will require text box so reason can be added
+1. Client details
+   - Client notes time stamped [1] Done
+     - most recent at the top
+   - Buyback stats on the details page [2] Formatting/layout done
+     - percentages successful, failed, ongoing, etc.
+     - Clearly, at a glance, see if they are a 'good' customer or not
+   - Client picture needs to be updateable [6] Done
+2. Buy Ins (Done)
+   - Button should be in the client deatils, not client list [2] Done
+     - This gives the user and idea of how much activity the client has
+3. Buybacks
+   - Button should be in the client details, not client list [2] Done
+     - This gives the user an idea of how indebted the client is
+   - Multiple items [5]
+     - Entered under one buyback
+     - Multiple items listed as seperate stock
+     - Clone needs to have a selector for which items need cloning
+   - Late fees [4]
+     - £5 each week (if =<£50)
+     - 10% each week (if >£50)
+4. Stock
+   - Seized [3]
+     - change from true/false to yes/no
+     - Who was it seized from
+   - Boxed [1] Done
+     - change from true/false to yes/no
+   - Stock number [2] Done
+     - use id, set to 8 digits
+     - basically a barcode
+5. Sales
+   - Client details not neccessairly requried [2]
+     - aka "optional"
+   - Multiple items in one sale [6]
+6. Lay away
+   - Seperate page not bundled into sales [4]
+7. Homepage
+   - Impending things that will require attention [3]
+     - Buybacks set to expire
+     - Buybacks that have expired
+8. Selling price is 3x the loan amount [2]
+   - This can be auto filled
+9. Receipts [4]
+   - Require printable receipts
+     - Purchase Agreement and Receipt for Goods
+     - Sale and Repurchase Agreement and Receipt for Goods Sold
+   - Example has been provided
+   - Terms and Conditions required at bottom
+     - text in examples provided
+   - Should be a simple form that gets populated with required details
+10. Reports [9]
+   - Basically keeping track of the til
+   - Will need to be store specific
+     - This may complicate things that have already been built a bit
+   - End of the day, whats been sold on cash and on card
+   - Separate summations
+     - Not individaul items
+   - "Close"
+     - details of individual items in a receipt/report style fashion
+   - Running total of whats in the til
+     - Will require method of adding/removing cash from the til
+   - Currently use Eposnow
+   - Some way of populating excel for Emily
+     - May need to populate a template?
+11. Nice to have - Texting customers [7]
+    - Currently using a service called Green Text
+      - Pay per click. Bought in bulk for the week.
+      - Have to log in to separate program, enter number manually, etc.
+    - Would like something integrated
+      - Click a button to fire off a text
+        - "You have 1 day til you are due"
+        - "You are overdue"
+        - "You are 1 week over, we will seize your item"
+      - Twillio?

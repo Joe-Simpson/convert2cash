@@ -7,6 +7,7 @@ use App\Client;
 use App\ClientNotes;
 use App\ClientImages;
 use App\Buyback;
+use Carbon\Carbon;
 
 class ClientController extends Controller
 {
@@ -107,25 +108,41 @@ class ClientController extends Controller
     {   
         $title = 'Client Details';
 
-        // Total buybacks overdue
+        /**
+         * Client Buyback stats
+         * Currently Overdue
+         *  term_end > now() && ! cancelled && ! bought back && ! seized
+         * Complete
+         * Seized
+         *  buyback && stock seized
+         * Active
+         *  buyback && ! cancelled && ! bought back && ! seized
+         */
+
         $buybacks = Buyback::where('user_id', $client->id)->get();
+        
+        // Currently Overdue
+        foreach ($buybacks as $buyback) {
+            $buyback->term_end = $buyback->created_at->add(\Carbon\CarbonInterval::fromString($buyback->term))->toDateString();
+            ($buyback->term_end < Carbon::now()) ? $buyback->attention_3 = true : $buyback->attention_3 = false ;
+        }
+        $bbOverdue = count($buybacks->where('attention_3', true));
         
         // Total buybacks complete
         $bbCompleted = count($client->buyback) - count($client->buyback->where('bought_back_date', null));
 
         // Total buybacks seized
-        // $bbSeized = count($buybacks->stock->where('seized', ! null);
-        // dd($client->buyback);
+        // $bbSeized = count($buybacks->stock->where('seized', );
+        
 
         // Total buybacks active
-        // buyback && ! cancelled && ! bought back && ! seized
         $bbCancelled = count($client->buyback->where('cancelled', 1));
         $bbActive = count($client->buyback) - $bbCancelled - $bbCompleted;
 
         $buybackStats = [
             'active' => $bbActive,
             'cancelled' => $bbCancelled,
-            'overdue' => null,
+            'overdue' => $bbOverdue,
             'complete' => $bbCompleted,
             'seized' => null,
         ];
