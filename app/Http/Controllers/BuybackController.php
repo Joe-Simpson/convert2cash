@@ -69,6 +69,7 @@ class BuybackController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         // validate Stock and BuyBack details
         $this->validate(request(), [
             'client_id' => 'required|numeric',

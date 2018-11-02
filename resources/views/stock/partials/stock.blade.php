@@ -7,7 +7,7 @@
         <input type="text"
                class="form-control"
                id="stock_number"
-               name="stock_number"
+               name="stock_number[]"
                @if ( ! $stockblade['create'] )
                value="{{ sprintf("%'.08d\n", $stock->id) }}"
                readonly 
@@ -21,7 +21,7 @@
     <div class="col-sm-10">
         <select class="form-control"
                id="category"
-               name="category"
+               name="category[]"
                 @if ( ! $stockblade['edit'] )
                 disabled
                 @endif>
@@ -52,7 +52,7 @@
     	<input type="text"
                 class="form-control"
                 id="make"
-                name="make"
+                name="make[]"
                 @if ( ! $stockblade['create'] ) 
                     value="{{ $stock -> make }}"
                 @else
@@ -71,7 +71,7 @@
     	<input type="text"
                 class="form-control"
                 id="model"
-                name="model"
+                name="model[]"
                 @if ( ! $stockblade['create'] ) 
                     value="{{ $stock -> model }}"
                 @else
@@ -90,7 +90,7 @@
     	<input type="text"
                 class="form-control"
                 id="description"
-                name="description"
+                name="description[]"
                 @if ( ! $stockblade['create'] ) 
                     value="{{ $stock -> description }}"
                 @else
@@ -107,7 +107,7 @@
     	<input type="text"
                 class="form-control"
                 id="serial"
-                name="serial"
+                name="serial[]"
                 @if ( ! $stockblade['create'] ) 
                     value="{{ $stock -> serial }}"
                 @else
@@ -126,7 +126,7 @@
     	<input type="radio"
                 class="form-control radio"
                 id="passcode"
-                name="passcode"
+                name="passcode[]"
                 value="true"
                 required
                 @if ( ! $stockblade['create'] )
@@ -144,7 +144,7 @@
     <div class="col-10">
     	<select class="form-control" 
     			id="boxed" 
-    			name="boxed"
+    			name="boxed[]"
                 @if ( ! $stockblade['edit'] )
                     disabled
                 @endif>
@@ -185,7 +185,7 @@
     <div class="col-10">
     	<select class="form-control" 
     			id="condition" 
-    			name="condition"
+    			name="condition[]"
                 @if ( ! $stockblade['edit'] )
                     disabled
                 @endif>
@@ -265,7 +265,7 @@
     <div class="col-10">
     	<textarea class="form-control"
         			id="notes"
-        			name="notes"
+        			name="notes[]"
                     @if ( ! $stockblade['edit'] )
                         readonly 
                     @endif>
@@ -282,10 +282,10 @@
         <div class="input-group-prepend">
             <span class="input-group-text">£</span>
         </div>
-        <input type="text"
+        <input type="number"
                 class="form-control"
                 id="selling_price"
-                name="selling_price"
+                name="selling_price[]"
                 @if ( ! $stockblade['create'] ) 
                     value="{{ $stock -> selling_price }}" 
                 @else
@@ -304,7 +304,7 @@
     	<input type="text"
                 class="form-control"
                 id="user"
-                name="user"
+                name="user[]"
                 @if ( $stockblade['create'] )
                     value="{{ Auth::user()->name }}"
                 @else
@@ -319,7 +319,7 @@
     <div class="col-9">
         <select class="form-control" 
                 id="stock_loss_type" 
-                name="stock_loss_type"
+                name="stock_loss_type[]"
                 @if ( ! $stockblade['edit'] )
                     disabled
                 @endif>
@@ -349,7 +349,7 @@
         <input type="date" 
             class="form-control col" 
             id="stock_loss_date" 
-            name="stock_loss_date"
+            name="stock_loss_date[]"
             value="{{ $stock -> stock_loss_date }}"
             readonly>
     </div>

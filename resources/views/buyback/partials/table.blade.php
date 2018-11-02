@@ -6,6 +6,7 @@
     <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Stock Number</th>
             <th scope="col">Created</th>
             <th scope="col">Loan Amount</th>
             <th scope="col">Term</th>
@@ -20,6 +21,11 @@
         @foreach( $buybacks as $buyback )
             <tr>
                 <td>{{ $buyback->id }}</th>
+                <td>
+                    <a href="/stock/{{ $buyback->stock->id }}">
+                        {{ sprintf("%'.08d\n", $buyback->stock->id) }}
+                    </a>
+                </th>
                 <td>{{ $buyback->created_at->format('d-m-Y') }}</td>
                 <td>£ {{ $buyback->loan_amount }}</td>
                 <td>{{ $buyback->term }}</td>
