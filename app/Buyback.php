@@ -13,9 +13,9 @@ class Buyback extends Model
         'created_at'
     ];
 
-    public function stock()
+    public function buybackStockLink()
     {
-        return $this->belongsTo(Stock::class);
+        return $this->hasMany(BuybackStockLink::class);
     }
 
     public function client()

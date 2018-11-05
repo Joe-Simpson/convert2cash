@@ -6,13 +6,11 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Stock Number</th>
             <th scope="col">Created</th>
             <th scope="col">Loan Amount</th>
             <th scope="col">Term</th>
             <th scope="col">User</th>
             <th scope="col">Client</th>
-            <th scope="col">Stock</th>
             <th scope="col">Details</th>
             <th scope="col"></th>
         </tr>
@@ -21,11 +19,6 @@
         @foreach( $buybacks as $buyback )
             <tr>
                 <td>{{ $buyback->id }}</th>
-                <td>
-                    <a href="/stock/{{ $buyback->stock->id }}">
-                        {{ sprintf("%'.08d\n", $buyback->stock->id) }}
-                    </a>
-                </th>
                 <td>{{ $buyback->created_at->format('d-m-Y') }}</td>
                 <td>£ {{ $buyback->loan_amount }}</td>
                 <td>{{ $buyback->term }}</td>
@@ -35,13 +28,6 @@
                     {{ $buyback->client->first_name }} {{ $buyback->client->surname }}
                     @else
                     Client Deleted
-                    @endif
-                </td>
-                <td>
-                    @if ( isset($buyback->stock) )
-                        <a href="/stock/{{ $buyback->stock_id }}" >{{ $buyback->stock->make }} - {{ $buyback->stock->model }}</a>
-                    @else
-                    Stock Item Deleted
                     @endif
                 </td>
                 <td>

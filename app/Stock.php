@@ -29,9 +29,9 @@ class Stock extends Model
         return $this->belongsTo(Buyin::class);
     }
 
-    public function buyback()
+    public function buybackStockLink()
     {
-        return $this->belongsTo(Buyback::class);
+        return $this->belongsTo(buybackStockLink::class);
     }
 
     public function user()
@@ -47,8 +47,10 @@ class Stock extends Model
     public static function activeStock()
     {
         $stockSales = Sales::get(['stock_id'])->toArray();
-        $bbCancelled = Buyback::where('cancelled', 1)->get(['stock_id'])->toArray();
-        $notIn = array_merge($stockSales, $bbCancelled);
+        // This bit needs updating to use the BuybackStockLink table
+        // $bbCancelled = Buyback::where('cancelled', 1)->get(['stock_id'])->toArray();
+        // $notIn = array_merge($stockSales, $bbCancelled);
+        $notIn = $stockSales;
         return self::whereNotIn('id', $notIn)->get();
     }
 }

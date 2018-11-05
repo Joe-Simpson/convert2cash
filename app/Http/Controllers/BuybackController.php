@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Buyback;
 use App\Client;
 use App\Stock;
+use App\BuybackStockLink;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -69,48 +70,55 @@ class BuybackController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-        // validate Stock and BuyBack details
+        // Validation
+        // BuyBack details
         $this->validate(request(), [
             'client_id' => 'required|numeric',
-            'make' => 'required|string',
-            'model' => 'required|string',
-            'description' => 'nullable|string',
-            'serial' => 'required|string',
-            'passcode' => 'required',
-            'boxed' => 'required|string',
-            'condition' => 'required|string',
-            'notes' => 'nullable|string',
             'loan_amount' => 'required|numeric',
             'term' => 'required|string',
-            'selling_price' => 'required|numeric',
-            'category' => 'required|in:' . implode(',', Stock::$categories),
         ]);
+        // Stock details
+        for ($i=0; $i < sizeof(request('make')); $i++) { 
+            
+        }
 
-        // create stock
-        $stock = Stock::create([
-            'make' => request('make'),
-            'model' => request('model'),
-            'description' => request('description'),
-            'serial' => request('serial'),
-            'passcode' => true,
-            'boxed' => request('boxed'),
-            'condition' => request('condition'),
-            'notes' => request('notes'),
-            'selling_price' => request('selling_price'),
-            'aquisition_type' => 'buy-back',
-            'user_id' => auth()->id(),
-            'category' => request('category'),
-        ]);
+        $newStockIds = array();
+
+        for ($i=0; $i < sizeof(request('make')); $i++) { 
+             // Create Stock
+            $newStock = Stock::create([
+                'make' => request('make')[$i],
+                'model' => request('model')[$i],
+                'description' => request('description')[$i],
+                'serial' => request('serial')[$i],
+                'passcode' => true,
+                'boxed' => request('boxed')[$i],
+                'condition' => request('condition')[$i],
+                'notes' => request('notes')[$i],
+                'selling_price' => request('selling_price')[$i],
+                'aquisition_type' => 'buy-back',
+                'user_id' => auth()->id(),
+                'category' => request('category')[$i],
+            ]);
+            // Add stock_id to $newStockIds array
+            array_push($newStockIds, $newStock->id);
+        }
 
         // Create BuyBack
-        Buyback::create([
+        $buyback = Buyback::create([
             'loan_amount' => request('loan_amount'),
             'term' => request('term'),
             'user_id' => auth()->id(),
             'client_id' => request('client_id'),
-            'stock_id' => $stock->id,
         ]);
+
+        // Create BuybackStockLink
+        for ($i=0; $i < sizeof($newStockIds); $i++) { 
+            BuybackStockLink::create([
+                'buyback_id' => $buyback->id,
+                'stock_id' => $newStockIds[$i],
+            ]);
+        }
 
         // Return to BuyBack index screen
         return redirect('/buyback')->with('status','New Buy-Back created');

@@ -207,7 +207,9 @@
             // Show new-stock-item-template-j
             $('#new-stock-item-template-' + j ).show();
             // Scroll to top
-            scrollToTop();
+            if ( cloneId > 0 ) {
+                scrollToTop();
+            }
             // Set cloneId
             updateCloneId();
             // cloneId = j;

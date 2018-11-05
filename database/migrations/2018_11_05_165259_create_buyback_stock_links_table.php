@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBuybacksTable extends Migration
+class CreateBuybackStockLinksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateBuybacksTable extends Migration
      */
     public function up()
     {
-        Schema::create('buybacks', function (Blueprint $table) {
+        Schema::create('buyback_stock_links', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('client_id');
-            $table->float('loan_amount', 8, 2);
-            $table->enum('term', ['1 week','2 weeks','3 weeks','1 month']);
+            $table->string('buyback_id');
+            $table->string('stock_id');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateBuybacksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buybacks');
+        Schema::dropIfExists('buyback_stock_links');
     }
 }
