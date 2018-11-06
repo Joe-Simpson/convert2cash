@@ -119,11 +119,11 @@ class ClientController extends Controller
             ($buyback->term_end < Carbon::now() && ! $buyback->buybackStockLink->first()->stock->seized && $buyback->cancelled == 0) ? $buyback->attention_3 = true : $buyback->attention_3 = false ;
         }
         $bbOverdue = count($buybacks->where('attention_3', true));
-        $bbOverdueP = ($bbOverdue/$bbTotal)*100;
+        $bbOverdueP = round(($bbOverdue/$bbTotal)*100, 1);
         
         // Total buybacks complete
         $bbCompleted = count($client->buyback) - count($client->buyback->where('bought_back_date', null));
-        $bbCompletedP = ($bbCompleted/$bbTotal)*100;
+        $bbCompletedP = round(($bbCompleted/$bbTotal)*100, 1);
 
         // Total buybacks seized
         $bbSeized = 0;
@@ -132,11 +132,11 @@ class ClientController extends Controller
                 $bbSeized = $bbSeized + $buybackStock->stock->seized;
             }
         }
-        $bbSeizedP = ($bbSeized/$bbTotal)*100;
+        $bbSeizedP = round(($bbSeized/$bbTotal)*100, 1);
 
         // Total buybacks active
         $bbActive = $bbTotal - $bbCompleted - $bbSeized;
-        $bbActiveP = ($bbActive/$bbTotal)*100;
+        $bbActiveP = round(($bbActive/$bbTotal)*100, 1);
 
         $buybackStats = [
             'total' => $bbTotal,

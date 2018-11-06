@@ -31,7 +31,7 @@ class Stock extends Model
 
     public function buybackStockLink()
     {
-        return $this->belongsTo(buybackStockLink::class);
+        return $this->belongsTo(BuybackStockLink::class);
     }
 
     public function user()

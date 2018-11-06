@@ -10,6 +10,7 @@
             <th scope="col">Model</th>
             <th scope="col">Boxed</th>
             <th scope="col">Condition</th>
+            <th scope="col">Selling Price</th>
             <th scope="col">Seized</th>
             <th scope="col"></th>
         </tr>
@@ -22,6 +23,7 @@
                 <td>{{ $stock_item->model }}</td>
                 <td>@if ($stock_item->boxed == "true") Yes @else No @endif</td>
                 <td>{{ $stock_item->condition }}</td>
+                <td>£ {{ $stock_item->selling_price }}</td>
                 <td>
                     @if ($stock_item->seized)
                         Seized on {{ $stock_item->seized_date->format('d-m-Y') }}
@@ -34,7 +36,7 @@
                         <span class="badge badge-secondary">Details</span>
                     </a>
                     @if ( ! isset($stock_item->sales) )
-                        @if( $stock_item->seized )
+                        @if( $stock_item->seized || $stock_item == 'buy-in')
                         <a href="/sales/create?stock_id={{ $stock_item -> id }}">
                             <span class="badge badge-success">Sell</span>
                         </a>
