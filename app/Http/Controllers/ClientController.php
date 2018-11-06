@@ -110,7 +110,8 @@ class ClientController extends Controller
         $buybacks = Buyback::where('user_id', $client->id)->get();
         
         // Total Buybacks
-        $bbTotal = count($client->buyback);
+        $bbCancelled = count($client->buyback->where('cancelled', 1));
+        $bbTotal = count($client->buyback) - $bbCancelled;
 
         // Currently Overdue
         foreach ($buybacks as $buyback) {
@@ -134,8 +135,7 @@ class ClientController extends Controller
         $bbSeizedP = ($bbSeized/$bbTotal)*100;
 
         // Total buybacks active
-        $bbCancelled = count($client->buyback->where('cancelled', 1));
-        $bbActive = $bbTotal - $bbCancelled - $bbCompleted;
+        $bbActive = $bbTotal - $bbCompleted;
         $bbActiveP = ($bbActive/$bbTotal)*100;
 
         $buybackStats = [

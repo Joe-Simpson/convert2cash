@@ -249,9 +249,11 @@ class BuybackController extends Controller
      */
     public function seize(Buyback $buyback)
     {
-        $buyback->stock->seized = true;
-        $buyback->stock->seized_date = Carbon::now()->format('Y-m-d');
-        $buyback->stock->save();
+        foreach ($buyback->buybackStockLink as $buybackStockLink) {
+            $buybackStockLink->stock->seized = true;
+            $buybackStockLink->stock->seized_date = Carbon::now()->format('Y-m-d');
+            $buybackStockLink->stock->save();
+        }
 
         return redirect('/buyback')->with('status','Stock seized!');
     }

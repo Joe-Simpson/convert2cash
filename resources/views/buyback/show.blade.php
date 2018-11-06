@@ -67,7 +67,6 @@
                                 <th scope="col">Make</th>
                                 <th scope="col">Model</th>
                                 <th scope="col">Selling Price</th>
-                                <th scope="col">Seized</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,13 +78,6 @@
                                 <td>{{ $stockLink->stock->make }}</td>
                                 <td>{{ $stockLink->stock->model }}</td>
                                 <td>£ {{ $stockLink->stock->selling_price }}</td>
-                                <td>
-                                    @if ($stockLink->stock->seized)
-                                        Seized on {{ $stockLink->stock->seized_date->format('d-m-Y') }}
-                                    @else
-                                        No
-                                    @endif
-                                </td>
                             </tr>
                             @endforeach
                         </tbody>
