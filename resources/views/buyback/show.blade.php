@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-between">
-        @if (! $buyback->cancelled && ! $buyback->stock->seized && ! $buyback->bought_back_date)
+
             <a href="/buyback/{{ $buyback -> id }}/buy-back">
                 <button class="btn btn-success">Buy-Back</button>
             </a>
@@ -21,7 +21,7 @@
                     <button class="btn btn-danger">Cancel</button>
                 </a>
             @endif
-        @endif
+
     </div>
     <hr>
 </div>
@@ -59,19 +59,40 @@
                         <h3>Item Details</h3>
                     </div>
 
-                    @if ( isset( $buyback->stock ) )
-                        @include('stock.partials.stock')
+                    @if ( isset( $buyback->buybackStockLink ) )
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Stock Number</th>
+                                <th scope="col">Make</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Selling Price</th>
+                                <th scope="col">Seized</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($buyback->buybackStockLink as $stockLink)
+                            <tr>
+                                <th scope="row">
+                                    {{ sprintf("%'.08d\n", $stockLink->stock->id) }}
+                                </th>
+                                <td>{{ $stockLink->stock->make }}</td>
+                                <td>{{ $stockLink->stock->model }}</td>
+                                <td>£ {{ $stockLink->stock->selling_price }}</td>
+                                <td>
+                                    @if ($stockLink->stock->seized)
+                                        Seized on {{ $stockLink->stock->seized_date->format('d-m-Y') }}
+                                    @else
+                                        No
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                     @else
-                        <p>Stock Item Deleted</p>
+                        <p>Stock Item(s) Deleted</p>
                     @endif
-                    
-                    <hr>
-
-                    <div class="form-group row justify-content-between">
-                        <div class="col">
-                            <a href ="/buyback/{{ $buyback -> id }}/edit" class="btn btn-primary">Edit</a>
-                        </div>
-                    </div>
 
                     @include('layouts.errors')
 

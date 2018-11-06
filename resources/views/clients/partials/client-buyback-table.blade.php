@@ -24,8 +24,13 @@
                 <td>{{ $buyback->term }}</td>
                 <td>{{ $buyback->user->name }}</td>
                 <td>
-                    @if ( isset($buyback->stock) )
-                        <a href="/stock/{{ $buyback->stock_id }}" >{{ $buyback->stock->make }} - {{ $buyback->stock->model }}</a>
+                    @if ( isset($buyback->buybackStockLink) )
+                        {{ count($buyback->buybackStockLink) }}
+                        @if ( count($buyback->buybackStockLink) > 1)
+                            Items
+                        @else
+                            Item
+                        @endif
                     @else
                     Stock Item Deleted
                     @endif

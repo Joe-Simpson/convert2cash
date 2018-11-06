@@ -88,8 +88,6 @@ class ClientController extends Controller
             'client_image' => 'required|string',
         ]);
 
-        // If validation fails, return back with all data and errors
-
         // create client
         $newClient = Client::create($request->all());
 
@@ -108,47 +106,51 @@ class ClientController extends Controller
     {   
         $title = 'Client Details';
 
-        /**
-         * Client Buyback stats
-         * Currently Overdue
-         *  term_end > now() && ! cancelled && ! bought back && ! seized
-         * Complete
-         * Seized
-         *  buyback && stock seized
-         * Active
-         *  buyback && ! cancelled && ! bought back && ! seized
-         */
-
+        // Buyback Stats
         $buybacks = Buyback::where('user_id', $client->id)->get();
         
+        // Total Buybacks
+        $bbTotal = count($client->buyback);
+
         // Currently Overdue
         foreach ($buybacks as $buyback) {
             $buyback->term_end = $buyback->created_at->add(\Carbon\CarbonInterval::fromString($buyback->term))->toDateString();
             ($buyback->term_end < Carbon::now()) ? $buyback->attention_3 = true : $buyback->attention_3 = false ;
         }
         $bbOverdue = count($buybacks->where('attention_3', true));
+        $bbOverdueP = ($bbOverdue/$bbTotal)*100;
         
         // Total buybacks complete
         $bbCompleted = count($client->buyback) - count($client->buyback->where('bought_back_date', null));
+        $bbCompletedP = ($bbCompleted/$bbTotal)*100;
 
         // Total buybacks seized
-        // $bbSeized = count($buybacks->stock->where('seized', );
-        
+        $bbSeized = 0;
+        foreach ($buybacks as $buyback) {
+            foreach($buyback->buybackStockLink as $buybackStock) {
+                $bbSeized = $bbSeized + $buybackStock->stock->seized;
+            }
+        }
+        $bbSeizedP = ($bbSeized/$bbTotal)*100;
 
         // Total buybacks active
         $bbCancelled = count($client->buyback->where('cancelled', 1));
-        $bbActive = count($client->buyback) - $bbCancelled - $bbCompleted;
+        $bbActive = $bbTotal - $bbCancelled - $bbCompleted;
+        $bbActiveP = ($bbActive/$bbTotal)*100;
 
         $buybackStats = [
+            'total' => $bbTotal,
             'active' => $bbActive,
+            'activeP' => $bbActiveP,
             'cancelled' => $bbCancelled,
             'overdue' => $bbOverdue,
+            'overdueP' => $bbOverdueP,
             'complete' => $bbCompleted,
-            'seized' => null,
+            'completeP' => $bbCompletedP,
+            'seized' => $bbSeized,
+            'seizedP' => $bbSeizedP,
         ];
 
-
-        // dd($buybackStats);
 
         $clientblade = [
             'edit' => false,

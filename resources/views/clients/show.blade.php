@@ -83,9 +83,12 @@
                             <strong>Completed</strong>
                         </div>
                         <div class="card-body">
-                            <p class="h1">
-                                <strong>{{ $buybackStats['complete'] }}</strong>
+                            <p class="h2">
+                                <strong>{{ $buybackStats['completeP'] }}%</strong>
                             </p>
+                        </div>
+                        <div class="card-footer">
+                            {{ $buybackStats['complete'] }} of {{ $buybackStats['total'] }}
                         </div>
                     </div>
                     <div class="card text-center text-white bg-dark">
@@ -93,9 +96,12 @@
                             <strong>Active</strong>
                         </div>
                         <div class="card-body">
-                            <p class="h1">
-                                <strong>{{ $buybackStats['active'] }}</strong>
+                            <p class="h2">
+                                <strong>{{ $buybackStats['activeP'] }}%</strong>
                             </p>
+                        </div>
+                        <div class="card-footer">
+                            {{ $buybackStats['active'] }} of {{ $buybackStats['total'] }}
                         </div>
                     </div>
                     <div class="card text-center text-white bg-dark">
@@ -103,9 +109,12 @@
                             <strong>Overdue</strong>
                         </div>
                         <div class="card-body">
-                            <p class="h1">
-                                <strong>{{ $buybackStats['overdue'] }}</strong>
+                            <p class="h2">
+                                <strong>{{ $buybackStats['overdueP'] }}%</strong>
                             </p>
+                        </div>
+                        <div class="card-footer">
+                            {{ $buybackStats['overdue'] }} of {{ $buybackStats['total'] }}
                         </div>
                     </div>
                     <div class="card text-center text-white bg-dark">
@@ -113,9 +122,12 @@
                             <strong>Seized</strong>
                         </div>
                         <div class="card-body">
-                            <p class="h1">
-                                {{ $buybackStats['seized'] }}
+                            <p class="h2">
+                                <strong>{{ $buybackStats['seizedP'] }}%</strong>
                             </p>
+                        </div>
+                        <div class="card-footer">
+                            {{ $buybackStats['seized'] }} of {{ $buybackStats['total'] }}
                         </div>
                     </div>
                 </div>    
