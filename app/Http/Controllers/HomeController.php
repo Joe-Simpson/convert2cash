@@ -32,9 +32,11 @@ class HomeController extends Controller
 
         foreach ($buybacks as $buyback) {
             $buyback->term_end = $buyback->created_at->add(\Carbon\CarbonInterval::fromString($buyback->term))->toDateString();
-            ($buyback->term_end < Carbon::now()->addDays(3)) ? $buyback->attention_1 = true : $buyback->attention_1 = false ;
-            ($buyback->term_end = Carbon::now()->toDateString()) ? $buyback->attention_2 = true : $buyback->attention_2 = false ;
-            ($buyback->term_end < Carbon::now()) ? $buyback->attention_3 = true : $buyback->attention_3 = false ;
+            if (! $buyback->buybackStockLink->first()->stock->seized && $buyback->cancelled == 0) {
+                ($buyback->term_end < Carbon::now()->addDays(3)) ? $buyback->attention_1 = true : $buyback->attention_1 = false ;
+                ($buyback->term_end = Carbon::now()->toDateString()) ? $buyback->attention_2 = true : $buyback->attention_2 = false ;
+                ($buyback->term_end < Carbon::now()) ? $buyback->attention_3 = true : $buyback->attention_3 = false ;
+            }
         }
 
         $buybacks = $buybacks->where('attention_1', true);

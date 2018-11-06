@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-between">
-
+        @if ( ! $buyback->buybackStockLink->first()->stock->seized)
             <a href="/buyback/{{ $buyback -> id }}/buy-back">
                 <button class="btn btn-success">Buy-Back</button>
             </a>
@@ -21,7 +21,7 @@
                     <button class="btn btn-danger">Cancel</button>
                 </a>
             @endif
-
+        @endif
     </div>
     <hr>
 </div>
