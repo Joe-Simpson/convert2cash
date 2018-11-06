@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Buyin;
 use App\Client;
 use App\Stock;
+use App\BuyinStockLink;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -68,7 +69,15 @@ class BuyinController extends Controller
      */
     public function store(Request $request)
     {
-        // validate Stock and BuyIn details
+        // Validation
+        // Buyin Details
+        $this->validate(request(), [
+            'client_id' => 'required|numeric',
+            'cost_price' => 'required|numeric',
+        ]);
+        // Stock details
+        for ($i=0; $i < sizeof(request('make')); $i++) { 
+/*
         $this->validate(request(), [
             'client_id' => 'required|numeric',
             'make' => 'required|string',
@@ -83,30 +92,45 @@ class BuyinController extends Controller
             'selling_price' => 'required|numeric',
             'category' => 'required|in:' . implode(',', Stock::$categories),
         ]);
+*/            
+        }
 
-        // create stock
-        $stock = Stock::create([
-            'make' => request('make'),
-            'model' => request('model'),
-            'description' => request('description'),
-            'serial' => request('serial'),
-            'passcode' => true,
-            'boxed' => request('boxed'),
-            'condition' => request('condition'),
-            'notes' => request('notes'),
-            'selling_price' => request('selling_price'),
-            'aquisition_type' => 'buy-in',
-            'user_id' => auth()->id(),
-            'category' => request('category'),
-        ]);
+        $newStockIds = array();
+
+        for ($i=0; $i < sizeof(request('make')); $i++) { 
+             // Create Stock
+            $newStock = Stock::create([
+                'make' => request('make')[$i],
+                'model' => request('model')[$i],
+                'description' => request('description')[$i],
+                'serial' => request('serial')[$i],
+                'passcode' => true,
+                'boxed' => request('boxed')[$i],
+                'condition' => request('condition')[$i],
+                'notes' => request('notes')[$i],
+                'selling_price' => request('selling_price')[$i],
+                'aquisition_type' => 'buy-in',
+                'user_id' => auth()->id(),
+                'category' => request('category')[$i],
+            ]);
+            // Add stock_id to $newStockIds array
+            array_push($newStockIds, $newStock->id);
+        }
 
         // Create BuyIn
-        Buyin::create([
+        $buyin = Buyin::create([
             'cost_price' => request('cost_price'),
             'user_id' => auth()->id(),
             'client_id' => request('client_id'),
-            'stock_id' => $stock->id,
         ]);
+
+        // Create BuyinStockLink
+        for ($i=0; $i < sizeof($newStockIds); $i++) { 
+            BuyinStockLink::create([
+                'buyin_id' => $buyin->id,
+                'stock_id' => $newStockIds[$i],
+            ]);
+        }
 
         // Return to BuyIn index screen
         return redirect('/buyin')->with('status','New Buy-In created');

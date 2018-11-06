@@ -8,6 +8,11 @@ class Buyin extends Model
 {
     protected $guarded = [];
 
+    public function buyinStockLink()
+    {
+        return $this->hasMany(BuyinStockLink::class);
+    }
+
     public function stock()
     {
         return $this->belongsTo(Stock::class);

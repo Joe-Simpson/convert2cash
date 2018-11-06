@@ -34,20 +34,32 @@
                     <div class="form-group row">
                         <h3>Item Details</h3>
                     </div>
-
-                    @if ( isset( $buyin->stock ) )
-                        @include('stock.partials.stock')
+                    @if ( isset( $buyin->buyinStockLink ) )
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Stock Number</th>
+                                <th scope="col">Make</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Selling Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($buyin->buyinStockLink as $stockLink)
+                            <tr>
+                                <th scope="row">
+                                    {{ sprintf("%'.08d\n", $stockLink->stock->id) }}
+                                </th>
+                                <td>{{ $stockLink->stock->make }}</td>
+                                <td>{{ $stockLink->stock->model }}</td>
+                                <td>£ {{ $stockLink->stock->selling_price }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                     @else
                         <p>Stock Item Deleted</p>
                     @endif
-                    
-                    <hr>
-
-                    <div class="form-group row justify-content-between">
-                        <div class="col">
-                            <a href="/buyin/{{ $buyin -> id }}/edit" class="btn btn-primary">Edit</a>
-                        </div>
-                    </div>
 
                     @include('layouts.errors')
 
