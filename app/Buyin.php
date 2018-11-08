@@ -13,11 +13,6 @@ class Buyin extends Model
         return $this->hasMany(BuyinStockLink::class);
     }
 
-    public function stock()
-    {
-        return $this->belongsTo(Stock::class);
-    }
-
     public function client()
     {
         return $this->belongsTo(Client::class);

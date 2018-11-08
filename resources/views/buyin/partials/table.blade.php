@@ -19,10 +19,10 @@
         @foreach( $buyins as $buyin )
             <tr>
                 <td>{{ $buyin->id }}</th>
-                <td>{{ $buyin->created_at }}</td>
+                <td>{{ $buyin->created_at->format('d-m-Y') }}</td>
                 <td>{{ $buyin->cost_price }}</td>
-                <td>@if ( isset($buyin->stock) )
-                    {{ $buyin->stock->selling_price }}
+                <td>@if ( isset($buyin->buyinStockLink) )
+                    {{ $buyin->id }}
                     @else
                     Stock Item Deleted
                     @endif
@@ -36,8 +36,13 @@
                     @endif
                 </td>
                 <td>
-                    @if ( isset($buyin->stock) )
-                    {{ $buyin->stock->make }} - {{ $buyin->stock->model }}
+                     @if ( isset($buyin->buyinStockLink) )
+                        {{ count($buyin->buyinStockLink) }}
+                        @if ( count($buyin->buyinStockLink) > 1)
+                            Items
+                        @else
+                            Item
+                        @endif
                     @else
                     Stock Item Deleted
                     @endif

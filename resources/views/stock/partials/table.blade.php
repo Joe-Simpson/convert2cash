@@ -36,10 +36,8 @@
                         <span class="badge badge-secondary">Details</span>
                     </a>
                     @if ( ! isset($stock_item->sales) )
-                        @if( $stock_item->seized || $stock_item == 'buy-in')
-                        <a href="/sales/create?stock_id={{ $stock_item -> id }}">
-                            <span class="badge badge-success">Sell</span>
-                        </a>
+                        @if( $stock_item->seized || $stock_item->aquisition_type == 'buy-in')
+                        <span class="badge badge-success">Sellable</span>
                         @endif
                     @else
                     <a href="/sales/{{ $stock_item -> sales -> id }}">

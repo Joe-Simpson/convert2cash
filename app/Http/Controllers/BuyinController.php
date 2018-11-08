@@ -30,7 +30,7 @@ class BuyinController extends Controller
     {
         $title = 'Buy-In\'s';
 
-        $buyins = Buyin::all();
+        $buyins = Buyin::orderByDesc('created_at')->get();
 
         return view('buyin.index', compact('title','buyins'));
     }

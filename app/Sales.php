@@ -8,18 +8,18 @@ class Sales extends Model
 {
     protected $guarded = [];
 
-    public function user()
+    public function saleStockLink()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function stock()
-    {
-    	return $this->belongsTo(Stock::class);
+        return $this->hasMany(SaleStockLink::class);
     }
 
     public function client()
     {
     	return $this->belongsTo(Client::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

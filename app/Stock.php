@@ -24,14 +24,19 @@ class Stock extends Model
        'loss_date',
     ];
 
-    public function buyin()
-    {
-        return $this->belongsTo(Buyin::class);
-    }
-
     public function buybackStockLink()
     {
         return $this->belongsTo(BuybackStockLink::class);
+    }
+
+    public function buyinStockLink()
+    {
+        return $this->belongsTo(BuyinStockLink::class);
+    }
+
+    public function saleStockLink()
+    {
+        return $this->belongsTo(Sales::class);
     }
 
     public function user()
@@ -39,18 +44,62 @@ class Stock extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function sales()
-    {
-        return $this->belongsTo(Sales::class);
-    }
-
     public static function activeStock()
     {
-        $stockSales = Sales::get(['stock_id'])->toArray();
-        // This bit needs updating to use the BuybackStockLink table
-        // $bbCancelled = Buyback::where('cancelled', 1)->get(['stock_id'])->toArray();
-        // $notIn = array_merge($stockSales, $bbCancelled);
-        $notIn = $stockSales;
+        // Stock that is not [sold, layaway, buyback + cancelled]
+        // Sold Stock
+        $sales = Sales::get(['id'])->toArray();
+        $stockSales = SaleStockLink::whereIn('sales_id', $sales)
+            ->get()
+            ->pluck('stock_id')
+            ->all();
+        // Stock on Layaway
+
+        // Cancelled Buybacks
+        $bbCancelled = Buyback::where('cancelled', 1)
+            ->get(['id'])
+            ->toArray();
+        $bbCStock = BuybackStockLink::whereIn('buyback_id', $bbCancelled)
+            ->get()
+            ->pluck('stock_id')
+            ->all();
+
+        // Combin arrays
+        $notIn = array_merge($stockSales, $bbCStock);
+
+        return self::whereNotIn('id', $notIn)->get();
+    }
+
+    public static function sellableStock()
+    {
+        // Stock that is not [sold, layaway, buyback + cancelled, buyback + not seized]
+        // Sold Stock
+        $sales = Sales::get(['id'])->toArray();
+        $stockSales = SaleStockLink::whereIn('sales_id', $sales)
+            ->get()
+            ->pluck('stock_id')
+            ->all();
+        // Stock on Layaway
+
+        // Cancelled Buybacks
+        $bbCancelled = Buyback::where('cancelled', 1)
+            ->get(['id'])
+            ->toArray();
+        $bbCStock = BuybackStockLink::whereIn('buyback_id', $bbCancelled)
+            ->get()
+            ->pluck('stock_id')
+            ->all();
+        // Buybacks not seized
+        $bbNotSeized = self::where([
+                ['seized', 0],
+                ['aquisition_type', 'buy-back']
+            ])->get()
+            ->pluck('id')
+            ->all();
+
+        // Combine Arrays
+        $notIn = array_merge($stockSales, $bbCStock, $bbNotSeized);
+
         return self::whereNotIn('id', $notIn)->get();
     }
 }

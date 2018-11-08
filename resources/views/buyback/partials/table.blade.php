@@ -11,6 +11,7 @@
             <th scope="col">Term</th>
             <th scope="col">User</th>
             <th scope="col">Client</th>
+            <th scope="col">Stock</th>
             <th scope="col">Details</th>
             <th scope="col"></th>
         </tr>
@@ -28,6 +29,18 @@
                     {{ $buyback->client->first_name }} {{ $buyback->client->surname }}
                     @else
                     Client Deleted
+                    @endif
+                </td>
+                <td>
+                    @if ( isset($buyback->buybackStockLink) )
+                        {{ count($buyback->buybackStockLink) }}
+                        @if ( count($buyback->buybackStockLink) > 1)
+                            Items
+                        @else
+                            Item
+                        @endif
+                    @else
+                    Stock Item Deleted
                     @endif
                 </td>
                 <td>

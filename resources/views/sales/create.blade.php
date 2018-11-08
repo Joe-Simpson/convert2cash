@@ -9,12 +9,11 @@
 			    {{ csrf_field() }}
 
                 <div class="form-group row">
-                    <h3>Item Details</h3>
+                    <h3>Stock Items</h3>
                 </div>
                 
-                @include('stock.partials.stock')
-                <input type="hidden" name="stock_id" value="{{$stock->id}}">
-
+                @include('sales.partials.stock')
+                
                 <hr>
 
                 <div class="form-group row">
@@ -49,6 +48,7 @@
     <script>
     $(document).ready(function() {
         $('#client_search').select2();
+        $('#stock_search').select2();
     });
     </script>
 @stop

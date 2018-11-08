@@ -128,9 +128,7 @@ class ClientController extends Controller
         // Total buybacks seized
         $bbSeized = 0;
         foreach ($buybacks as $buyback) {
-            foreach($buyback->buybackStockLink as $buybackStock) {
-                $bbSeized = $bbSeized + $buybackStock->stock->seized;
-            }
+            $bbSeized = $bbSeized + $buyback->buybackStockLink->first()->stock->seized;
         }
         $bbSeizedP = ($bbTotal > 0) ? round(($bbSeized/$bbTotal)*100, 1) : 0;
 

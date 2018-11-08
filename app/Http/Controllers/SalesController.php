@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Sales;
 use App\Client;
 use App\Stock;
+use App\SaleStockLink;
 use Illuminate\Http\Request;
 
 class SalesController extends Controller
@@ -28,7 +29,7 @@ class SalesController extends Controller
     {
         $title = 'Sales';
 
-        $sales = Sales::all();
+        $sales = Sales::orderByDesc('created_at')->get();
 
         return view('sales.index', compact('title','sales'));
     }
@@ -41,10 +42,6 @@ class SalesController extends Controller
      */
     public function create(Request $request)
     {
-        $stock = Stock::where ('id', $request->stock_id)
-            ->get()
-            ->first();
-
         $title = 'Create New Sale';
 
         $clientblade = $stockblade = [
@@ -56,10 +53,12 @@ class SalesController extends Controller
             'create' => true,
             'edit' => true,
         ];
+        
+        $stocks = Stock::sellableStock();
 
         $clients = Client::all();
         
-        return view('sales.create', compact('stock','title','clientblade','stockblade','salesblade', 'clients'));
+        return view('sales.create', compact('stocks','title','clientblade','stockblade','salesblade', 'clients'));
     }
 
     /**
@@ -71,31 +70,34 @@ class SalesController extends Controller
     public function store(Request $request)
     {
         $validation = [
-            'stock_id' => 'required|exists:stocks,id',
             'price_adjustment' => 'required|string',
             'payment_method' => 'required|in:card,cash',
         ];
-
-//        dd(request('client_search'));
 
         if (request('client_search')) {
             $validation['client_search'] = 'exists:clients,id';
         }
 
+        // dd(sizeof(request('stock_search')));
+
         // validate
         $this->validate(request(), $validation);
 
-        // If validation fails, return back with all data and errors
-
-        // create stock
-        Sales::create([
-            'stock_id' => request('stock_id'),
+        // Create Sale record
+        $sale = Sales::create([
             'client_id' => request('client_search'),
             'price_adjustment' => floatval(request('price_adjustment')),
             'payment_method' => request('payment_method'),
             'user_id' => \Auth::user()->id,
         ]);
 
+        // Create Sale Stock Link
+        for ($i=0; $i < sizeof(request('stock_search')); $i++) {             
+            SaleStockLink::create([
+                'stock_id' => request('stock_search')[$i],
+                'sales_id' => $sale->id,
+            ]);
+        }
 
         // Return to stock index screen
         return redirect('/sales')->with('status','New sale created');

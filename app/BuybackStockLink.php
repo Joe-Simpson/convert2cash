@@ -8,11 +8,13 @@ class BuybackStockLink extends Model
 {
 	protected $guarded = [];
 
-	public function buyback() {
+	public function buyback() 
+	{
 		return $this->belongsTo(Buyback::class);
 	}
 
-	public function stock() {
+	public function stock() 
+	{
 		return $this->belongsTo(Stock::class);
 	}
 }

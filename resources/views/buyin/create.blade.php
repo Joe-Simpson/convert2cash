@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary">Create Buyback</button>
+                  <button type="submit" class="btn btn-primary">Create Buyin</button>
                 </div>
 
                 @include('layouts.errors')
