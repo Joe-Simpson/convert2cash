@@ -39,6 +39,11 @@ class Stock extends Model
         return $this->belongsTo(Sales::class);
     }
 
+    public function layawayStockLink()
+    {
+        return $this->belongsTo(LayawayStockLink::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

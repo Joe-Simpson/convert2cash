@@ -13,11 +13,9 @@
             <li id="tab3" class="page-item">
                 <a class="page-link">Buy-Backs</a>
             </li>
-            @if ( false )
-                <li id="tab4" class="page-item">
-                    <a class="page-link">Lay-Aways</a>
-                </li>
-            @endif
+            <li id="tab4" class="page-item">
+                <a class="page-link">Lay-Aways</a>
+            </li>
             <li id="tab5" class="page-item">
                 <a class="page-link">Buy-Ins</a>
             </li>
@@ -139,11 +137,13 @@
     </div>
     <div class="container" id="tab4C">
         <div class="row">
-            <a href="" class="btn btn-success">
-                Create Layaway
+            <a href="/layaways/create?client_id={{ $client -> id }}" class="btn btn-success">
+                Create New Layaway
             </a>
         </div>
-        Layaways
+        <div class="row justify-content-center">
+            @include('clients.partials.client-layaways-table')
+        </div>
     </div>
     <div class="container" id="tab5C">
         <div class="row">

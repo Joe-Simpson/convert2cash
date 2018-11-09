@@ -52,12 +52,12 @@ class Client extends Model
         return $this->hasMany(Buyback::class);
     }
 
-    /*
-    public function layAway()
+    
+    public function layaways()
     {
-        return $this->hasMany(LayAway::class);
+        return $this->hasMany(Layaways::class);
     }
-    */
+    
 
     public function addBuyback($buyback)
     {

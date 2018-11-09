@@ -17,6 +17,9 @@
         <li>
             <a href="/sales">Sales</a>
         </li>
+        <li>
+            <a href="/layaways">Layaways</a>
+        </li>
     </ul>
     <div class="row align-items-end justify-content-center auth">
         @if( Auth::check() )

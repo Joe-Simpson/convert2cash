@@ -106,3 +106,10 @@ Route::get('/sales/{sales}', 'SalesController@show');
 Route::get('/sales/{sales}/edit', 'SalesController@edit');
 
 Route::put('/sales/{sales}','SalesController@update');
+
+// Layaways
+Route::get('/layaways', 'LayawaysController@index')->name('layaways');
+
+Route::get('/layaways/create', 'LayawaysController@create');
+
+Route::post('/layaways', 'LayawaysController@store');
