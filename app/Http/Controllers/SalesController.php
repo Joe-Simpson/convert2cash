@@ -70,7 +70,7 @@ class SalesController extends Controller
     public function store(Request $request)
     {
         $validation = [
-            'price_adjustment' => 'required|string',
+            'price_adjustment' => 'required|numeric',
             'payment_method' => 'required|in:card,cash',
         ];
 
@@ -111,7 +111,18 @@ class SalesController extends Controller
      */
     public function show(sales $sales)
     {
-        //
+        $title = 'Sale Details';
+
+        $salesblade = $stockblade = $clientblade = [
+            'edit' => false,
+            'create' => false,
+        ];
+
+        ( isset($sales->client) ) ? $client = $sales->client : $client = [];
+
+        $stock = $sales->salesStockLink;
+
+        return view('sales.show',compact('sales', 'client', 'stock', 'title', 'salesblade', 'clientblade', 'stockblade'));
     }
 
     /**
@@ -122,7 +133,23 @@ class SalesController extends Controller
      */
     public function edit(sales $sales)
     {
-        //
+        $title = 'Edit Sale Details';
+
+        ( isset($sales->client) ) ? $client = $sales->client : $client = [];
+
+        $stock = $sales->SaleStockLink;
+
+        $clientblade = $stockblade = [
+            'edit' => false,
+            'create' => false,
+        ];
+
+        $salesblade = [
+            'edit' => true,
+            'create' => false,
+        ];
+
+        return view('sales.edit', compact('sales','client','stock','title','clientblade','stockblade','salesblade'));
     }
 
     /**
@@ -132,9 +159,23 @@ class SalesController extends Controller
      * @param  \App\sales  $sales
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, sales $sales)
+    public function update(Request $request, $sales)
     {
-        //
+        // validate
+        $temp = $this->validate(request(), [
+            'price_adjustment' => 'required|numeric',
+            'payment_method' => 'required|in:card,cash',
+        ]);
+
+        // Update Sale
+        Sales::Where('id', $sales)
+            -> update([
+            'price_adjustment' => request('price_adjustment'),
+            'payment_method' => request('payment_method'),
+        ]);
+
+        // Return to buyback index screen
+        return redirect('/sales/' . $sales)->with('status','Sale details updated');
     }
 
     /**

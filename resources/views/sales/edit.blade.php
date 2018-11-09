@@ -4,13 +4,21 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form>
+            <form method="post" action="/sales/{{ $sales -> id }}">
+
+                {{ csrf_field() }}
+                {{ method_field('put') }}
 
 			     @include('sales.partials.sales')
-
-			    <div class="form-group">
-			      <a href="/sales/{{ $sales -> id }}/edit" class="btn btn-primary">Edit</a>
-			    </div>
+                
+                <div class="form-group row justify-content-end">
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-secondary" href="/sales/{{ $sales -> id }}">Abandon Changes</a>
+                    </div>
+                </div>
 
 			    @include('layouts.errors')
 

@@ -100,3 +100,9 @@ Route::get('/sales', 'SalesController@index')->name('sales');
 Route::get('/sales/create', 'SalesController@create');
 
 Route::post('/sales', 'SalesController@store');
+
+Route::get('/sales/{sales}', 'SalesController@show');
+
+Route::get('/sales/{sales}/edit', 'SalesController@edit');
+
+Route::put('/sales/{sales}','SalesController@update');

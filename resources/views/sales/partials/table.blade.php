@@ -23,7 +23,23 @@
                     <ol style="margin-bottom: 0; padding-left: 10px;">
                       @foreach ($sale->saleStockLink as $stockLink)
                         <li>
-                          {{ sprintf("%'.08d\n", $stockLink->stock->id) }} - {{ $stockLink->stock->make }} - {{ $stockLink->stock->model }}
+                          <ul class="list-inline">
+                            <li class="list-inline-item">
+                              {{ sprintf("%'.08d\n", $stockLink->stock->id) }}   
+                            </li>
+                            <li class="list-inline-item">
+                              {{ $stockLink->stock->make }}
+                            </li>
+                            <li class="list-inline-item">
+                              {{ $stockLink->stock->model }}
+                            </li>
+                            <li class="list-inline-item">
+                              {{ $stockLink->stock->condition }}
+                            </li>
+                            <li class="list-inline-item">
+                              £ {{ $stockLink->stock->selling_price }} 
+                            </li>
+                          </ul>
                         </li>
                       @endforeach
                     </ol>

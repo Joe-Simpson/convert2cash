@@ -4,7 +4,7 @@
         <div class="input-group-prepend">
         	<span class="input-group-text">£</span>
         </div>
-      	<input type="text"
+      	<input type="string"
                 class="form-control"
                 id="price_adjustment"
                 name="price_adjustment"
@@ -30,13 +30,13 @@
                     disabled
                 @endif>
             @if ( ! $salesblade['create'] )
-                <option value=true
+                <option value=cash
                         @if ( $sales->payment_method == "cash" )
                             selected="selected"
                         @endif>
                     Cash
                 </option>
-                <option value=false
+                <option value=card
                         @if ( $sales->payment_method == "card" )
                             selected="selected"
                         @endif>

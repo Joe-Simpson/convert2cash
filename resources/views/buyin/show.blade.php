@@ -84,7 +84,7 @@
     </div>
     
     <div class="row">
-        <a href="/buyin"><button class="btn btn-secondary">Return</button></a>
+        <a href="/buyin"><button class="btn btn-secondary">Return to Buy-Ins</button></a>
     </div>
 </div>
 @endsection

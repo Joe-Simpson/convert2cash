@@ -107,7 +107,7 @@
     </div>
     
     <div class="row">
-        <a href="/buyback"><button class="btn btn-secondary">Return</button></a>
+        <a href="/buyback"><button class="btn btn-secondary">Return to Buyabcks</button></a>
     </div>
 </div>
 @endsection

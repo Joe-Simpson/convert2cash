@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="row">
-        <a href="/stock"><button class="btn btn-secondary">Abandon</button></a>
+        <a href="/stock"><button class="btn btn-secondary">Return to Stock</button></a>
     </div>
 </div>
 @endsection
