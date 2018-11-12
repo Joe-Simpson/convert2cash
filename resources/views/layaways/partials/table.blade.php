@@ -7,6 +7,8 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Created</th>
+            <th scope="col">Client</th>
+            <th scope="col">Operator</th>
             <th scope="col">Stock Item(s)</th>
             <th scope="col"></th>
         </tr>
@@ -14,8 +16,10 @@
     <tbody>
         @foreach( $layaways as $layaway )
             <tr>
-                <td>{{ $layaway->id }}</th>
+                <td>{{ $layaway->id }}</td>
                 <td>{{ $layaway->created_at->format('d-m-Y') }}</td>
+                <td>{{ $layaway->client->first_name }} {{ $layaway->client->surname }}</td>
+                <td>{{ $layaway->user->name }}</td>
                 <td>
                   @if(isset($layaway->layawayStockLink))
                     <ol style="margin-bottom: 0; padding-left: 10px;">
@@ -46,7 +50,7 @@
                   @endif
                 </td>
                 <td>
-                    <a href="/sales/{{ $sale -> id }}">
+                    <a href="/layaways/{{ $layaway -> id }}">
                         <span class="badge badge-secondary">Details</span>
                     </a>
                 </td>

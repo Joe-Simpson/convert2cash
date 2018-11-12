@@ -36,6 +36,14 @@
 
                 </div>
 
+                <hr>
+
+                <div class="form-group row">
+                    <h3>Sale Details</h3>
+                </div>
+
+                @include('layaways.partials.layaways')
+
                 <div class="form-group">
 			      <button type="submit" class="btn btn-primary">Create Layaway</button>
 			    </div>

@@ -59,7 +59,11 @@ class Stock extends Model
             ->pluck('stock_id')
             ->all();
         // Stock on Layaway
-
+        $layaways = Layaways::get(['id'])->toArray();
+        $stockLayaways = LayawayStockLink::whereIn('layaways_id', $layaways)
+            ->get()
+            ->pluck('stock_id')
+            ->all();
         // Cancelled Buybacks
         $bbCancelled = Buyback::where('cancelled', 1)
             ->get(['id'])
@@ -70,7 +74,7 @@ class Stock extends Model
             ->all();
 
         // Combin arrays
-        $notIn = array_merge($stockSales, $bbCStock);
+        $notIn = array_merge($stockSales, $stockLayaways, $bbCStock);
 
         return self::whereNotIn('id', $notIn)->get();
     }
@@ -85,7 +89,11 @@ class Stock extends Model
             ->pluck('stock_id')
             ->all();
         // Stock on Layaway
-
+        $layaways = Layaways::get(['id'])->toArray();
+        $stockLayaways = LayawayStockLink::whereIn('layaways_id', $layaways)
+            ->get()
+            ->pluck('stock_id')
+            ->all();
         // Cancelled Buybacks
         $bbCancelled = Buyback::where('cancelled', 1)
             ->get(['id'])
@@ -103,7 +111,7 @@ class Stock extends Model
             ->all();
 
         // Combine Arrays
-        $notIn = array_merge($stockSales, $bbCStock, $bbNotSeized);
+        $notIn = array_merge($stockSales, $stockLayaways, $bbCStock, $bbNotSeized);
 
         return self::whereNotIn('id', $notIn)->get();
     }

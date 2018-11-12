@@ -113,3 +113,7 @@ Route::get('/layaways', 'LayawaysController@index')->name('layaways');
 Route::get('/layaways/create', 'LayawaysController@create');
 
 Route::post('/layaways', 'LayawaysController@store');
+
+Route::get('/layaways/{layaways}', 'LayawaysController@show');
+
+Route::get('/layaways/{layaways}/cancel', 'LayawaysController@cancel');

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Layaways;
-use App\Payment;
+use App\LayawayPayment;
 use App\LayawayStockLink;
 use App\Client;
 use App\Stock;
@@ -53,14 +53,14 @@ class LayawaysController extends Controller
             'edit' => false,
         ];
 
-        $layawayblade = $stockblade = [
+        $layawaysblade = $stockblade = [
             'create' => true,
             'edit' => true,
         ];
         
         $stocks = Stock::sellableStock();
 
-        return view('layaways.create', compact('client','title','stocks','clientblade','layawayblade'));
+        return view('layaways.create', compact('client','title','stocks','clientblade','layawaysblade'));
     }
 
     /**
@@ -71,7 +71,34 @@ class LayawaysController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $validation = [
+            'price_adjustment' => 'required|numeric',
+            'deposit' => 'required|numeric|min:20',
+            'deposit_paid' => 'required',
+        ];
+
+        // validate
+        $this->validate(request(), $validation);
+
+        // Create Layaway record
+        $layaway = Layaways::create([
+            'user_id' => \Auth::user()->id,
+            'client_id' => request('client_id'),
+            'price_adjustment' => floatval(request('price_adjustment')),
+            'deposit' => floatval(request('deposit')),
+            'deposit_paid' => true,
+        ]);
+
+        // Create Layaway Stock Link
+        for ($i=0; $i < sizeof(request('stock_search')); $i++) {             
+            LayawayStockLink::create([
+                'stock_id' => request('stock_search')[$i],
+                'layaways_id' => $layaway->id,
+            ]);
+        }
+
+        // Return to stock index screen
+        return redirect('/layaways')->with('status','New Layaway created');
     }
 
     /**
@@ -82,7 +109,18 @@ class LayawaysController extends Controller
      */
     public function show(Layaways $layaways)
     {
-        //
+        $title = 'Layaway Details';
+
+        $layawaysblade = $stockblade = $clientblade = [
+            'edit' => false,
+            'create' => false,
+        ];
+
+        ( isset($layaways->client) ) ? $client = $layaways->client : $client = [];
+
+        $stock = $layaways->layawaysStockLink;
+
+        return view('layaways.show',compact('layaways', 'client', 'stock', 'title', 'layawaysblade', 'clientblade', 'stockblade'));
     }
 
     /**
