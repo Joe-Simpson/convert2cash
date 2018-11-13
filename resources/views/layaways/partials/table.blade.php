@@ -50,9 +50,13 @@
                   @endif
                 </td>
                 <td>
+                    @if ($layaway->cancelled)
+                      <span class="badge badge-danger">Cancelled</span>
+                    @else
                     <a href="/layaways/{{ $layaway -> id }}">
                         <span class="badge badge-secondary">Details</span>
                     </a>
+                    @endif
                 </td>
            </tr>
         @endforeach

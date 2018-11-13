@@ -59,7 +59,7 @@ class Stock extends Model
             ->pluck('stock_id')
             ->all();
         // Stock on Layaway
-        $layaways = Layaways::get(['id'])->toArray();
+        $layaways = Layaways::where('cancelled', 0)->get(['id'])->toArray();
         $stockLayaways = LayawayStockLink::whereIn('layaways_id', $layaways)
             ->get()
             ->pluck('stock_id')
@@ -89,7 +89,7 @@ class Stock extends Model
             ->pluck('stock_id')
             ->all();
         // Stock on Layaway
-        $layaways = Layaways::get(['id'])->toArray();
+        $layaways = Layaways::where('cancelled', 0)->get(['id'])->toArray();
         $stockLayaways = LayawayStockLink::whereIn('layaways_id', $layaways)
             ->get()
             ->pluck('stock_id')

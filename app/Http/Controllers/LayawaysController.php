@@ -118,9 +118,30 @@ class LayawaysController extends Controller
 
         ( isset($layaways->client) ) ? $client = $layaways->client : $client = [];
 
-        $stock = $layaways->layawaysStockLink;
+        $stockLink = $layaways->layawayStockLink;
 
-        return view('layaways.show',compact('layaways', 'client', 'stock', 'title', 'layawaysblade', 'clientblade', 'stockblade'));
+        // Setting Amount Due
+        // Selling Price
+        $selling_price = 0;
+        foreach ($stockLink as $stockLink) {
+            $selling_price = $selling_price + $stockLink->stock->selling_price;
+        }
+        // Deposit
+        $deposit = $layaways->deposit;
+        // Price Adjustment
+        $price_adjustment = $layaways->price_adjustment;
+        // Payments Amount
+        $payments_amount = 0;
+        foreach ($layaways->layawayPayment as $payment) {
+            $payments_amount = $payments_amount + $payment->payment;
+        }
+        // Calculate Amount Due
+        $amount_due = $selling_price - $deposit - $price_adjustment - $payments_amount;
+        // Set Amount Due
+        $layaways->amount_due = $amount_due; 
+        $layaways->amount_paid = $payments_amount;
+
+        return view('layaways.show',compact('layaways', 'client', 'stockLink', 'title', 'layawaysblade', 'clientblade', 'stockblade'));
     }
 
     /**
@@ -155,5 +176,19 @@ class LayawaysController extends Controller
     public function destroy(Layaways $layaways)
     {
         //
+    }
+
+    /**
+     * Cancel buy-back record on the same day
+     *
+     * @param $buyback
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function cancel(Layaways $layaways)
+    {
+        $layaways->cancelled = true;
+        $layaways->save();
+
+        return redirect('/layaways')->with('status','Layaway cancelled');
     }
 }

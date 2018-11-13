@@ -15,7 +15,7 @@ class Layaways extends Model
 
     public function layawayPayment()
     {
-        return $this->hasMany(LayawayPayment::class);
+        return $this->hasMany(LayawayPayment::class)->orderBy('created_at', 'desc');
     }
 
     public function client()

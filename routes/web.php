@@ -117,3 +117,8 @@ Route::post('/layaways', 'LayawaysController@store');
 Route::get('/layaways/{layaways}', 'LayawaysController@show');
 
 Route::get('/layaways/{layaways}/cancel', 'LayawaysController@cancel');
+
+// Layaway Payments
+Route::put('/layaways-payment', 'LayawayPaymentController@store');
+
+Route::delete('/layaways-payment/{layaways}', 'LayawayPaymentController@destroy');
