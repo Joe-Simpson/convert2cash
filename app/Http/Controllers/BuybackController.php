@@ -257,4 +257,71 @@ class BuybackController extends Controller
 
         return redirect('/buyback')->with('status','Stock seized!');
     }
+    
+    /**
+     * Clone item
+     *
+     * @param $buyback
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function clone(Buyback $buyback)
+    {
+        $originalModel = Buyback::find($buyback->id);
+        $originalBuyBack = $originalModel->toArray();
+
+        unset($originalBuyBack['id']);
+        unset($originalBuyBack['created_at']);
+        unset($originalBuyBack['updated_at']);
+        unset($originalBuyBack['bought_back_date']);
+
+        // dd($originalBuyBack);
+
+        $newBuyBack = Buyback::create($originalBuyBack);
+
+        // Create buybackStockLink
+        foreach ($originalModel->buybackStockLink as $stockLink) {
+            BuybackStockLink::create([
+                'stock_id' => $stockLink->id,
+                'buyback_id' => $newBuyBack->id,
+            ]);
+        }
+
+        return redirect('/buyback')->with('status','Buyback cloned');
+    }
+
+    
+    /**
+     * Renew item
+     *
+     * @param $buyback
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function renew(Buyback $buyback)
+    {
+        $originalModel = Buyback::find($buyback->id);
+        $originalBuyBack = $originalModel->toArray();
+
+        unset($originalBuyBack['id']);
+        unset($originalBuyBack['created_at']);
+        unset($originalBuyBack['updated_at']);
+        unset($originalBuyBack['bought_back_date']);
+
+        $newBuyBack = Buyback::create($originalBuyBack);
+
+        // Create buybackStockLink
+        foreach ($originalModel->buybackStockLink as $stockLink) {
+            BuybackStockLink::create([
+                'stock_id' => $stockLink->id,
+                'buyback_id' => $newBuyBack->id,
+            ]);
+        }
+
+        // Update original buyback renew_id and renew_date
+        $buyback->renew_id = $newBuyBack->id;
+        $buyback->renew_date = Carbon::now()->format('Y-m-d');
+        $buyback->save();
+
+        return redirect('/buyback')->with('status','Buyback renewed');
+    }
+
 }

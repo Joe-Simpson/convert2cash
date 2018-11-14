@@ -42,6 +42,8 @@
                         Bought back on {{ $buyback->bought_back_date->format('d-m-Y') }}
                     @elseif($buyback->buybackStockLink && $buyback->buybackStockLink->first()->stock->seized)
                         Stock seized on {{ $buyback->buybackStockLink->first()->stock->seized_date->format('d-m-Y') }}
+                    @elseif($buyback->renew_id)
+                        Stock renewed on <a href="/buyback/{{ $buyback->renew_id }}">{{ $buyback->renew_date->format('d-m-Y') }}</a>
                     @else
                         End on {{ $buyback->created_at->add(\Carbon\CarbonInterval::fromString($buyback->term))->format('d-m-Y') }}
                     @endif

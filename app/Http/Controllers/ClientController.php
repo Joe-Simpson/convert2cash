@@ -107,11 +107,13 @@ class ClientController extends Controller
         $title = 'Client Details';
 
         // Buyback Stats
-        $buybacks = Buyback::where('user_id', $client->id)->get();
+        $buybacks = Buyback::where('user_id', $client->id)
+            ->where('renew_id', null)
+            ->get();
         
         // Total Buybacks
         $bbCancelled = count($client->buyback->where('cancelled', 1));
-        $bbTotal = count($client->buyback) - $bbCancelled;
+        $bbTotal = count($client->buyback->where('renew_id', null)) - $bbCancelled;
 
         // Currently Overdue
         foreach ($buybacks as $buyback) {
@@ -122,7 +124,7 @@ class ClientController extends Controller
         $bbOverdueP = ($bbTotal > 0) ? round(($bbOverdue/$bbTotal)*100, 1) : 0;
         
         // Total buybacks complete
-        $bbCompleted = count($client->buyback) - count($client->buyback->where('bought_back_date', null));
+        $bbCompleted = count($client->buyback->where('renew_id', null)) - count($client->buyback->where('bought_back_date', null)->where('renew_id', null));
         $bbCompletedP = ($bbTotal > 0) ? round(($bbCompleted/$bbTotal)*100, 1) : 0;
 
         // Total buybacks seized
@@ -149,11 +151,11 @@ class ClientController extends Controller
             'seizedP' => $bbSeizedP,
         ];
 
-
         $clientblade = [
             'edit' => false,
             'create' => false,
         ];
+
         return view('clients.show', compact('client','title','clientblade','buybackStats'));
     }
 

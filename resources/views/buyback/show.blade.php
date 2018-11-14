@@ -5,22 +5,44 @@
     <div class="row justify-content-between">
         @if ( ! $buyback->buybackStockLink->first()->stock->seized)
             <a href="/buyback/{{ $buyback -> id }}/buy-back">
-                <button class="btn btn-success">Buy-Back</button>
+                <button class="btn btn-success"
+                        @if( $buyback->bought_back_date || $buyback->renew_id || $buyback->cancelled )
+                        disabled
+                        @endif>
+                    Buy-Back
+                </button>
             </a>
-            <a href="/buyback/{{ $buyback -> id }}">
-                <button class="btn btn-secondary" disabled>Renew</button>
+            <a href="/buyback/{{ $buyback -> id }}/renew">
+                <button class="btn btn-secondary"
+                        @if( $buyback->bought_back_date || $buyback->renew_id || $buyback->cancelled )
+                        disabled
+                        @endif>
+                    Renew
+                </button>
             </a>
-            <a href="/buyback/{{ $buyback -> id }}">
-                <button class="btn btn-secondary" disabled>Clone</button>
+            <a href="/buyback/{{ $buyback -> id }}/clone">
+                <button class="btn btn-secondary"
+                        @if( is_null($buyback->bought_back_date) )
+                        disabled
+                        @endif>
+                    Clone
+                </button>
             </a>
             <a href="/buyback/{{ $buyback -> id }}/seize">
-                <button class="btn btn-danger">Seize</button>
+                <button class="btn btn-danger"
+                        @if( $buyback->bought_back_date || $buyback->renew_id || $buyback->cancelled )
+                        disabled
+                        @endif>
+                    Seize
+                </button>
             </a>
             @if ($buyback->created_at->format('Y-m-d') == \Carbon\Carbon::now()->format('Y-m-d'))
                 <a href="/buyback/{{ $buyback -> id }}/cancel">
                     <button class="btn btn-danger">Cancel</button>
                 </a>
             @endif
+        @else
+        <h3 class="align-middle">Buyback Seized</h3>
         @endif
     </div>
     <hr>
@@ -107,7 +129,7 @@
     </div>
     
     <div class="row">
-        <a href="/buyback"><button class="btn btn-secondary">Return to Buyabcks</button></a>
+        <a href="/buyback"><button class="btn btn-secondary">Return to Buybacks</button></a>
     </div>
 </div>
 @endsection

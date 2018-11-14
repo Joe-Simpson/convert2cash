@@ -93,6 +93,10 @@ Route::get('/buyback/{buyback}/cancel', 'BuybackController@cancel');
 
 Route::get('/buyback/{buyback}/buy-back', 'BuybackController@buyBack');
 
+Route::get('/buyback/{buyback}/clone', 'BuybackController@clone');
+
+Route::get('/buyback/{buyback}/renew', 'BuybackController@renew');
+
 
 // Sales
 Route::get('/sales', 'SalesController@index')->name('sales');

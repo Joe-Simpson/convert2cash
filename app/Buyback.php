@@ -10,7 +10,8 @@ class Buyback extends Model
 
     protected $dates =[
         'bought_back_date',
-        'created_at'
+        'created_at',
+        'renew_date',
     ];
 
     public function buybackStockLink()
