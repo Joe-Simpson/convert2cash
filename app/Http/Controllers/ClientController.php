@@ -118,7 +118,7 @@ class ClientController extends Controller
         // Currently Overdue
         foreach ($buybacks as $buyback) {
             $buyback->term_end = $buyback->created_at->add(\Carbon\CarbonInterval::fromString($buyback->term))->toDateString();
-            ($buyback->term_end < Carbon::now() && ! $buyback->buybackStockLink->first()->stock->seized && $buyback->cancelled == 0) ? $buyback->attention_3 = true : $buyback->attention_3 = false ;
+            ($buyback->term_end < Carbon::now() && ! $buyback->buybackStockLink->last()->stock->seized && $buyback->cancelled == 0 && $buyback->renew_id) ? $buyback->attention_3 = true : $buyback->attention_3 = false ;
         }
         $bbOverdue = count($buybacks->where('attention_3', true));
         $bbOverdueP = ($bbTotal > 0) ? round(($bbOverdue/$bbTotal)*100, 1) : 0;
@@ -130,7 +130,7 @@ class ClientController extends Controller
         // Total buybacks seized
         $bbSeized = 0;
         foreach ($buybacks as $buyback) {
-            $bbSeized = $bbSeized + $buyback->buybackStockLink->first()->stock->seized;
+            $bbSeized = $bbSeized + $buyback->buybackStockLink->last()->stock->seized;
         }
         $bbSeizedP = ($bbTotal > 0) ? round(($bbSeized/$bbTotal)*100, 1) : 0;
 

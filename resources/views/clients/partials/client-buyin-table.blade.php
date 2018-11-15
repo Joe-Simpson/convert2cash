@@ -8,7 +8,6 @@
             <th scope="col">#</th>
             <th scope="col">Created</th>
             <th scope="col">Cost Price</th>
-            <th scope="col">Selling Price</th>
             <th scope="col">User</th>
             <th scope="col">Client</th>
             <th scope="col">Stock</th>
@@ -21,12 +20,6 @@
                 <td>{{ $buyin->id }}</th>
                 <td>{{ $buyin->created_at }}</td>
                 <td>{{ $buyin->cost_price }}</td>
-                <td>@if ( isset($buyin->stock) )
-                    {{ $buyin->stock->selling_price }}
-                    @else
-                    Stock Item Deleted
-                    @endif
-                </td>
                 <td>{{ $buyin->user->name }}</td>
                 <td>
                     @if ( isset($buyin->client) )
