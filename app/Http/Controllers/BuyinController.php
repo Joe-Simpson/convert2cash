@@ -28,7 +28,7 @@ class BuyinController extends Controller
      */
     public function index()
     {
-        $title = 'Buy-In\'s';
+        $title = 'Buy-Ins';
 
         $buyins = Buyin::orderByDesc('created_at')->get();
 

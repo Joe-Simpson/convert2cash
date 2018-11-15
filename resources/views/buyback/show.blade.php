@@ -9,7 +9,7 @@
                         @if( $buyback->bought_back_date || $buyback->renew_id || $buyback->cancelled )
                         disabled
                         @endif>
-                    Buy-Back
+                    Buy-Back for £{{ $buyback->amountDue() }}
                 </button>
             </a>
             <a href="/buyback/{{ $buyback -> id }}/renew">
@@ -74,6 +74,21 @@
                     </div>
 
                     @include('buyback.partials.buyback')
+
+                    <div class="form-group row">
+                        <div class="input-group">
+                            <label for="amount_due" class="col-sm-3 col-form-label">Amount Due</label>    
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">£</span>
+                        </div>
+                        <input type="text"
+                                class="form-control"
+                                id="amount_due"
+                                name="amount_due"
+                                value="{{ $buyback -> amountDue() }}" 
+                                readonly>
+                        </div>
+                    </div>
                     
                     <hr>
 

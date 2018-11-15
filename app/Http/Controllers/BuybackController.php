@@ -29,7 +29,7 @@ class BuybackController extends Controller
      */
     public function index()
     {
-        $title = 'Buy-Back\'s';
+        $title = 'Buy-Backs';
 
         $buybacks = Buyback::orderByDesc('created_at')->get();
 

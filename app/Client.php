@@ -44,18 +44,18 @@ class Client extends Model
 
     public function buyin()
     {
-        return $this->hasMany(Buyin::class);
+        return $this->hasMany(Buyin::class)->orderBy('created_at', 'desc');
     }
 
     public function buyback()
     {
-        return $this->hasMany(Buyback::class);
+        return $this->hasMany(Buyback::class)->orderBy('created_at', 'desc');
     }
 
     
     public function layaways()
     {
-        return $this->hasMany(Layaways::class);
+        return $this->hasMany(Layaways::class)->orderBy('created_at', 'desc');
     }
     
 

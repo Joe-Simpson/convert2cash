@@ -9,16 +9,16 @@
             <a href="/stock">Stock</a>
         </li>
         <li>
-            <a href="/buyin">Buy-In</a>
+            <a href="/buyin">Buy-Ins</a>
         </li>
         <li>
-            <a href="/buyback">Buy-Back</a>
-        </li>
-        <li>
-            <a href="/sales">Sales</a>
+            <a href="/buyback">Buy-Backs</a>
         </li>
         <li>
             <a href="/layaways">Layaways</a>
+        </li>
+        <li>
+            <a href="/sales">Sales</a>
         </li>
     </ul>
     <div class="row align-items-end justify-content-center auth">

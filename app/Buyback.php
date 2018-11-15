@@ -28,4 +28,18 @@ class Buyback extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function amountDue()
+    {
+        $termWeeks = [
+            '1 week' => 1,
+            '2 weeks' => 2,
+            '3 weeks' => 3,
+            '4 weeks' => 4,
+        ];
+
+        $loanFee = ($this->loan_amount > 50) ? $termWeeks[$this->term] * $this->loan_amount * 0.1 : $termWeeks[$this->term] * 5 ;
+
+        return $this->loan_amount + $loanFee;
+    }
 }

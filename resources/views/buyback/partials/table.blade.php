@@ -9,6 +9,7 @@
             <th scope="col">Created</th>
             <th scope="col">Loan Amount</th>
             <th scope="col">Term</th>
+            <th scope="col">Amount Due</th>
             <th scope="col">User</th>
             <th scope="col">Client</th>
             <th scope="col">Stock</th>
@@ -23,6 +24,7 @@
                 <td>{{ $buyback->created_at->format('d-m-Y') }}</td>
                 <td>£ {{ $buyback->loan_amount }}</td>
                 <td>{{ $buyback->term }}</td>
+                <td>£ {{ $buyback->amountDue() }}</td>
                 <td>{{ $buyback->user->name }}</td>
                 <td>
                     @if ( isset($buyback->client) )
@@ -48,8 +50,8 @@
                         Buy back cancelled the same day
                     @elseif($buyback->bought_back_date)
                         Bought back on {{ $buyback->bought_back_date->format('d-m-Y') }}
-                    @elseif($buyback->buybackStockLink->first() && $buyback->buybackStockLink->first()->stock->seized)
-                        Stock seized on {{ $buyback->buybackStockLink->first()->stock->seized_date->format('d-m-Y') }}
+                    @elseif($buyback->buybackStockLink->first() && $buyback->buybackStockLink->last()->stock->seized)
+                        Stock seized on {{ $buyback->buybackStockLink->last()->stock->seized_date->format('d-m-Y') }}
                     @elseif($buyback->renew_id)
                         Stock renewed on <a href="/buyback/{{ $buyback->renew_id }}">{{ $buyback->renew_date->format('d-m-Y') }}</a>
                     @else
