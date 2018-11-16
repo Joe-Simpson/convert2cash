@@ -1,5 +1,5 @@
 <div class="form-group row">
-	<div class="input-group">
+	<div class="input-group ">
 		<label for="price_adjustment" class="col-sm-4 col-form-label">Price Adjustment</label>	
         <div class="input-group-prepend">
         	<span class="input-group-text">£</span>
@@ -60,8 +60,8 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="user" class="col-sm-2 col-form-label">Operator</label>
-    <div class="col-10">
+    <div class="input-group ">
+        <label for="user" class="col-sm-4 col-form-label">Operator</label>  
         <input type="text"
                 class="form-control"
                 id="user"

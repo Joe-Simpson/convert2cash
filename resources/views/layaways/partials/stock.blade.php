@@ -3,7 +3,8 @@
         <select class="form-control"
                 id="stock_search"
                 name="stock_search[]"
-                multiple="multiple">
+                multiple="multiple"
+                required>
             @foreach($stocks as $stock)
                 <option value="{{ $stock->id }}">
                     <ul class="list-inline">
