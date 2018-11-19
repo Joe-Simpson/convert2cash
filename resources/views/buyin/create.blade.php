@@ -46,6 +46,15 @@
                     <div id="new-stock-item">
                     </div>
 
+                    <div class="form-group">
+                        <p class="btn btn-success" id="new-stock-item-button">
+                            <i class="fas fa-plus-circle"></i> New Item
+                        </p>
+                        <p class="btn btn-danger" id="remove-stock-item-button" style="display: none;">
+                            <i class="fas fa-minus-circle"></i> Remove Item
+                        </p>
+                    </div>
+
                     <hr>
 
                     <div class="form-group row" id="buyin-details-heading">
@@ -53,7 +62,6 @@
                     </div>
 
                     @include('buyin.partials.buyin')
-                    
                     
                 </div>
 
@@ -64,15 +72,6 @@
                     
                     @include('clients.partials.client')
 
-                </div>
-
-                <div class="form-group">
-                    <p class="btn btn-success" id="new-stock-item-button">
-                        <i class="fas fa-plus-circle"></i> New Item
-                    </p>
-                    <p class="btn btn-danger" id="remove-stock-item-button" style="display: none;">
-                        <i class="fas fa-minus-circle"></i> Remove Item
-                    </p>
                 </div>
 
                 <div class="form-group">
