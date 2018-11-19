@@ -18,12 +18,6 @@
 
 			    {{ csrf_field() }}
 
-                <div class="form-group row" id="buyback-details-heading">
-                    <h3>Buy-back Details</h3>
-                </div>
-
-                @include('buyback.partials.buyback')
-                
                 <div id="item-details" style="display: none;">
                     <div class="form-group row">
                         <h3>Item Details</h3>
@@ -51,7 +45,25 @@
 
                     <div id="new-stock-item">
                     </div>
+
+                    <div class="form-group">
+                        <p class="btn btn-success" id="new-stock-item-button">
+                            <i class="fas fa-plus-circle"></i> New Item
+                        </p>
+                        <p class="btn btn-danger" id="remove-stock-item-button" style="display: none;">
+                            <i class="fas fa-minus-circle"></i> Remove Item
+                        </p>
+                    </div>
                 </div>
+
+                <hr>
+
+                <div class="form-group row" id="buyback-details-heading">
+                    <h3>Buy-back Details</h3>
+                </div>
+
+                @include('buyback.partials.buyback')
+                
 
                 <div id="tab2C">
                     <div class="form-group row">
@@ -60,15 +72,6 @@
                     
                     @include('clients.partials.client')
 
-                </div>
-
-                <div class="form-group">
-                    <p class="btn btn-success" id="new-stock-item-button">
-                        <i class="fas fa-plus-circle"></i> New Item
-                    </p>
-                    <p class="btn btn-danger" id="remove-stock-item-button" style="display: none;">
-                        <i class="fas fa-minus-circle"></i> Remove Item
-                    </p>
                 </div>
 
                 <div class="form-group">
@@ -122,8 +125,6 @@
         $('#new-stock-item-button').on('click', () => newStockItem());
         // Remove stock item
         $('#remove-stock-item-button').on('click', () => removeStockItem());
-        // Update Loan Amount
-        $('#selling_price').on('change', () => updateLoanAmount());
 
         function newStockItem() {
             // Check required fields populated
@@ -148,7 +149,9 @@
         }
 
         function updateLoanAmount() {
-            console.log('test');
+            $( "input[name='selling_price[]']" ).each(function( index ) {
+              console.log( index + ": " + $( this ).val() );
+            });
         }
 
         var cloneId = 0;
@@ -212,9 +215,10 @@
             }
             // Set cloneId
             updateCloneId();
-            // cloneId = j;
-            console.log('cloneId : ' + cloneId);
-            console.log(inputStock);
+
+            $("input[id='selling_price']").on('input', function() {
+                updateLoanAmount();
+            });
         }
 
         function updateCloneId() { 
@@ -228,14 +232,19 @@
 
         function scrollToTop() {
             $([document.documentElement, document.body]).animate({
-                scrollTop: $("#buyback-details-heading").offset().top
+                scrollTop: $("#form").offset().top
             }, 2000);
         }
+
         // On load
         // Tabs
         tab1();
         // Stock Item Form
         addNewStockItem();
+
+        $("input[name='loan_amount']").on('input', function() {
+            console.log('test');
+        });
 
       });
     </script>
