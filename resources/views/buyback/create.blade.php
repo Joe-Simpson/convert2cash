@@ -144,14 +144,19 @@
             $('#new-stock-item-template-' + j).show();
             inputStock.splice(j - 1, 1);
             updateCloneId();
-            console.log('cloneId : ' + cloneId);
-            console.log(inputStock)
+            updateLoanAmount();
         }
 
         function updateLoanAmount() {
+            var totalSellingPrice = 0;
             $( "input[name='selling_price[]']" ).each(function( index ) {
-              console.log( index + ": " + $( this ).val() );
+              ( !$( this ).val() ) ? sellingPrice = 0 : sellingPrice = parseInt($( this ).val(),10);
+              totalSellingPrice = totalSellingPrice + sellingPrice;
             });
+            loanAmount = totalSellingPrice / 3;
+            loanAmount = loanAmount.toFixed(2);
+            // update loan_amount
+            $("input[name='loan_amount']").val(loanAmount);
         }
 
         var cloneId = 0;
@@ -185,7 +190,6 @@
                 tableBody = tableBody + tableRow;
             }
             $('#item-details-body').append(tableBody);
-            console.log('tableBody : ' + tableBody);
         }
 
         function addNewStockItem() {
@@ -241,10 +245,6 @@
         tab1();
         // Stock Item Form
         addNewStockItem();
-
-        $("input[name='loan_amount']").on('input', function() {
-            console.log('test');
-        });
 
       });
     </script>

@@ -18,12 +18,6 @@
 
                 {{ csrf_field() }}
 
-                <div class="form-group row" id="buyin-details-heading">
-                    <h3>Buy-In Details</h3>
-                </div>
-
-                @include('buyin.partials.buyin')
-                
                 <div id="item-details" style="display: none;">
                     <div class="form-group row">
                         <h3>Item Details</h3>
@@ -51,6 +45,16 @@
 
                     <div id="new-stock-item">
                     </div>
+
+                    <hr>
+
+                    <div class="form-group row" id="buyin-details-heading">
+                        <h3>Buy-In Details</h3>
+                    </div>
+
+                    @include('buyin.partials.buyin')
+                    
+                    
                 </div>
 
                 <div id="tab2C">
@@ -140,12 +144,19 @@
             $('#new-stock-item-template-' + j).show();
             inputStock.splice(j - 1, 1);
             updateCloneId();
-            console.log('cloneId : ' + cloneId);
-            console.log(inputStock)
+            updateLoanAmount();
         }
 
         function updateLoanAmount() {
-            console.log('test');
+            var totalSellingPrice = 0;
+            $( "input[name='selling_price[]']" ).each(function( index ) {
+              ( !$( this ).val() ) ? sellingPrice = 0 : sellingPrice = parseInt($( this ).val(),10);
+              totalSellingPrice = totalSellingPrice + sellingPrice;
+            });
+            costPrice = totalSellingPrice / 3;
+            costPrice = costPrice.toFixed(2);
+            // update loan_amount
+            $("input[name='cost_price']").val(costPrice);
         }
 
         var cloneId = 0;
@@ -209,9 +220,10 @@
             }
             // Set cloneId
             updateCloneId();
-            // cloneId = j;
-            console.log('cloneId : ' + cloneId);
-            console.log(inputStock);
+
+            $("input[id='selling_price']").on('input', function() {
+                updateLoanAmount();
+            });
         }
 
         function updateCloneId() { 
