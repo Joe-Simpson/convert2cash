@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Buyback extends Model
 {
@@ -31,15 +32,13 @@ class Buyback extends Model
 
     public function amountDue()
     {
-        $termWeeks = [
-            '1 week' => 1,
-            '2 weeks' => 2,
-            '3 weeks' => 3,
-            '1 month' => 4,
-        ];
+        $term = \Carbon\CarbonInterval::fromString($this->term);
+        $term_end = $this->created_at->add( $term );
 
-        $loanFee = ($this->loan_amount > 50) ? $termWeeks[$this->term] * $this->loan_amount * 0.1 : $termWeeks[$this->term] * 5 ;
+        $weeks_overdue = ( $term_end < Carbon::now()) ? $term_end->diffInWeeks(Carbon::now()) : 0 ;
+        
+        $overdue_fee = ($this->loan_amount > 50) ? floor($weeks_overdue) * 0.1 * $this->loan_amount : $overdue_fee = floor($weeks_overdue) * 5 ;
 
-        return $this->loan_amount + $loanFee;
+        return $this->loan_amount + $overdue_fee;
     }
 }
