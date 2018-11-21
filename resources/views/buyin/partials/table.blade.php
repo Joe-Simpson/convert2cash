@@ -19,7 +19,7 @@
             <tr>
                 <td>{{ $buyin->id }}</th>
                 <td>{{ $buyin->created_at->format('d-m-Y') }}</td>
-                <td>{{ $buyin->cost_price }}</td>
+                <td>£ {{ $buyin->cost_price }}</td>
                 <td>{{ $buyin->user->name }}</td>
                 <td>
                     @if ( isset($buyin->client) )
