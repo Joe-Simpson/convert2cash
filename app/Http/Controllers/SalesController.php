@@ -78,8 +78,6 @@ class SalesController extends Controller
             $validation['client_search'] = 'exists:clients,id';
         }
 
-        // dd(sizeof(request('stock_search')));
-
         // validate
         $this->validate(request(), $validation);
 

@@ -214,7 +214,7 @@
             @foreach(\App\Client::$validationType2 as $validationType)
                 @if ( ! $clientblade['create'] )
                     <option
-                            @if ( $client->id_verification_type == $validationType)
+                            @if ( $client->id_verification_type_2 == $validationType)
                             selected="selected"
                             @endif
                             value="{{ $validationType }}">
@@ -222,7 +222,7 @@
                     </option>
                 @else
                     <option
-                            @if( old('id_verification_type') == $validationType )
+                            @if( old('id_verification_type_2') == $validationType )
                             selected="selected"
                             value="{{ $validationType }}"
                             @endif>

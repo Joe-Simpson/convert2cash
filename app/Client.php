@@ -38,7 +38,7 @@ class Client extends Model
     public static $validationType2 = [
         'Utility Bill',
         'Pay Slip',
-        'Bank Statment',
+        'Bank Statement',
         'An In Date letter',
     ];
 

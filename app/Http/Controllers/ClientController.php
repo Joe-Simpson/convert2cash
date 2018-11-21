@@ -103,14 +103,12 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Client $client)
-    {   
+    {
         $title = 'Client Details';
 
         // Buyback Stats
-        $buybacks = Buyback::where('user_id', $client->id)
-            ->where('renew_id', null)
-            ->get();
-        
+        $buybacks = $client->buyback->where('renew_id', null);
+
         // Total Buybacks
         $bbCancelled = count($client->buyback->where('cancelled', 1));
         $bbTotal = count($client->buyback->where('renew_id', null)) - $bbCancelled;
@@ -121,22 +119,22 @@ class ClientController extends Controller
             ($buyback->term_end < Carbon::now() && ! $buyback->buybackStockLink->last()->stock->seized && $buyback->cancelled == 0 && $buyback->renew_id) ? $buyback->attention_3 = true : $buyback->attention_3 = false ;
         }
         $bbOverdue = count($buybacks->where('attention_3', true));
-        $bbOverdueP = ($bbTotal > 0) ? round(($bbOverdue/$bbTotal)*100, 1) : 0;
+        $bbOverdueP = ($bbTotal > 0) ? round(($bbOverdue/$bbTotal)*100, 0) : 0;
         
         // Total buybacks complete
         $bbCompleted = count($client->buyback->where('renew_id', null)) - count($client->buyback->where('bought_back_date', null)->where('renew_id', null));
-        $bbCompletedP = ($bbTotal > 0) ? round(($bbCompleted/$bbTotal)*100, 1) : 0;
+        $bbCompletedP = ($bbTotal > 0) ? round(($bbCompleted/$bbTotal)*100, 0) : 0;
 
         // Total buybacks seized
         $bbSeized = 0;
         foreach ($buybacks as $buyback) {
-            $bbSeized = $bbSeized + $buyback->buybackStockLink->last()->stock->seized;
+            $bbSeized = $bbSeized + $buyback->buybackStockLink->first()->stock->seized;
         }
-        $bbSeizedP = ($bbTotal > 0) ? round(($bbSeized/$bbTotal)*100, 1) : 0;
+        $bbSeizedP = ($bbTotal > 0) ? round(($bbSeized/$bbTotal)*100, 0) : 0;
 
         // Total buybacks active
         $bbActive = $bbTotal - $bbCompleted - $bbSeized;
-        $bbActiveP = ($bbTotal > 0) ? round(($bbActive/$bbTotal)*100, 1) : 0;
+        $bbActiveP = ($bbTotal > 0) ? round(($bbActive/$bbTotal)*100, 0) : 0;
 
         $buybackStats = [
             'total' => $bbTotal,

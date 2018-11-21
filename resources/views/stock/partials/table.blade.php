@@ -36,7 +36,9 @@
                         <span class="badge badge-secondary">Details</span>
                     </a>
                     @if ( ! isset($stock_item->sales) )
-                        @if( $stock_item->seized || $stock_item->aquisition_type == 'buy-in')
+                        @if( $stock_item->seized 
+                            && ! $stock_item->stock_loss_date 
+                            || $stock_item->aquisition_type == 'buy-in')
                         <span class="badge badge-success">Sellable</span>
                         @endif
                     @else

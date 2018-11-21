@@ -60,7 +60,7 @@
 
                 <div class="form-group row">
                     <div class="input-group ">
-                        <label for="sale_price" class="col-sm-4 col-form-label">Sale Price</label>
+                        <label for="sale_price" class="col-sm-4 col-form-label">Remaining Cost</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text">£</span>
                         </div>

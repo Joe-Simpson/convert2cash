@@ -129,22 +129,8 @@ class StockController extends Controller
      */
     public function update(Request $request, $stock)
     {
-        // validate
-        $this->validate(request(), [
-            'make' => 'required|string',
-            'model' => 'required|string',
-            'description' => 'nullable|string',
-            'serial' => 'required|string',
-            'passcode' => 'required',
-            'boxed' => 'required|string',
-            'condition' => 'required|string',
-            'notes' => 'nullable|string',
-            'selling_price' => 'required|numeric',
-            'user' => 'required|string',
-            'stock_loss_type' => 'required|string',
-        ]);
 
-        if ( $request->stock_loss_type == "false") {
+        if ( $request->stock_loss_type[0] == "false") {
             $stock_loss_date = NULL;
         } else {
             $stock_loss_date = Carbon::now()->format('Y-m-d');
@@ -153,17 +139,17 @@ class StockController extends Controller
         // Update stock
         Stock::Where('id', $stock)
             -> update([
-                'make' => request('make'),
-                'model' => request('model'),
-                'description' => request('description'),
-                'serial' => request('serial'),
+                'make' => request('make')[0],
+                'model' => request('model')[0],
+                'description' => request('description')[0],
+                'serial' => request('serial')[0],
                 'passcode' => true,
-                'boxed' => request('boxed'),
-                'condition' => request('condition'),
-                'notes' => request('notes'),
-                'selling_price' => request('selling_price'),
+                'boxed' => request('boxed')[0],
+                'condition' => request('condition')[0],
+                'notes' => request('notes')[0],
+                'selling_price' => request('selling_price')[0],
                 'user_id' => auth()->id(),
-                'stock_loss_type' => request('stock_loss_type'),
+                'stock_loss_type' => request('stock_loss_type')[0],
                 'stock_loss_date' => $stock_loss_date,
             ]);
 

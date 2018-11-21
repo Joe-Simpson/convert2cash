@@ -1,7 +1,7 @@
 1. Client details
    - Client notes time stamped [1] Done
      - most recent at the top
-   - Buyback stats on the details page [2] Formatting/layout done
+   - Buyback stats on the details page [2] Done
      - percentages successful, failed, ongoing, etc.
      - Clearly, at a glance, see if they are a 'good' customer or not
    - Client picture needs to be updateable [6] Done
@@ -11,7 +11,7 @@
 3. Buybacks
    - Button should be in the client details, not client list [2] Done
      - This gives the user an idea of how indebted the client is
-   - Multiple items [5]
+   - Multiple items [5] Done
      - Entered under one buyback
      - Multiple items listed as seperate stock
      - Clone needs to have a selector for which items need cloning
@@ -27,17 +27,17 @@
    - Stock number [2] Done
      - use id, set to 8 digits
      - basically a barcode
-5. Sales
+5. Sales Done
    - Client details not neccessairly requried [2]
      - aka "optional"
    - Multiple items in one sale [6]
-6. Lay away
+6. Lay away Done
    - Seperate page not bundled into sales [4]
-7. Homepage
+7. Homepage Done
    - Impending things that will require attention [3]
      - Buybacks set to expire
      - Buybacks that have expired
-8. Selling price is 3x the loan amount [2]
+8. Selling price is 3x the loan amount [2] Done
    - This can be auto filled
 9. Receipts [4]
    - Require printable receipts

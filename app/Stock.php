@@ -81,7 +81,7 @@ class Stock extends Model
 
     public static function sellableStock()
     {
-        // Stock that is not [sold, layaway, buyback + cancelled, buyback + not seized]
+        // Stock that is not [sold, lost, layaway, buyback + cancelled, buyback + not seized]
         // Sold Stock
         $sales = Sales::get(['id'])->toArray();
         $stockSales = SaleStockLink::whereIn('sales_id', $sales)
@@ -113,6 +113,8 @@ class Stock extends Model
         // Combine Arrays
         $notIn = array_merge($stockSales, $stockLayaways, $bbCStock, $bbNotSeized);
 
-        return self::whereNotIn('id', $notIn)->get();
+        return self::whereNotIn('id', $notIn)
+            ->where('stock_loss_date', null)
+            ->get();
     }
 }

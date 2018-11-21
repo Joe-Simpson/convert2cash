@@ -45,7 +45,7 @@ class ClientNotesController extends Controller
 
 
         // Return to clients index screen
-        return redirect('/clients/' . $request->client_id . '#notes')
+        return redirect('/clients/' . $request->client_id)
             ->with('status','New Client Note Created');
     }
 

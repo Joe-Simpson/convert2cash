@@ -236,7 +236,7 @@
 
         function scrollToTop() {
             $([document.documentElement, document.body]).animate({
-                scrollTop: $("#buyin-details-heading").offset().top
+                scrollTop: $("#form").offset().top
             }, 2000);
         }
         // On load
