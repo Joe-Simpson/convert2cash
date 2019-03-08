@@ -32,7 +32,6 @@ class Client extends Model
         'Photo ID Card',
         'Bank Card',
         'Bus Pass',
-        'NI Card',
     ];
 
     public static $validationType2 = [

@@ -36,8 +36,11 @@ class HomeController extends Controller
                     && $buyback->cancelled == 0
                     && is_null($buyback->bought_back_date)
                     && is_null($buyback->renew_id)) {
+                // Term ends in 3 days
                 ($buyback->term_end < Carbon::now()->addDays(3)) ? $buyback->attention_1 = true : $buyback->attention_1 = false ;
+                // Term ends today
                 ($buyback->term_end = Carbon::now()->toDateString()) ? $buyback->attention_2 = true : $buyback->attention_2 = false ;
+                // Term ended
                 ($buyback->term_end < Carbon::now()) ? $buyback->attention_3 = true : $buyback->attention_3 = false ;
             }
         }
